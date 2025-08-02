@@ -16,7 +16,8 @@ public class Game : MonoBehaviour
     int endgame = 6;
     bool Done = true;
     public Text announcer;
-    public GameObject pannel, coupOff;
+    public GameObject pannel, coupOff , coupCanvas;
+    public GameObject[] coupCircle = new GameObject[3];
     string mali = "banker", ertebat = "", attack = "cherik", uniqe4 = "solh", uniqe5 = "siasat";
 
     /// <Mali>
@@ -213,6 +214,35 @@ public class Game : MonoBehaviour
         }
 
     }
+
+    public void coup()
+    {
+        StartCoroutine(coupy());
+    }
+
+    IEnumerator coupy()
+    {
+        if (!cpu1.Alive)
+            coupCircle[0].SetActive(false);
+        else
+            coupCircle[0].SetActive(true);
+
+        if (!cpu2.Alive)
+            coupCircle[1].SetActive(false);
+        else
+            coupCircle[1].SetActive(true);
+
+        if (!cpu3.Alive)
+            coupCircle[2].SetActive(false);
+        else
+            coupCircle[2].SetActive(true);
+
+        coupCanvas.SetActive(true);
+
+        yield return new WaitForSeconds(1);
+    }
+
+
 
     public void earn()
     {
