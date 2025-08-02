@@ -178,7 +178,9 @@ public class Game : MonoBehaviour
     {
         ShuffleArray(numbers, true);
 
-
+        //testing
+        Me.coin = 7;
+       //
 
 
         StartCoroutine(Robot());
@@ -245,6 +247,13 @@ public class Game : MonoBehaviour
 
     }
 
+
+    public void selectCoup(int who)
+    {
+        cClicked = true;
+        whoCoup = who;
+    }
+
     public void coup()
     {
         StartCoroutine(coupy());
@@ -254,10 +263,12 @@ public class Game : MonoBehaviour
     {
         if (myturn)
         {
+            Me.coin -= 7;
+            cointxt[0].text = Me.coin.ToString();
           if (!cpu1.Alive)
-            coupCircle[0].SetActive(false);
-        else
-            coupCircle[0].SetActive(true);
+                coupCircle[0].SetActive(false);
+            else
+                coupCircle[0].SetActive(true);
 
         if (!cpu2.Alive)
             coupCircle[1].SetActive(false);
@@ -288,27 +299,27 @@ public class Game : MonoBehaviour
                 if (cpu1.card1 == 1)
                 {
                     if (mali == "banker")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
                 }
                 else if (cpu1.card1 == 2)
                 {
                     if (ertebat == "director")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
                 }
                 else if (cpu1.card1 == 3)
                 {
                     if (attack == "cherik")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
-                }
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
+                } 
                 else if (cpu1.card1 == 4)
                 {
                     if (uniqe4 == "solh")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
                 }
                 else if (cpu1.card1 == 5)
                 {
                     if (uniqe5 == "siasat")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
                 }
 
                 for (int i = 0; i < lost.Length; i++)
@@ -328,27 +339,27 @@ public class Game : MonoBehaviour
                 if (cpu1.card2 == 1)
                 {
                     if (mali == "banker")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
                 }
                 else if (cpu1.card2 == 2)
                 {
                     if (ertebat == "director")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
                 }
                 else if (cpu1.card2 == 3)
                 {
                     if (attack == "cherik")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
                 }
                 else if (cpu1.card2 == 4)
                 {
                     if (uniqe4 == "solh")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
                 }
                 else if (cpu1.card2 == 5)
                 {
                     if (uniqe5 == "siasat")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
                 }
 
                 for (int i = 0; i < lost.Length; i++)
@@ -381,27 +392,27 @@ public class Game : MonoBehaviour
                 if (cpu2.card1 == 1)
                 {
                     if (mali == "banker")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
                 }
                 else if (cpu2.card1 == 2)
                 {
                     if (ertebat == "director")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
                 }
                 else if (cpu2.card1 == 3)
                 {
                     if (attack == "cherik")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
                 }
                 else if (cpu2.card1 == 4)
                 {
                     if (uniqe4 == "solh")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
                 }
                 else if (cpu2.card1 == 5)
                 {
                     if (uniqe5 == "siasat")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
                 }
 
                 for (int i = 0; i < lost.Length; i++)
@@ -420,27 +431,27 @@ public class Game : MonoBehaviour
                 if (cpu2.card2 == 1)
                 {
                     if (mali == "banker")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
                 }
                 else if (cpu2.card2 == 2)
                 {
                     if (ertebat == "director")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
                 }
                 else if (cpu2.card2 == 3)
                 {
                     if (attack == "cherik")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
                 }
                 else if (cpu2.card2 == 4)
                 {
                     if (uniqe4 == "solh")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
                 }
                 else if (cpu2.card2 == 5)
                 {
                     if (uniqe5 == "siasat")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
                 }
 
                 for (int i = 0; i < lost.Length; i++)
@@ -471,27 +482,27 @@ public class Game : MonoBehaviour
                 if (cpu3.card1 == 1)
                 {
                     if (mali == "banker")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
                 }
                 else if (cpu3.card1 == 2)
                 {
                     if (ertebat == "director")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
                 }
                 else if (cpu3.card1 == 3)
                 {
                     if (attack == "cherik")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
                 }
                 else if (cpu3.card1 == 4)
                 {
                     if (uniqe4 == "solh")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
                 }
                 else if (cpu3.card1 == 5)
                 {
                     if (uniqe5 == "siasat")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
                 }
 
                 for (int i = 0; i < lost.Length; i++)
@@ -510,27 +521,27 @@ public class Game : MonoBehaviour
                 if (cpu3.card2 == 1)
                 {
                     if (mali == "banker")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
                 }
                 else if (cpu3.card2 == 2)
                 {
                     if (ertebat == "director")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
                 }
                 else if (cpu3.card2 == 3)
                 {
                     if (attack == "cherik")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
                 }
                 else if (cpu3.card2 == 4)
                 {
                     if (uniqe4 == "solh")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
                 }
                 else if (cpu3.card2 == 5)
                 {
                     if (uniqe5 == "siasat")
-                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
                 }
 
                 for (int i = 0; i < lost.Length; i++)
