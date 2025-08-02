@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,31 +10,31 @@ public class Game : MonoBehaviour
 {
     int[] numbers = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
     int[] lost = { -1, -1, -1, -1, -1, -1, -1 };
-    bool myturn=false, cpu1turn=false, cpu2turn=false, cpu3turn=false;
-    Player Me = new Player();Player cpu1 = new Player();Player cpu2 = new Player();Player cpu3= new Player();
+    bool myturn = false, cpu1turn = false, cpu2turn = false, cpu3turn = false;
+    Player Me = new Player(); Player cpu1 = new Player(); Player cpu2 = new Player(); Player cpu3 = new Player();
     int endgame = 6;
-    bool Done = false;
+    bool Done = true;
     public Text announcer;
-    public GameObject pannel , coupOff;
-    string mali, ertebat, attack, uniqe4, uniqe5;
+    public GameObject pannel, coupOff;
+    string mali = "banker", ertebat = "", attack = "cherik", uniqe4 = "solh", uniqe5 = "siasat";
 
     /// <Mali>
- //   public GameObject maliOff;
+    //   public GameObject maliOff;
     ///
-    
-     /// <ertebat>
-  //  public GameObject maliOff;
+
+    /// <ertebat>
+    //  public GameObject maliOff;
     ///
 
     /// <attack>
     public GameObject attackOff;
     ///
     /// <uniqe4>
-   // public GameObject maliOff;
+    // public GameObject maliOff;
     ///
-    
+
     /// /// <uniqe5>
-   // public GameObject maliOff;
+    // public GameObject maliOff;
     ///
     void ShuffleArray(int[] array, bool check)
     {
@@ -46,7 +48,10 @@ public class Game : MonoBehaviour
 
         if (check)
         {
-            int ran = Random.Range(1, 5);
+
+            //testing
+            int ran = 1;//Random.Range(1, 5);
+            //
             switch (ran)
             {
                 case 1:
@@ -105,15 +110,19 @@ public class Game : MonoBehaviour
                 attackOff.SetActive(false);
             }
         }
-        
+
     }
 
     IEnumerator Robot()
     {
-        yield return new WaitUntil(() => Done == true);
+        //testing
+
+
 
         while (endgame != 0 && Me.Alive)
         {
+            yield return new WaitUntil(() => Done == true);
+            Done = false;
             if (myturn)
             {
 
@@ -125,15 +134,16 @@ public class Game : MonoBehaviour
             {
 
             }
+            yield return new WaitForSeconds(1);
         }
-        
+
         // point
     }
 
-    
+
     void Start()
     {
-        ShuffleArray(numbers,true);
+        ShuffleArray(numbers, true);
 
 
 
@@ -141,7 +151,14 @@ public class Game : MonoBehaviour
         StartCoroutine(Robot());
     }
 
-    
+
+    public void Action(string whichAction)
+    {
+
+        cpu1.Chalesh(1, lost);
+
+    }
+
 }
 
 public class Player
@@ -155,5 +172,60 @@ public class Player
     {
         coin = 2;
         Alive = true;
+    }
+
+    public bool Chalesh(int what, int[] lost)
+    {   int burn = 0;
+        int res = 0;
+        int hand = 0;
+        Debug.Log(card1+"--"+card2);
+        if (card1 == what)
+            res++;
+        if (card2 == what)
+            res++;
+
+        if (card1 != -1)
+            hand++;
+        if (card2 != -1)
+            hand++;
+
+        for (int i = 0; i < lost.Length; i++)
+            {
+                if (lost[i] == what)
+                {
+                    res++;
+                }
+                if (lost[i] != -1)
+                    burn++;
+            }
+
+
+        if (res == 3)
+        {
+            return true;
+        }
+        else
+        {
+            float formula;
+            formula = (float)(3 - res) / (15 - burn - hand);
+            Debug.Log(formula);
+            formula *= 300;
+            Debug.Log(formula);
+            formula = 100 - formula;
+            formula /= 4;
+            Debug.Log(formula);
+            int go = Random.Range(1, 101);
+            go *= 2;
+            Debug.Log(go);
+            if (go < formula)
+            {
+                return true;
+            } else {
+                return false;
+            }
+            
+        }
+        
+   
     }
 }
