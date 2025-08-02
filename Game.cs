@@ -13,12 +13,18 @@ public class Game : MonoBehaviour
     int[] lost = { -1, -1, -1, -1, -1, -1, -1 };
     bool myturn = false, cpu1turn = false, cpu2turn = false, cpu3turn = false;
     Player Me = new Player(); Player cpu1 = new Player(); Player cpu2 = new Player(); Player cpu3 = new Player();
-    int endgame = 6;
-    bool Done = true;
+    int endgame = 6 ;
+    bool Done = true , cClicked = false;
     public Text announcer;
-    public GameObject pannel, coupOff , coupCanvas;
+    public Text[] lostText = new Text[5];
+    public GameObject[] mycards = new GameObject[2];
+    public GameObject[] cpu1cards = new GameObject[2];
+    public GameObject[] cpu2cards = new GameObject[2];
+    public GameObject[] cpu3cards = new GameObject[2];
+    public GameObject pannel, coupOff, coupCanvas;
     public GameObject[] coupCircle = new GameObject[3];
-    string mali = "banker", ertebat = "", attack = "cherik", uniqe4 = "solh", uniqe5 = "siasat";
+    string mali = "banker", ertebat = "director", attack = "cherik", uniqe4 = "solh", uniqe5 = "siasat";
+    int whoCoup;
 
     /// <Mali>
     public Text[] cointxt = new Text[4];
@@ -114,6 +120,30 @@ public class Game : MonoBehaviour
             }
         }
 
+    }
+
+    void printLost()
+    {
+        int funanc = 0, comnu = 0, atk = 0, uq4 = 0, uq5 = 0;
+        for (int i = 0; i < lost.Length; i++)
+        {
+            if (lost[i] == 1)
+                funanc++;
+            if (lost[i] == 2)
+                comnu++;
+            if (lost[i] == 3)
+                atk++;
+            if (lost[i] == 4)
+                uq4++;
+            if (lost[i] == 5)
+                uq5++;
+        }
+
+        lostText[0].text = funanc.ToString();
+        lostText[1].text = comnu.ToString();
+        lostText[2].text = atk.ToString();
+        lostText[3].text = uq4.ToString();
+        lostText[4].text = uq5.ToString();
     }
 
     IEnumerator Robot()
@@ -222,7 +252,9 @@ public class Game : MonoBehaviour
 
     IEnumerator coupy()
     {
-        if (!cpu1.Alive)
+        if (myturn)
+        {
+          if (!cpu1.Alive)
             coupCircle[0].SetActive(false);
         else
             coupCircle[0].SetActive(true);
@@ -239,7 +271,287 @@ public class Game : MonoBehaviour
 
         coupCanvas.SetActive(true);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitUntil(() => cClicked == true);
+        cClicked = false;  
+        }
+
+        if (whoCoup == 1)
+        {
+            int ran;
+            do
+            {
+                ran = Random.Range(1, 3);
+            } while ((ran == 1 && cpu1.card1 == -1) || (ran == 2 && cpu1.card2 == -1));
+
+            if (ran == 1)
+            {
+                if (cpu1.card1 == 1)
+                {
+                    if (mali == "banker")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
+                }
+                else if (cpu1.card1 == 2)
+                {
+                    if (ertebat == "director")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
+                }
+                else if (cpu1.card1 == 3)
+                {
+                    if (attack == "cherik")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
+                }
+                else if (cpu1.card1 == 4)
+                {
+                    if (uniqe4 == "solh")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
+                }
+                else if (cpu1.card1 == 5)
+                {
+                    if (uniqe5 == "siasat")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                }
+
+                for (int i = 0; i < lost.Length; i++)
+                {
+                    if (lost[i] == -1)
+                    {
+                        lost[i] = cpu1.card1;
+                        cpu1.card1 = -1;
+                        break;
+                    }
+                }
+
+                cpu1cards[0].SetActive(false);
+            }
+            else
+            {
+                if (cpu1.card2 == 1)
+                {
+                    if (mali == "banker")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
+                }
+                else if (cpu1.card2 == 2)
+                {
+                    if (ertebat == "director")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
+                }
+                else if (cpu1.card2 == 3)
+                {
+                    if (attack == "cherik")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
+                }
+                else if (cpu1.card2 == 4)
+                {
+                    if (uniqe4 == "solh")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
+                }
+                else if (cpu1.card2 == 5)
+                {
+                    if (uniqe5 == "siasat")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                }
+
+                for (int i = 0; i < lost.Length; i++)
+                {
+                    if (lost[i] == -1)
+                    {
+                        lost[i] = cpu1.card2;
+                        cpu1.card2 = -1;
+                        break;
+                    }
+                }
+
+                cpu2cards[0].SetActive(false);
+            }
+
+            printLost();
+            yield return new WaitForSeconds(3);
+
+        }
+        else if (whoCoup == 2)
+        {
+            int ran;
+            do
+            {
+                ran = Random.Range(1, 3);
+            } while ((ran == 1 && cpu2.card1 == -1) || (ran == 2 && cpu2.card2 == -1));
+
+            if (ran == 1)
+            {
+                if (cpu2.card1 == 1)
+                {
+                    if (mali == "banker")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
+                }
+                else if (cpu2.card1 == 2)
+                {
+                    if (ertebat == "director")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
+                }
+                else if (cpu2.card1 == 3)
+                {
+                    if (attack == "cherik")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
+                }
+                else if (cpu2.card1 == 4)
+                {
+                    if (uniqe4 == "solh")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
+                }
+                else if (cpu2.card1 == 5)
+                {
+                    if (uniqe5 == "siasat")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                }
+
+                for (int i = 0; i < lost.Length; i++)
+                {
+                    if (lost[i] == -1)
+                    {
+                        lost[i] = cpu2.card1;
+                        cpu2.card1 = -1;
+                        break;
+                    }
+                }
+                cpu2cards[0].SetActive(false);
+            }
+            else
+            {
+                if (cpu2.card2 == 1)
+                {
+                    if (mali == "banker")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
+                }
+                else if (cpu2.card2 == 2)
+                {
+                    if (ertebat == "director")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
+                }
+                else if (cpu2.card2 == 3)
+                {
+                    if (attack == "cherik")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
+                }
+                else if (cpu2.card2 == 4)
+                {
+                    if (uniqe4 == "solh")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
+                }
+                else if (cpu2.card2 == 5)
+                {
+                    if (uniqe5 == "siasat")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                }
+
+                for (int i = 0; i < lost.Length; i++)
+                {
+                    if (lost[i] == -1)
+                    {
+                        lost[i] = cpu2.card2;
+                        cpu2.card2 = -1;
+                        break;
+                    }
+                }
+                cpu2cards[1].SetActive(false);
+            }
+
+             printLost();
+            yield return new WaitForSeconds(3);
+        }
+        else if (whoCoup == 3)
+        {
+        int ran;
+            do
+            {
+                ran = Random.Range(1, 3);
+            } while ((ran == 1 && cpu3.card1 == -1) || (ran == 2 && cpu3.card2 == -1));
+
+            if (ran == 1)
+            {
+                if (cpu3.card1 == 1)
+                {
+                    if (mali == "banker")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                }
+                else if (cpu3.card1 == 2)
+                {
+                    if (ertebat == "director")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                }
+                else if (cpu3.card1 == 3)
+                {
+                    if (attack == "cherik")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                }
+                else if (cpu3.card1 == 4)
+                {
+                    if (uniqe4 == "solh")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                }
+                else if (cpu3.card1 == 5)
+                {
+                    if (uniqe5 == "siasat")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                }
+
+                for (int i = 0; i < lost.Length; i++)
+                {
+                    if (lost[i] == -1)
+                    {
+                        lost[i] = cpu3.card1;
+                        cpu3.card1 = -1;
+                        break;
+                    }
+                }
+                cpu3cards[0].SetActive(false);
+            }
+            else
+            {
+                if (cpu3.card2 == 1)
+                {
+                    if (mali == "banker")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                }
+                else if (cpu3.card2 == 2)
+                {
+                    if (ertebat == "director")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                }
+                else if (cpu3.card2 == 3)
+                {
+                    if (attack == "cherik")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                }
+                else if (cpu3.card2 == 4)
+                {
+                    if (uniqe4 == "solh")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                }
+                else if (cpu3.card2 == 5)
+                {
+                    if (uniqe5 == "siasat")
+                        announcer.text = "ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                }
+
+                for (int i = 0; i < lost.Length; i++)
+                {
+                    if (lost[i] == -1)
+                    {
+                        lost[i] = cpu3.card2;
+                        cpu3.card2 = -1;
+                        break;
+                    }
+                }
+                cpu3cards[1].SetActive(false);
+            }
+
+            printLost();
+            yield return new WaitForSeconds(3);
+        }
+        else if (whoCoup == 0)
+        {
+            // me being attacked
+        }
     }
 
 
