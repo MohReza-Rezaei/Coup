@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
+    public name name_script;
     int[] numbers = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
     int[] lost = { -1, -1, -1, -1, -1, -1, -1 };
     bool myturn = false, cpu1turn = false, cpu2turn = false, cpu3turn = false;
@@ -19,6 +20,7 @@ public class Game : MonoBehaviour
     string mali = "banker", ertebat = "", attack = "cherik", uniqe4 = "solh", uniqe5 = "siasat";
 
     /// <Mali>
+    public Text[] cointxt = new Text[4];
     //   public GameObject maliOff;
     ///
 
@@ -151,12 +153,100 @@ public class Game : MonoBehaviour
         StartCoroutine(Robot());
     }
 
-
     public void Action(string whichAction)
     {
+        StartCoroutine(Actiony(whichAction));
+    }
+    IEnumerator Actiony(string whichAction)
+    {
+        bool[] result = { false, false, false };
 
-        cpu1.Chalesh(1, lost);
+        if (whichAction == "mali")
+        {
+            if (mali == "banker")
+            {
+                announcer.text = "ﻡﺭﺍﺪﮑﻧﺎﺑ";
+            }
+            yield return new WaitForSeconds(1.5f);
 
+            if (cpu1.Alive)
+            {
+                result[0] = cpu1.Chalesh(1, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu2.Alive)
+            {
+                result[1] = cpu2.Chalesh(1, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu3.Alive)
+            {
+                result[2] = cpu3.Chalesh(1, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
+            }
+            yield return new WaitForSeconds(1);
+        }
+
+        bool permision = true;
+
+        for (int i = 0; i < result.Length; i++)
+        {
+            if (result[i])
+            {
+                permision = false;
+                break;
+            }
+        }
+
+        //testing
+        permision = true;
+        //
+
+        if (permision)
+        {
+            StartCoroutine(Mali());
+        }
+
+    }
+
+    IEnumerator Mali()
+    {
+        if (mali == "banker")
+        {
+            if (myturn)
+            {
+                Me.coin += 3;
+                announcer.text = "ﻪﮑﺳ " + "+3";
+                cointxt[0].text = Me.coin.ToString();
+
+            }
+            else if (cpu1turn)
+            {
+                cpu1.coin += 3;
+                announcer.text = "ﻪﮑﺳ " + "+3";
+                cointxt[1].text = cpu1.coin.ToString();
+
+            }
+            else if (cpu2turn)
+            {
+                cpu2.coin += 3;
+                announcer.text = "ﻪﮑﺳ " + "+3";
+                cointxt[2].text = cpu2.coin.ToString();
+
+            }
+            else if (cpu3turn)
+            {
+                cpu3.coin += 3;
+                announcer.text = "ﻪﮑﺳ " + "+3";
+                cointxt[3].text = cpu3.coin.ToString();
+
+            }
+            yield return new WaitForSeconds(1.5f);
+            announcer.text = "";
+        }
+        
     }
 
 }
