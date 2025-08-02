@@ -12,7 +12,7 @@ public class Game : MonoBehaviour
     int endgame = 6;
     bool Done = false;
 
-    void ShuffleArray(int[] array)
+    void ShuffleArray(int[] array, bool check)
     {
         for (int i = 0; i < array.Length - 1; i++)
         {
@@ -21,23 +21,60 @@ public class Game : MonoBehaviour
             array[i] = array[j];
             array[j] = temp;
         }
+
+        if (check)
+        {
+            int ran = Random.Range(1, 5);
+            switch (ran)
+            {
+                case 1:
+                    myturn = true;
+                    break;
+                case 2:
+                    cpu1turn = true;
+                    break;
+                case 3:
+                    cpu1turn = true;
+                    break;
+                case 4:
+                    cpu3turn = true;
+                    break;
+            }
+
+
+            Me.card1 = numbers[0];
+            cpu1.card1 = numbers[1];
+            cpu2.card1 = numbers[2];
+            cpu3.card1 = numbers[3];
+            Me.card2 = numbers[4];
+            cpu1.card2 = numbers[5];
+            cpu2.card2 = numbers[6];
+            cpu3.card2 = numbers[7];
+
+            for (int i = 0; i < 8; i++)
+            {
+                numbers[i] = -1;
+            }
+        }
+
     }
-   
+
     IEnumerator Robot()
     {
         yield return new WaitUntil(() => Done == true);
 
         while (endgame != 0 && Me.Alive)
         {
-         
+
         }
         
+        // point
     }
 
-    // Start is called before the first frame update
+    
     void Start()
     {
-        ShuffleArray(numbers);
+        ShuffleArray(numbers,true);
 
 
 
@@ -45,15 +82,13 @@ public class Game : MonoBehaviour
         StartCoroutine(Robot());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 }
 
 public class Player
 {
+    public int card1;
+    public int card2;
     public bool Alive;
     public int coin;
 
