@@ -13,10 +13,11 @@ public class Game : MonoBehaviour
     int[] lost = { -1, -1, -1, -1, -1, -1, -1 };
     bool myturn = false, cpu1turn = false, cpu2turn = false, cpu3turn = false;
     Player Me = new Player(); Player cpu1 = new Player(); Player cpu2 = new Player(); Player cpu3 = new Player();
-    int endgame = 6 ;
-    bool Done = true , cClicked = false;
+    int endgame = 6;
+    bool Done = true, cClicked = false;
     public Text announcer;
     public Text[] lostText = new Text[5];
+    public Sprite[] Logo = new Sprite[25];
     public GameObject[] mycards = new GameObject[2];
     public GameObject[] cpu1cards = new GameObject[2];
     public GameObject[] cpu2cards = new GameObject[2];
@@ -32,7 +33,9 @@ public class Game : MonoBehaviour
     ///
 
     /// <ertebat>
-    //  public GameObject maliOff;
+    public GameObject midField;
+    public Image[] midFiledIcon = new Image[4];
+    public Text[] midFiledText = new Text[4];
     ///
 
     /// <attack>
@@ -180,7 +183,7 @@ public class Game : MonoBehaviour
 
         //testing
         Me.coin = 7;
-       //
+        //
 
 
         StartCoroutine(Robot());
@@ -194,6 +197,7 @@ public class Game : MonoBehaviour
     {
         bool[] result = { false, false, false };
         pannel.SetActive(false);
+
         if (whichAction == "mali")
         {
             if (mali == "banker")
@@ -221,8 +225,38 @@ public class Game : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
         }
+        else if (whichAction == "ertebat")
+        {
+            if (ertebat == "director")
+            {
+                announcer.text = "ﻢﻧﺍﺩﺮﮔﺭﺎﮐ";
+            }
 
+            yield return new WaitForSeconds(1.5f);
+
+            if (cpu1.Alive)
+            {
+                result[0] = cpu1.Chalesh(2, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu2.Alive)
+            {
+                result[1] = cpu2.Chalesh(2, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu3.Alive)
+            {
+                result[2] = cpu3.Chalesh(2, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
+            }
+            yield return new WaitForSeconds(1);
+        }
+
+        //testing
         bool permision = true;
+        //
 
         for (int i = 0; i < result.Length; i++)
         {
@@ -233,15 +267,14 @@ public class Game : MonoBehaviour
             }
         }
 
-        //testing
-        permision = true;
-        //
+
 
         if (permision)
         {
             if (whichAction == "mali")
                 StartCoroutine(Mali());
-
+            else if (whichAction == "ertebat")
+                StartCoroutine(ertebatat());
 
         }
 
@@ -265,25 +298,25 @@ public class Game : MonoBehaviour
         {
             Me.coin -= 7;
             cointxt[0].text = Me.coin.ToString();
-          if (!cpu1.Alive)
+            if (!cpu1.Alive)
                 coupCircle[0].SetActive(false);
             else
                 coupCircle[0].SetActive(true);
 
-        if (!cpu2.Alive)
-            coupCircle[1].SetActive(false);
-        else
-            coupCircle[1].SetActive(true);
+            if (!cpu2.Alive)
+                coupCircle[1].SetActive(false);
+            else
+                coupCircle[1].SetActive(true);
 
-        if (!cpu3.Alive)
-            coupCircle[2].SetActive(false);
-        else
-            coupCircle[2].SetActive(true);
+            if (!cpu3.Alive)
+                coupCircle[2].SetActive(false);
+            else
+                coupCircle[2].SetActive(true);
 
-        coupCanvas.SetActive(true);
+            coupCanvas.SetActive(true);
 
-        yield return new WaitUntil(() => cClicked == true);
-        cClicked = false;  
+            yield return new WaitUntil(() => cClicked == true);
+            cClicked = false;
         }
 
         if (whoCoup == 1)
@@ -310,7 +343,7 @@ public class Game : MonoBehaviour
                 {
                     if (attack == "cherik")
                         announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
-                } 
+                }
                 else if (cpu1.card1 == 4)
                 {
                     if (uniqe4 == "solh")
@@ -466,12 +499,12 @@ public class Game : MonoBehaviour
                 cpu2cards[1].SetActive(false);
             }
 
-             printLost();
+            printLost();
             yield return new WaitForSeconds(3);
         }
         else if (whoCoup == 3)
         {
-        int ran;
+            int ran;
             do
             {
                 ran = Random.Range(1, 3);
@@ -635,8 +668,213 @@ public class Game : MonoBehaviour
         }
 
     }
-    
 
+    IEnumerator ertebatat()
+    {
+        int Role1=0, Role2=0, index1, index2;
+        int t = 0;
+
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            if (numbers[i] != -1)
+            {
+                if (t == 0)
+                {
+                    Role1 = numbers[i];
+                    index1 = i;
+                }
+                else
+                {
+                    Role2 = numbers[i];
+                    index2 = i;
+                }
+                t++;
+            }
+
+            if (t == 2)
+                break;
+
+        }
+        print("role1 : " + Role1 + "- role2: " + Role2);
+        if (midFiledIcon[0] == null)
+        {
+            print("yess");
+        }
+        if (Logo[1] == null)
+        {
+            print("yes2");
+        }
+        midField.SetActive(true);
+        yield return new WaitUntil(() => cClicked == true);
+
+
+    }
+
+    void midIconCheck()
+    {
+        if (Me.card1 == 1)
+        {
+            if (mali == "banker")
+            {
+                midFiledIcon[0].sprite = Logo[0];
+                midFiledText[0].text = "ﺭﺍﺪﮑﻧﺎﺑ";
+            }
+        }
+        else if (Me.card1 == 2)
+        {
+            if (ertebat == "director")
+            {
+                midFiledIcon[0].sprite = Logo[1];
+                midFiledText[0].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
+            }
+        }
+        else if (Me.card1 == 3)
+        {
+            if (attack == "cherik")
+            {
+                midFiledIcon[0].sprite = Logo[2];
+                midFiledText[0].text = "ﮏﯾﺮﭼ";
+            }
+        }
+        else if (Me.card1 == 4)
+        {
+            if (uniqe4 == "solh")
+            {
+                midFiledIcon[0].sprite = Logo[3];
+                midFiledText[0].text = "ﺐﻠﻃ ﺢﻠﺻ";
+            }
+        }
+        else if (Me.card1 == 5)
+        {
+            if (uniqe5 == "siasat")
+            {
+                midFiledIcon[0].sprite = Logo[4];
+                midFiledText[0].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
+            }
+        }
+
+    
+         if (Me.card2 == 1)
+        {
+            if (mali == "banker")
+            {
+                midFiledIcon[1].sprite = Logo[0];
+                midFiledText[1].text = "ﺭﺍﺪﮑﻧﺎﺑ";
+            }
+        }
+        else if (Me.card2 == 2)
+        {
+            if (ertebat == "director")
+            {
+                midFiledIcon[1].sprite = Logo[1];
+                midFiledText[1].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
+            }
+        }
+        else if (Me.card2 == 3)
+        {
+            if (attack == "cherik")
+            {
+                midFiledIcon[1].sprite = Logo[2];
+                midFiledText[1].text = "ﮏﯾﺮﭼ";
+            }
+        }
+        else if (Me.card2 == 4)
+        {
+            if (uniqe4 == "solh")
+            {
+                midFiledIcon[1].sprite = Logo[3];
+                midFiledText[1].text = "ﺐﻠﻃ ﺢﻠﺻ";
+            }
+        }
+        else if (Me.card2 == 5)
+        {
+            if (uniqe5 == "siasat")
+            {
+                midFiledIcon[1].sprite = Logo[4];
+                midFiledText[1].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
+            }
+        }
+
+        
+        
+
+        // switch (Role1)
+        // {
+        //     case 1:
+        //         if (mali == "banker")
+        //         {
+        //             midFiledIcon[2].sprite = Logo[0];
+        //             midFiledText[2].text = "ﺭﺍﺪﮑﻧﺎﺑ";
+        //         }
+        //         break;
+        //     case 2:
+        //         if (ertebat == "director")
+        //         {
+        //             midFiledIcon[2].sprite = Logo[1];
+        //             midFiledText[2].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
+        //         }
+        //         break;
+        //     case 3:
+        //         if (attack == "cherik")
+        //         {
+        //             midFiledIcon[2].sprite = Logo[2];
+        //             midFiledText[2].text = "ﮏﯾﺮﭼ";
+        //         }
+        //         break;
+        //     case 4:
+        //         if (uniqe4 == "solh")
+        //         {
+        //             midFiledIcon[2].sprite = Logo[3];
+        //             midFiledText[2].text = "ﺐﻠﻃ ﺢﻠﺻ";
+        //         }
+        //         break;
+        //     case 5:
+        //         if (uniqe5 == "siasat")
+        //         {
+        //             midFiledIcon[2].sprite = Logo[4];
+        //             midFiledText[2].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
+        //         }
+        //         break;
+        // }
+        
+        // switch (Role2)
+        // {
+        //     case 1:
+        //         if (mali == "banker")
+        //         {
+        //         midFiledIcon[3].sprite = Logo[0];
+        //         midFiledText[3].text = "ﺭﺍﺪﮑﻧﺎﺑ";
+        //         }
+        //         break;    
+        //     case 2:
+        //         if (ertebat == "director")
+        //         {
+        //         midFiledIcon[3].sprite = Logo[1];
+        //         midFiledText[3].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
+        //         }
+        //         break;
+        //     case 3:
+        //         if (attack == "cherik") {
+        //         midFiledIcon[3].sprite = Logo[2];
+        //         midFiledText[3].text = "ﮏﯾﺮﭼ";
+        //         }
+        //         break;
+        //     case 4:
+        //         if (uniqe4 == "solh")
+        //         {
+        //         midFiledIcon[3].sprite = Logo[3];
+        //         midFiledText[3].text = "ﺐﻠﻃ ﺢﻠﺻ";
+        //         }
+        //         break;
+        //     case 5:
+        //         if (uniqe5 == "siasat")
+        //         {
+        //         midFiledIcon[3].sprite = Logo[4];
+        //         midFiledText[3].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
+        //         }
+        //         break;
+        // }
+    }
 
 }
 
