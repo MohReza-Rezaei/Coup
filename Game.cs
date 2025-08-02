@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
@@ -11,7 +12,28 @@ public class Game : MonoBehaviour
     Player Me = new Player();Player cpu1 = new Player();Player cpu2 = new Player();Player cpu3= new Player();
     int endgame = 6;
     bool Done = false;
+    public Text announcer;
+    public GameObject pannel , coupOff;
+    string mali, ertebat, attack, uniqe4, uniqe5;
 
+    /// <Mali>
+ //   public GameObject maliOff;
+    ///
+    
+     /// <ertebat>
+  //  public GameObject maliOff;
+    ///
+
+    /// <attack>
+    public GameObject attackOff;
+    ///
+    /// <uniqe4>
+   // public GameObject maliOff;
+    ///
+    
+    /// /// <uniqe5>
+   // public GameObject maliOff;
+    ///
     void ShuffleArray(int[] array, bool check)
     {
         for (int i = 0; i < array.Length - 1; i++)
@@ -59,13 +81,50 @@ public class Game : MonoBehaviour
 
     }
 
+    void Meoffcheck()
+    {
+        //coup
+        if (Me.coin < 7)
+        {
+            coupOff.SetActive(true);
+        }
+        else
+        {
+            coupOff.SetActive(false);
+        }
+
+        //attack
+        if (attack == "cherik")
+        {
+            if (Me.coin < 4)
+            {
+                attackOff.SetActive(true);
+            }
+            else
+            {
+                attackOff.SetActive(false);
+            }
+        }
+        
+    }
+
     IEnumerator Robot()
     {
         yield return new WaitUntil(() => Done == true);
 
         while (endgame != 0 && Me.Alive)
         {
+            if (myturn)
+            {
 
+                Meoffcheck();
+                pannel.SetActive(true);
+
+            }
+            else
+            {
+
+            }
         }
         
         // point
