@@ -160,7 +160,7 @@ public class Game : MonoBehaviour
     IEnumerator Actiony(string whichAction)
     {
         bool[] result = { false, false, false };
-
+        pannel.SetActive(false);
         if (whichAction == "mali")
         {
             if (mali == "banker")
@@ -206,9 +206,44 @@ public class Game : MonoBehaviour
 
         if (permision)
         {
-            StartCoroutine(Mali());
+            if (whichAction == "mali")
+                StartCoroutine(Mali());
+
+
         }
 
+    }
+
+    public void earn()
+    {
+        StartCoroutine(earny());
+    }
+    IEnumerator earny()
+    {
+        if (myturn)
+        {
+            pannel.SetActive(false);
+            Me.coin += 1;
+            cointxt[0].text = Me.coin.ToString();
+        }
+        else if (cpu1turn)
+        {
+            cpu1.coin += 1;
+            cointxt[1].text = cpu1.coin.ToString();
+        }
+        else if (cpu2turn)
+        {
+            cpu2.coin += 1;
+            cointxt[2].text = cpu2.coin.ToString();
+        }
+        else if (cpu3turn)
+        {
+            cpu3.coin += 1;
+            cointxt[3].text = cpu3.coin.ToString();
+        }
+        announcer.text = "ﻪﮑﺳ " + "+1";
+        yield return new WaitForSeconds(4);
+        announcer.text = "";
     }
 
     IEnumerator Mali()
@@ -220,7 +255,6 @@ public class Game : MonoBehaviour
                 Me.coin += 3;
                 announcer.text = "ﻪﮑﺳ " + "+3";
                 cointxt[0].text = Me.coin.ToString();
-
             }
             else if (cpu1turn)
             {
@@ -246,8 +280,10 @@ public class Game : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             announcer.text = "";
         }
-        
+
     }
+    
+
 
 }
 
