@@ -51,12 +51,15 @@ public class Game : MonoBehaviour
 
     /// <attack>
     public GameObject attackOff;
+    public GameObject[] attackCircle = new GameObject[3];
+    public GameObject attackCanvas;
     ///
     /// <uniqe4>
     // public GameObject maliOff;
     ///
 
     /// /// <uniqe5>
+    int WhoSolh;
     // public GameObject maliOff;
     ///
     void ShuffleArray(int[] array, bool check)
@@ -373,7 +376,8 @@ public class Game : MonoBehaviour
                 StartCoroutine(Mali());
             else if (whichAction == "ertebat")
                 StartCoroutine(ertebatat());
-
+            else if (whichAction == "attack")
+                StartCoroutine(Attack()); 
         }
 
     }
@@ -967,6 +971,55 @@ public class Game : MonoBehaviour
         }
 
 
+
+    }
+
+    IEnumerator Attack()
+    {
+        announcer.text = "";
+
+        if (!cpu1.Alive)
+        {
+            attackCircle[0].SetActive(false);
+        }
+        if (!cpu2.Alive)
+        {
+            attackCircle[1].SetActive(false);
+        }
+        if (!cpu3.Alive)
+        {
+            attackCircle[2].SetActive(false);
+        }
+
+        if (WhoSolh == 1)
+        {
+            attackCircle[0].SetActive(false);
+        }
+        else
+        {
+            attackCircle[0].SetActive(true);
+        }
+
+        if (WhoSolh == 2)
+        {
+            attackCircle[1].SetActive(false);
+        }
+        else
+        {
+            attackCircle[1].SetActive(true);
+        }
+        if (WhoSolh == 3)
+        {
+            attackCircle[0].SetActive(false);
+        }
+        else
+        {
+            attackCircle[0].SetActive(true);
+        }
+
+        attackCanvas.SetActive(true);
+
+        yield return new WaitUntil(() => cClicked == true);
 
     }
 
