@@ -39,9 +39,8 @@ public class Game : MonoBehaviour
     public Text[] midFiledText = new Text[4];
 
     //(Me)
-    int ertebatClick=0;
-    int[] Firstchoice = new int[2];
-    int[] secondchoice = new int[2];
+    int ertebatClick = 0;
+    int Firstchoice = -1,secondchoice = -1;
     //(cpu)
 
     //////////////////////////////////////////////
@@ -680,7 +679,7 @@ public class Game : MonoBehaviour
     IEnumerator ertebatat()
     {
         announcer.text = "";
-        int Role1=0, Role2=0, index1, index2;
+        int Role1 = 0, Role2 = 0, index1=0, index2=0;
         int t = 0;
 
         for (int i = 0; i < numbers.Length; i++)
@@ -706,7 +705,7 @@ public class Game : MonoBehaviour
         }
 
         print(Me.card1 + " -- " + Me.card2);
-        midIconCheck(Role1,Role2);
+        midIconCheck(Role1, Role2);
         midField.SetActive(true);
 
         if (myturn)
@@ -717,18 +716,170 @@ public class Game : MonoBehaviour
             if (Me.card2 != -1)
                 lives++;
 
-            yield return new WaitUntil(() => ertebatClick == lives); 
+            yield return new WaitUntil(() => ertebatClick == lives);
+            midField.SetActive(false);
+            ertebatClick = 0;
+            print("run");
 
+            if (ertebat == "director")
+            {
+                if (lives == 2)
+                {
+                    if (Firstchoice == 0)
+                    {
+                        if (secondchoice == 1)
+                        {
+                            // nothing
+                        }
+                        else if (secondchoice == 2)
+                        {
+                            int box = Me.card2;
+                            Me.card2 = Role1;
+                            numbers[index1] = box;
+                            print(Me.card1 + " -- " + Role1);
+                        }
+                        else if (secondchoice == 3)
+                        {
+                            int box = Me.card2;
+                            Me.card2 = Role2;
+                            numbers[index2] = box;
+                            print(Me.card1 + " -- " + Role2);
+                        }
+                    }
+                    else if (Firstchoice == 1)
+                    {
+                        if (secondchoice == 0)
+                        {  //nothing
+                            print(Me.card1 + " -- " + Me.card2);
+                        }
+                        else if (secondchoice == 2)
+                        {
+                            int box = Me.card1;
+                            Me.card1 = Role1;
+                            numbers[index1] = box;
+                            print(Me.card2 + " -- " + Role1);
+                        }
+                        else if (secondchoice == 3)
+                        {
+                            int box = Me.card1;
+                            Me.card1 = Role2;
+                            numbers[index2] = box;
+                            print(Me.card2 + " -- " + Role2);
+                        }
+                    }
+                    else if (Firstchoice == 2)
+                    {
+                        if (secondchoice == 0)
+                        {
+                            int box = Me.card2;
+                            Me.card2 = Role1;
+                            numbers[index1] = box;
+                            print(Role1 + " -- " + Me.card1);
+                        }
+                        else if (secondchoice == 1)
+                        {
+                            int box = Me.card1;
+                            Me.card1 = Role1;
+                            numbers[index1] = box;
+                            print(Role1 + " -- " + Me.card2);
+                        }
+                        else if (secondchoice == 3)
+                        {
+                            int box1 = Me.card1;
+                            int box2 = Me.card2;
+                            Me.card1 = Role1;
+                            Me.card2 = Role2;
+                            numbers[index1] = box1;
+                            numbers[index2] = box2;
+                            print(Role1 + " -- " + Role2);
+                        }
+                    }
+                    else if (Firstchoice == 3)
+                    {
+                        if (secondchoice == 0)
+                        {
+                            int box = Me.card2;
+                            Me.card2 = Role2;
+                            numbers[index2] = box;
+                            print(Role2 + " -- " + Me.card1);
+                        }
+                        else if (secondchoice == 1)
+                        {
+                            int box = Me.card1;
+                            Me.card1 = Role2;
+                            numbers[index2] = box;
+                            print(Role2 + " -- " + Me.card2);
+                        }
+                        else if (secondchoice == 2)
+                        {
+                            print(Role2 + " -- " + Role1);
+                            int box1 = Me.card1;
+                            int box2 = Me.card2;
+                            Me.card1 = Role1;
+                            Me.card2 = Role2;
+                            numbers[index1] = box1;
+                            numbers[index2] = box2;
+                            print(Role1 + " -- " + Role2);
+                        }
+                    }
+                }
+                else if(lives == 1)
+                {
+                    if (Firstchoice != 2 && Firstchoice != 3)
+                    {
+                        //nothing
+                    }
+                    else
+                    {
+                        if (Firstchoice == 2)
+                        {
+                            if (Me.card1 != -1)
+                            {
+                                int box = Me.card1;
+                                Me.card1 = Role1;
+                                numbers[index1] = box;
+                            }
+                            else
+                            {
+                                int box = Me.card2;
+                                Me.card2 = Role1;
+                                numbers[index1] = box;
+                            }
+                        }
+                        else if (Firstchoice == 3)
+                        {
+                            if (Me.card1 != -1)
+                            {
+                                int box = Me.card1;
+                                Me.card1 = Role2;
+                                numbers[index2] = box;
+                            }
+                            else
+                            {
+                                int box = Me.card2;
+                                Me.card2 = Role2;
+                                numbers[index2] = box;
+                            }
+                        }
+                    }
+                }
+            }
+
+            
+            print("finaly : " + Me.card1 + " -- " + Me.card2);
             
 
 
+
+            Firstchoice = -1;
+            secondchoice = -1;
         }
-        
+
 
 
     }
 
-    void midIconCheck(int role1 , int role2)
+    void midIconCheck(int role1, int role2)
     {
         if (Me.card1 == 1)
         {
@@ -775,7 +926,7 @@ public class Game : MonoBehaviour
             midFiledCards[0].SetActive(false);
         }
 
-//////////////////////////////////////////
+        //////////////////////////////////////////
 
         if (Me.card2 == 1)
         {
@@ -816,13 +967,14 @@ public class Game : MonoBehaviour
                 midFiledIcon[1].GetComponent<Image>().sprite = Logo[4];
                 midFiledText[1].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
             }
-        }else if (Me.card2 == -1)
+        }
+        else if (Me.card2 == -1)
         {
             midFiledCards[1].SetActive(false);
         }
 
-        
-      /////////////////////////////////////////  
+
+        /////////////////////////////////////////  
 
         if (role1 == 1)
         {
@@ -907,6 +1059,20 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void selectErtebat(int whichCard)
+    {
+        ertebatClick++;
+        if (Firstchoice == -1)
+        {
+            Firstchoice = whichCard;
+        }
+        else if (secondchoice == -1)
+        {
+            secondchoice = whichCard;
+        }
+    }
+
+    
 }
 
 public class Player
