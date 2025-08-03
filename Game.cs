@@ -62,10 +62,12 @@ public class Game : MonoBehaviour
     ///
     /// <uniqe4>
     // public GameObject maliOff;
+    int WhoSolh;
+    public GameObject[] solhIcon = new GameObject[4];
     ///
 
     /// /// <uniqe5>
-    int WhoSolh;
+
     // public GameObject maliOff;
     ///
     void ShuffleArray(int[] array, bool check)
@@ -401,34 +403,6 @@ public class Game : MonoBehaviour
                 announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
             }
             yield return new WaitForSeconds(1);
-        }
-        else if (whichAction == "ertebat")
-        {
-            if (ertebat == "director")
-            {
-                announcer.text = "ﻢﻧﺍﺩﺮﮔﺭﺎﮐ";
-            }
-
-            yield return new WaitForSeconds(1.5f);
-
-            if (cpu1.Alive)
-            {
-                result[0] = cpu1.Chalesh(2, lost);
-                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
-            }
-            yield return new WaitForSeconds(1);
-            if (cpu2.Alive)
-            {
-                result[1] = cpu2.Chalesh(2, lost);
-                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
-            }
-            yield return new WaitForSeconds(1);
-            if (cpu3.Alive)
-            {
-                result[2] = cpu3.Chalesh(2, lost);
-                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
-            }
-            yield return new WaitForSeconds(1);
         }else if (whichAction == "attack")
         {
             if (attack == "cherik")
@@ -456,6 +430,60 @@ public class Game : MonoBehaviour
                 announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
             }
             yield return new WaitForSeconds(1);
+        }else if (whichAction == "ertebat")
+        {
+            if (ertebat == "director")
+            {
+                announcer.text = "ﻢﻧﺍﺩﺮﮔﺭﺎﮐ";
+            }
+
+            yield return new WaitForSeconds(1.5f);
+
+            if (cpu1.Alive)
+            {
+                result[0] = cpu1.Chalesh(2, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu2.Alive)
+            {
+                result[1] = cpu2.Chalesh(2, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu3.Alive)
+            {
+                result[2] = cpu3.Chalesh(2, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
+            }
+            yield return new WaitForSeconds(1);
+        }  else if (whichAction == "uniqe4")
+        {
+            if (uniqe4 == "solh")
+            {
+                announcer.text = "ﻢﺒﻠﻃ ﺢﻠﺻ";
+            }
+
+            yield return new WaitForSeconds(1.5f);
+
+            if (cpu1.Alive)
+            {
+                result[0] = cpu1.Chalesh(4, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu2.Alive)
+            {
+                result[1] = cpu2.Chalesh(4, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu3.Alive)
+            {
+                result[2] = cpu3.Chalesh(4, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
+            }
+            yield return new WaitForSeconds(1);
         }
 
         //testing
@@ -480,7 +508,9 @@ public class Game : MonoBehaviour
             else if (whichAction == "ertebat")
                 StartCoroutine(ertebatat());
             else if (whichAction == "attack")
-                StartCoroutine(Attack()); 
+                StartCoroutine(Attack());
+            else if (whichAction == "uniqe4")
+                StartCoroutine(uniqe4y());
         }
 
     }
@@ -1848,6 +1878,63 @@ public class Game : MonoBehaviour
         }
 
 
+    }
+
+
+    IEnumerator uniqe4y()
+    {
+        if (uniqe4 == "solh")
+        {
+            if (myturn)
+            {
+                Me.coin += 1;
+                cointxt[0].text = Me.coin.ToString();
+                announcer.text = " ﻪﮑﺳ " + "+1";
+                yield return new WaitForSeconds(1.5f);
+                WhoSolh = 0;
+                solhIcon[0].SetActive(true);
+                solhIcon[1].SetActive(false);
+                solhIcon[2].SetActive(false);
+                solhIcon[3].SetActive(false);
+            }
+            else if (cpu1turn)
+            {
+                cpu1.coin += 1;
+                cointxt[1].text = cpu1.coin.ToString();
+                announcer.text = " ﻪﮑﺳ " + "+1";
+                yield return new WaitForSeconds(1.5f);
+                WhoSolh = 1;
+                solhIcon[1].SetActive(true);
+                solhIcon[0].SetActive(false);
+                solhIcon[2].SetActive(false);
+                solhIcon[3].SetActive(false);
+            }
+            else if (cpu2turn)
+            {
+                cpu2.coin += 1;
+                cointxt[2].text = cpu2.coin.ToString();
+                announcer.text = " ﻪﮑﺳ " + "+1";
+                yield return new WaitForSeconds(1.5f);
+                WhoSolh = 2;
+                solhIcon[2].SetActive(true);
+                solhIcon[0].SetActive(false);
+                solhIcon[1].SetActive(false);
+                solhIcon[3].SetActive(false);
+            }
+            else if (cpu3turn)
+            {
+                cpu3.coin += 1;
+                cointxt[3].text = cpu3.coin.ToString();
+                announcer.text = " ﻪﮑﺳ " + "+1";
+                yield return new WaitForSeconds(1.5f);
+                WhoSolh = 3;
+                solhIcon[3].SetActive(true);
+                solhIcon[0].SetActive(false);
+                solhIcon[1].SetActive(false);
+                solhIcon[2].SetActive(false);
+            }
+            
+        }
     }
 
     public void selectAttack(int num)
