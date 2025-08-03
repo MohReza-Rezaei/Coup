@@ -16,8 +16,12 @@ public class Game : MonoBehaviour
     int endgame = 6;
     bool Done = true, cClicked = false;
     public Text announcer;
+
+    public Text[] mytext = new Text[2];
     public Text[] lostText = new Text[5];
     public Sprite[] Logo = new Sprite[25];
+
+    public GameObject[] myicon = new GameObject[2];
     public GameObject[] mycards = new GameObject[2];
     public GameObject[] cpu1cards = new GameObject[2];
     public GameObject[] cpu2cards = new GameObject[2];
@@ -156,6 +160,93 @@ public class Game : MonoBehaviour
         lostText[4].text = uq5.ToString();
     }
 
+    void MeIconCheck()
+    {
+        if (Me.card1 == 1)
+        {
+            if (mali == "banker")
+            {
+                myicon[0].GetComponent<Image>().sprite = Logo[0];
+                mytext[0].text = "ﺭﺍﺪﮑﻧﺎﺑ";
+            }
+        }
+        else if (Me.card1 == 2)
+        {
+            if (ertebat == "director")
+            {
+                myicon[0].GetComponent<Image>().sprite = Logo[1];
+                mytext[0].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
+            }
+        }
+        else if (Me.card1 == 3)
+        {
+            if (attack == "cherik")
+            {
+                myicon[0].GetComponent<Image>().sprite = Logo[2];
+                mytext[0].text = "ﮏﯾﺮﭼ";
+            }
+        }
+        else if (Me.card1 == 4)
+        {
+            if (uniqe4 == "solh")
+            {
+                myicon[0].GetComponent<Image>().sprite = Logo[3];
+                mytext[0].text = "ﺐﻠﻃ ﺢﻠﺻ";
+            }
+        }
+        else if (Me.card1 == 5)
+        {
+            if (uniqe5 == "siasat")
+            {
+                myicon[0].GetComponent<Image>().sprite = Logo[4];
+                mytext[0].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
+            }
+        }
+
+        //
+        
+        if (Me.card2 == 1)
+        {
+            if (mali == "banker")
+            {
+                myicon[1].GetComponent<Image>().sprite = Logo[0];
+                mytext[1].text = "ﺭﺍﺪﮑﻧﺎﺑ";
+            }
+        }
+        else if (Me.card2 == 2)
+        {
+            if (ertebat == "director")
+            {
+                myicon[1].GetComponent<Image>().sprite = Logo[1];
+                mytext[1].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
+            }
+        }
+        else if (Me.card2 == 3)
+        {
+            if (attack == "cherik")
+            {
+                myicon[1].GetComponent<Image>().sprite = Logo[2];
+                mytext[1].text = "ﮏﯾﺮﭼ";
+            }
+        }
+        else if (Me.card2 == 4)
+        {
+            if (uniqe4 == "solh")
+            {
+                myicon[1].GetComponent<Image>().sprite = Logo[3];
+                mytext[1].text = "ﺐﻠﻃ ﺢﻠﺻ";
+            }
+        }
+        else if (Me.card2 == 5)
+        {
+            if (uniqe5 == "siasat")
+            {
+                myicon[1].GetComponent<Image>().sprite = Logo[4];
+                mytext[1].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
+            }
+        }
+    }
+
     IEnumerator Robot()
     {
         //testing
@@ -187,7 +278,7 @@ public class Game : MonoBehaviour
     void Start()
     {
         ShuffleArray(numbers, true);
-
+        MeIconCheck();
         //testing
         Me.coin = 7;
         //
@@ -865,7 +956,7 @@ public class Game : MonoBehaviour
                 }
             }
 
-            
+            MeIconCheck();
             print("finaly : " + Me.card1 + " -- " + Me.card2);
             
 
