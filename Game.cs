@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
+using UnityEditor.MPE;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,7 @@ public class Game : MonoBehaviour
     public Text[] mytext = new Text[2];
     public Text[] lostText = new Text[5];
     public Sprite[] Logo = new Sprite[25];
-
+    public GameObject chalesh;
     public GameObject[] myicon = new GameObject[2];
     public GameObject[] mycards = new GameObject[2];
     public GameObject[] cpu1cards = new GameObject[2];
@@ -28,8 +29,11 @@ public class Game : MonoBehaviour
     public GameObject[] cpu3cards = new GameObject[2];
     public GameObject pannel, coupOff, coupCanvas;
     public GameObject[] coupCircle = new GameObject[3];
+    public GameObject[] losingCircle = new GameObject[2];
+    public GameObject lostSection;
     string mali = "banker", ertebat = "director", attack = "cherik", uniqe4 = "solh", uniqe5 = "siasat";
     int whoCoup;
+    bool mychallange = false;
 
     /// <Mali>
     public Text[] cointxt = new Text[4];
@@ -53,6 +57,8 @@ public class Game : MonoBehaviour
     public GameObject attackOff;
     public GameObject[] attackCircle = new GameObject[3];
     public GameObject attackCanvas;
+
+    int whoAttacked;
     ///
     /// <uniqe4>
     // public GameObject maliOff;
@@ -250,6 +256,75 @@ public class Game : MonoBehaviour
         }
     }
 
+    public void ChaleshBtn()
+    {
+        mychallange = true;
+        cClicked = true;
+    }
+
+    public void DisChaleshBtn()
+    {
+        mychallange = false;
+        cClicked = true;
+    }
+
+    void losingy()
+    {
+        StartCoroutine(losing());
+    }
+
+    public void burn(int num)
+    {
+        if (num == 1)
+        {
+            int box = Me.card1;
+            Me.card1 = -1;
+            mycards[0].SetActive(false);
+            for (int i = 0; i < lost.Length; i++)
+            {
+                if (lost[i] == -1)
+                {
+                    lost[i] = box;
+                    break;
+                }
+            }
+            printLost();
+        }
+        else if (num == 2)
+        {
+            int box = Me.card2;
+            Me.card2 = -1;
+            mycards[1].SetActive(false);
+            for (int i = 0; i < lost.Length; i++)
+            {
+                if (lost[i] == -1)
+                {
+                    lost[i] = box;
+                    break;
+                }
+            }
+            printLost();
+        }
+        cClicked = true;   
+    }
+
+    IEnumerator losing()
+    {
+        if (Me.card1 == -1)
+        {
+            losingCircle[0].SetActive(false);
+        }
+        if (Me.card2 == -1)
+        {
+            losingCircle[1].SetActive(false);
+        }
+        lostSection.SetActive(true);
+        yield return new WaitUntil(() => cClicked == true);
+        cClicked = false;
+        lostSection.SetActive(false);
+        
+    }
+
     IEnumerator Robot()
     {
         //testing
@@ -284,6 +359,7 @@ public class Game : MonoBehaviour
         MeIconCheck();
         //testing
         Me.coin = 7;
+       // cpu1.card1 = 3;
         //
 
 
@@ -350,6 +426,33 @@ public class Game : MonoBehaviour
             if (cpu3.Alive)
             {
                 result[2] = cpu3.Chalesh(2, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
+            }
+            yield return new WaitForSeconds(1);
+        }else if (whichAction == "attack")
+        {
+            if (attack == "cherik")
+            {
+                announcer.text = "ﻢﮑﯾﺮﭼ";
+            }
+
+            yield return new WaitForSeconds(1.5f);
+
+            if (cpu1.Alive)
+            {
+                result[0] = cpu1.Chalesh(3, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu2.Alive)
+            {
+                result[1] = cpu2.Chalesh(3, lost);
+                announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
+            }
+            yield return new WaitForSeconds(1);
+            if (cpu3.Alive)
+            {
+                result[2] = cpu3.Chalesh(3, lost);
                 announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
             }
             yield return new WaitForSeconds(1);
@@ -976,6 +1079,7 @@ public class Game : MonoBehaviour
 
     IEnumerator Attack()
     {
+
         announcer.text = "";
 
         if (!cpu1.Alive)
@@ -1020,7 +1124,217 @@ public class Game : MonoBehaviour
         attackCanvas.SetActive(true);
 
         yield return new WaitUntil(() => cClicked == true);
+        cClicked = false;
+        attackCanvas.SetActive(false);
 
+        if (whoAttacked == 1)
+        {
+            if (attack == "cherik")
+            {
+                Me.coin -= 4;
+                cointxt[0].text = Me.coin.ToString();
+            }
+
+            if (cpu1.card1 == 3 || cpu1.card2 == 3)
+            {
+                if (attack == "cherik")
+                {
+                    announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu1Name;
+                }
+
+                chalesh.SetActive(true);
+                yield return new WaitUntil(() => cClicked == true);
+                cClicked = false;
+
+                if (mychallange)
+                {
+                    announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
+                    yield return new WaitForSeconds(1.5f);
+
+                    losingy();
+
+                }
+                else
+                {
+                    // Done
+                }
+
+            }
+            else
+            {   //testing
+                int ran = 2;//Random.Range(1, 5);
+
+                if (ran == 1)
+                {
+                    print("BLOF");
+                }
+                else
+                {
+                    int ran2;
+                    do
+                    {
+                        ran2 = Random.Range(1, 3);
+                    } while ((ran2 == 1 && cpu1.card1 == -1) || (ran2 == 2 && cpu1.card2 == -1));
+
+                    if (ran2 == 1)
+                    {
+                        int box = cpu1.card1;
+                        cpu1.card1 = -1;
+                        cpu1cards[0].SetActive(false);
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu1Name;
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu1Name;
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu1Name;
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu1Name;
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                        
+                    }
+                    else
+                    {
+                       int box = cpu1.card2;
+                        cpu1.card2 = -1;
+                        cpu1cards[1].SetActive(false);
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu1Name;
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu1Name;
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu1Name;
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu1Name;
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                    }
+                    yield return new WaitForSeconds(2);
+                }
+            }
+        }
+        else if (whoAttacked == 2)
+        {
+            if (cpu2.card1 == 3 || cpu2.card2 == 3)
+            {
+            if (attack == "cherik")
+                {
+                    announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu2Name;
+                }
+
+                chalesh.SetActive(true);
+                yield return new WaitUntil(() => cClicked == true);
+                cClicked = false;
+                
+                if (mychallange)
+                {
+                    announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
+                    yield return new WaitForSeconds(1.5f);
+
+                    losingy();
+
+                }
+                else
+                {
+                    // Done
+                }
+            }
+            else
+            {
+
+            }
+        }
+        else if (whoAttacked == 3)
+        {
+            if (cpu3.card1 == 3 || cpu3.card2 == 3)
+            {
+             if (attack == "cherik")
+                {
+                    announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu3Name;
+                }
+
+                chalesh.SetActive(true);
+                yield return new WaitUntil(() => cClicked == true);
+                cClicked = false;
+                
+                if (mychallange)
+                {
+                    announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
+                    yield return new WaitForSeconds(1.5f);
+
+                    losingy();
+
+                }
+                else
+                {
+                    // Done
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+
+    }
+
+    public void selectAttack(int num)
+    {
+        whoAttacked = num;
+        cClicked = true;
     }
 
     void midIconCheck(int role1, int role2)
