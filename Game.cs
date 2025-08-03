@@ -32,11 +32,19 @@ public class Game : MonoBehaviour
     //   public GameObject maliOff;
     ///
 
-    /// <ertebat>
+    /// <ertebat>///////////////////////////////
     public GameObject midField;
-    public Image[] midFiledIcon = new Image[4];
+    public GameObject[] midFiledIcon = new GameObject[4];
+    public GameObject[] midFiledCards = new GameObject[4];
     public Text[] midFiledText = new Text[4];
-    ///
+
+    //(Me)
+    int ertebatClick=0;
+    int[] Firstchoice = new int[2];
+    int[] secondchoice = new int[2];
+    //(cpu)
+
+    //////////////////////////////////////////////
 
     /// <attack>
     public GameObject attackOff;
@@ -671,6 +679,7 @@ public class Game : MonoBehaviour
 
     IEnumerator ertebatat()
     {
+        announcer.text = "";
         int Role1=0, Role2=0, index1, index2;
         int t = 0;
 
@@ -695,28 +704,37 @@ public class Game : MonoBehaviour
                 break;
 
         }
-        print("role1 : " + Role1 + "- role2: " + Role2);
-        if (midFiledIcon[0] == null)
-        {
-            print("yess");
-        }
-        if (Logo[1] == null)
-        {
-            print("yes2");
-        }
+
+        print(Me.card1 + " -- " + Me.card2);
+        midIconCheck(Role1,Role2);
         midField.SetActive(true);
-        yield return new WaitUntil(() => cClicked == true);
+
+        if (myturn)
+        {
+            int lives = 0;
+            if (Me.card1 != -1)
+                lives++;
+            if (Me.card2 != -1)
+                lives++;
+
+            yield return new WaitUntil(() => ertebatClick == lives); 
+
+            
+
+
+        }
+        
 
 
     }
 
-    void midIconCheck()
+    void midIconCheck(int role1 , int role2)
     {
         if (Me.card1 == 1)
         {
             if (mali == "banker")
             {
-                midFiledIcon[0].sprite = Logo[0];
+                midFiledIcon[0].GetComponent<Image>().sprite = Logo[0];
                 midFiledText[0].text = "ﺭﺍﺪﮑﻧﺎﺑ";
             }
         }
@@ -724,7 +742,7 @@ public class Game : MonoBehaviour
         {
             if (ertebat == "director")
             {
-                midFiledIcon[0].sprite = Logo[1];
+                midFiledIcon[0].GetComponent<Image>().sprite = Logo[1];
                 midFiledText[0].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
             }
         }
@@ -732,7 +750,7 @@ public class Game : MonoBehaviour
         {
             if (attack == "cherik")
             {
-                midFiledIcon[0].sprite = Logo[2];
+                midFiledIcon[0].GetComponent<Image>().sprite = Logo[2];
                 midFiledText[0].text = "ﮏﯾﺮﭼ";
             }
         }
@@ -740,7 +758,7 @@ public class Game : MonoBehaviour
         {
             if (uniqe4 == "solh")
             {
-                midFiledIcon[0].sprite = Logo[3];
+                midFiledIcon[0].GetComponent<Image>().sprite = Logo[3];
                 midFiledText[0].text = "ﺐﻠﻃ ﺢﻠﺻ";
             }
         }
@@ -748,17 +766,22 @@ public class Game : MonoBehaviour
         {
             if (uniqe5 == "siasat")
             {
-                midFiledIcon[0].sprite = Logo[4];
+                midFiledIcon[0].GetComponent<Image>().sprite = Logo[4];
                 midFiledText[0].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
             }
         }
+        else if (Me.card1 == -1)
+        {
+            midFiledCards[0].SetActive(false);
+        }
 
-    
-         if (Me.card2 == 1)
+//////////////////////////////////////////
+
+        if (Me.card2 == 1)
         {
             if (mali == "banker")
             {
-                midFiledIcon[1].sprite = Logo[0];
+                midFiledIcon[1].GetComponent<Image>().sprite = Logo[0];
                 midFiledText[1].text = "ﺭﺍﺪﮑﻧﺎﺑ";
             }
         }
@@ -766,7 +789,7 @@ public class Game : MonoBehaviour
         {
             if (ertebat == "director")
             {
-                midFiledIcon[1].sprite = Logo[1];
+                midFiledIcon[1].GetComponent<Image>().sprite = Logo[1];
                 midFiledText[1].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
             }
         }
@@ -774,7 +797,7 @@ public class Game : MonoBehaviour
         {
             if (attack == "cherik")
             {
-                midFiledIcon[1].sprite = Logo[2];
+                midFiledIcon[1].GetComponent<Image>().sprite = Logo[2];
                 midFiledText[1].text = "ﮏﯾﺮﭼ";
             }
         }
@@ -782,7 +805,7 @@ public class Game : MonoBehaviour
         {
             if (uniqe4 == "solh")
             {
-                midFiledIcon[1].sprite = Logo[3];
+                midFiledIcon[1].GetComponent<Image>().sprite = Logo[3];
                 midFiledText[1].text = "ﺐﻠﻃ ﺢﻠﺻ";
             }
         }
@@ -790,90 +813,98 @@ public class Game : MonoBehaviour
         {
             if (uniqe5 == "siasat")
             {
-                midFiledIcon[1].sprite = Logo[4];
+                midFiledIcon[1].GetComponent<Image>().sprite = Logo[4];
                 midFiledText[1].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
             }
+        }else if (Me.card2 == -1)
+        {
+            midFiledCards[1].SetActive(false);
         }
 
         
-        
+      /////////////////////////////////////////  
 
-        // switch (Role1)
-        // {
-        //     case 1:
-        //         if (mali == "banker")
-        //         {
-        //             midFiledIcon[2].sprite = Logo[0];
-        //             midFiledText[2].text = "ﺭﺍﺪﮑﻧﺎﺑ";
-        //         }
-        //         break;
-        //     case 2:
-        //         if (ertebat == "director")
-        //         {
-        //             midFiledIcon[2].sprite = Logo[1];
-        //             midFiledText[2].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
-        //         }
-        //         break;
-        //     case 3:
-        //         if (attack == "cherik")
-        //         {
-        //             midFiledIcon[2].sprite = Logo[2];
-        //             midFiledText[2].text = "ﮏﯾﺮﭼ";
-        //         }
-        //         break;
-        //     case 4:
-        //         if (uniqe4 == "solh")
-        //         {
-        //             midFiledIcon[2].sprite = Logo[3];
-        //             midFiledText[2].text = "ﺐﻠﻃ ﺢﻠﺻ";
-        //         }
-        //         break;
-        //     case 5:
-        //         if (uniqe5 == "siasat")
-        //         {
-        //             midFiledIcon[2].sprite = Logo[4];
-        //             midFiledText[2].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
-        //         }
-        //         break;
-        // }
-        
-        // switch (Role2)
-        // {
-        //     case 1:
-        //         if (mali == "banker")
-        //         {
-        //         midFiledIcon[3].sprite = Logo[0];
-        //         midFiledText[3].text = "ﺭﺍﺪﮑﻧﺎﺑ";
-        //         }
-        //         break;    
-        //     case 2:
-        //         if (ertebat == "director")
-        //         {
-        //         midFiledIcon[3].sprite = Logo[1];
-        //         midFiledText[3].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
-        //         }
-        //         break;
-        //     case 3:
-        //         if (attack == "cherik") {
-        //         midFiledIcon[3].sprite = Logo[2];
-        //         midFiledText[3].text = "ﮏﯾﺮﭼ";
-        //         }
-        //         break;
-        //     case 4:
-        //         if (uniqe4 == "solh")
-        //         {
-        //         midFiledIcon[3].sprite = Logo[3];
-        //         midFiledText[3].text = "ﺐﻠﻃ ﺢﻠﺻ";
-        //         }
-        //         break;
-        //     case 5:
-        //         if (uniqe5 == "siasat")
-        //         {
-        //         midFiledIcon[3].sprite = Logo[4];
-        //         midFiledText[3].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
-        //         }
-        //         break;
-        // }
+        if (role1 == 1)
+        {
+            if (mali == "banker")
+            {
+                midFiledIcon[2].GetComponent<Image>().sprite = Logo[0];
+                midFiledText[2].text = "ﺭﺍﺪﮑﻧﺎﺑ";
+            }
+        }
+        else if (role1 == 2)
+        {
+            if (ertebat == "director")
+            {
+                midFiledIcon[2].GetComponent<Image>().sprite = Logo[1];
+                midFiledText[2].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
+            }
+        }
+        else if (role1 == 3)
+        {
+            if (attack == "cherik")
+            {
+                midFiledIcon[2].GetComponent<Image>().sprite = Logo[2];
+                midFiledText[2].text = "ﮏﯾﺮﭼ";
+            }
+        }
+        else if (role1 == 4)
+        {
+            if (uniqe4 == "solh")
+            {
+                midFiledIcon[2].GetComponent<Image>().sprite = Logo[3];
+                midFiledText[2].text = "ﺐﻠﻃ ﺢﻠﺻ";
+            }
+        }
+        else if (role1 == 5)
+        {
+            if (uniqe5 == "siasat")
+            {
+                midFiledIcon[2].GetComponent<Image>().sprite = Logo[4];
+                midFiledText[2].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
+            }
+        }
+        //////////////////////////////
+        if (role2 == 1)
+        {
+            if (mali == "banker")
+            {
+                midFiledIcon[3].GetComponent<Image>().sprite = Logo[0];
+                midFiledText[3].text = "ﺭﺍﺪﮑﻧﺎﺑ";
+            }
+        }
+        else if (role2 == 2)
+        {
+            if (ertebat == "director")
+            {
+                midFiledIcon[3].GetComponent<Image>().sprite = Logo[1];
+                midFiledText[3].text = "ﻥﺍﺩﺮﮔﺭﺎﮐ";
+            }
+        }
+        else if (role2 == 3)
+        {
+            if (attack == "cherik")
+            {
+                midFiledIcon[3].GetComponent<Image>().sprite = Logo[2];
+                midFiledText[3].text = "ﮏﯾﺮﭼ";
+            }
+        }
+        else if (role2 == 4)
+        {
+            if (uniqe4 == "solh")
+            {
+                midFiledIcon[3].GetComponent<Image>().sprite = Logo[3];
+                midFiledText[3].text = "ﺐﻠﻃ ﺢﻠﺻ";
+            }
+        }
+        else if (role2 == 5)
+        {
+            if (uniqe5 == "siasat")
+            {
+                midFiledIcon[3].GetComponent<Image>().sprite = Logo[4];
+                midFiledText[3].text = "ﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
+            }
+        }
     }
 
 }
