@@ -1293,7 +1293,107 @@ public class Game : MonoBehaviour
             }
             else
             {
+              int ran = 2;//Random.Range(1, 5);
 
+                if (ran == 1)
+                {
+                    print("BLOF");
+                }
+                else
+                {
+                    int ran2;
+                    do
+                    {
+                        ran2 = Random.Range(1, 3);
+                    } while ((ran2 == 1 && cpu2.card1 == -1) || (ran2 == 2 && cpu2.card2 == -1));
+
+                    if (ran2 == 1)
+                    {
+                        int box = cpu2.card1;
+                        cpu2.card1 = -1;
+                        cpu2cards[0].SetActive(false);
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                        
+                    }
+                    else
+                    {
+                       int box = cpu2.card2;
+                        cpu2.card2 = -1;
+                        cpu2cards[1].SetActive(false);
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                    }
+                    yield return new WaitForSeconds(2);
+                }
             }
         }
         else if (whoAttacked == 3)
@@ -1324,7 +1424,107 @@ public class Game : MonoBehaviour
             }
             else
             {
+             int ran = 2;//Random.Range(1, 5);
 
+                if (ran == 1)
+                {
+                    print("BLOF");
+                }
+                else
+                {
+                    int ran2;
+                    do
+                    {
+                        ran2 = Random.Range(1, 3);
+                    } while ((ran2 == 1 && cpu3.card1 == -1) || (ran2 == 2 && cpu3.card2 == -1));
+
+                    if (ran2 == 1)
+                    {
+                        int box = cpu3.card1;
+                        cpu3.card1 = -1;
+                        cpu3cards[0].SetActive(false);
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                        
+                    }
+                    else
+                    {
+                       int box = cpu3.card2;
+                        cpu3.card2 = -1;
+                        cpu3cards[1].SetActive(false);
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                    }
+                    yield return new WaitForSeconds(2);
+                }
             }
         }
 
