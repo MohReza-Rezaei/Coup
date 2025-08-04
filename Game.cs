@@ -917,7 +917,7 @@ public class Game : MonoBehaviour
                     op = cpu1.card2;
 
                 // testing
-                op = 1;  
+                op = 2;  
                 //
 
                 if (op == 1)
@@ -926,7 +926,7 @@ public class Game : MonoBehaviour
                 }
                 else if (op == 2)
                 {
-
+                   StartCoroutine(cpuProgress("ertebat"));
                 }
                 else if (op == 3)
                 {
@@ -1822,6 +1822,9 @@ public class Game : MonoBehaviour
 
             if (ertebat == "director")
             {
+
+
+
                 Player temp = new Player();
                 if (cpu1turn)
                     temp = cpu1;
@@ -1830,26 +1833,29 @@ public class Game : MonoBehaviour
                 else if (cpu3turn)
                     temp = cpu3;
 
+                print("mine : " + temp.card1 + " , " + temp.card2);
+                print("deck : " + Role1 + " , " + Role2);
+
                 if (joon == 2)
+                {
+                    int select1 = 0, select2 = 0;
+
+                    select1 = Random.Range(1, 5);
+
+                    do
                     {
-                        int select1 = 0, select2 = 0;
-
-                        select1 = Random.Range(1, 5);
-
-                        do
+                        select2 = Random.Range(1, 5);
+                    } while (select2 == select1);
+print("select : " + select1 + " , " + select2);
+                    if (select1 == 1)
+                    {
+                        if (select2 == 2)
                         {
-                            select2 = Random.Range(1, 5);
-                        } while (select2 == select1);
-
-                        if (select1 == 1)
+                            //nothing
+                        }
+                        else if (select2 == 3)
                         {
-                            if (select2 == 2)
-                            {
-                                //nothing
-                            }
-                            else if (select2 == 3)
-                            {
-                                int box = temp.card2;
+                            int box = temp.card2;
 
                             if (temp == cpu1)
                                 cpu1.card2 = Role1;
@@ -1858,57 +1864,57 @@ public class Game : MonoBehaviour
                             else if (temp == cpu3)
                                 cpu3.card2 = Role1;
 
-                                numbers[index1] = box;
-                            }
-                            else if (select2 == 4)
-                            {
-                                int box = temp.card2;
+                            numbers[index1] = box;
+                        }
+                        else if (select2 == 4)
+                        {
+                            int box = temp.card2;
 
-                                if (temp == cpu1)
+                            if (temp == cpu1)
                                 cpu1.card2 = Role2;
                             else if (temp == cpu2)
                                 cpu2.card2 = Role2;
                             else if (temp == cpu3)
                                 cpu3.card2 = Role2;
 
-                                numbers[index2] = box;
-                            }
+                            numbers[index2] = box;
                         }
-                        else if (select1 == 2)
+                    }
+                    else if (select1 == 2)
+                    {
+                        if (select2 == 1)
                         {
-                            if (select2 == 1)
-                            {
-                                //nothing
-                            }
-                            else if (select2 == 3)
-                            {
-                                int box = temp.card1;
-                                
-                                if (temp == cpu1)
+                            //nothing
+                        }
+                        else if (select2 == 3)
+                        {
+                            int box = temp.card1;
+
+                            if (temp == cpu1)
                                 cpu1.card1 = Role1;
                             else if (temp == cpu2)
                                 cpu2.card1 = Role1;
                             else if (temp == cpu3)
                                 cpu3.card1 = Role1;
 
-                                numbers[index1] = box;
-                            }
-                            else if (select2 == 4)
-                            {
-                                int box = temp.card1;
-                                
-                                if (temp == cpu1)
+                            numbers[index1] = box;
+                        }
+                        else if (select2 == 4)
+                        {
+                            int box = temp.card1;
+
+                            if (temp == cpu1)
                                 cpu1.card1 = Role2;
                             else if (temp == cpu2)
                                 cpu2.card1 = Role2;
                             else if (temp == cpu3)
                                 cpu3.card1 = Role2;
-                                
-                                numbers[index2] = box;
-                            }
+
+                            numbers[index2] = box;
                         }
-                        else if (select1 == 3)
-                        {
+                    }
+                    else if (select1 == 3)
+                    {
                         if (select2 == 1)
                         {
                             int box = temp.card2;
@@ -1934,8 +1940,8 @@ public class Game : MonoBehaviour
                                 cpu3.card1 = Role1;
 
                             numbers[index1] = box;
-                                
-                            }
+
+                        }
                         else if (select2 == 4)
                         {
                             int box1 = temp.card1;
@@ -1958,127 +1964,135 @@ public class Game : MonoBehaviour
                             numbers[index1] = box1;
                             numbers[index2] = box2;
                         }
-                        }
-                        else if (select1 == 4)
-                        {
-                            if (select2 == 1)
-                            {
-                                int box = temp.card2;
-
-                                if (temp == cpu1)
-                                cpu1.card2 = Role2;
-                            else if (temp == cpu2)
-                                cpu2.card2 = Role2;
-                            else if (temp == cpu3)
-                                cpu3.card2 = Role2;
-                                
-                                numbers[index2] = box;
-                            }
-                            else if (select2 == 2)
-                            {
-                                int box = temp.card1;
-
-                                if (temp == cpu1)
-                                cpu1.card1 = Role2;
-                            else if (temp == cpu2)
-                                cpu2.card1 = Role2;
-                            else if (temp == cpu3)
-                                cpu3.card1 = Role2;
-
-                                numbers[index2] = box;
-                            }
-                            else if (select2 == 3)
-                            {
-                                int box1 = temp.card1;
-                                int box2 = temp.card2;
-
-                                if (temp == cpu1)
-                                cpu1.card1 = Role1;
-                            else if (temp == cpu2)
-                                cpu2.card1 = Role1;
-                            else if (temp == cpu3)
-                                cpu3.card1 = Role1;
-
-                                if (temp == cpu1)
-                                cpu1.card2 = Role2;
-                            else if (temp == cpu2)
-                                cpu2.card2 = Role2;
-                            else if (temp == cpu3)
-                                cpu3.card2 = Role2;
-
-                                numbers[index1] = box1;
-                                numbers[index2] = box2;
-                            }
-                        }
-
                     }
-                    else if (joon == 1)
+                    else if (select1 == 4)
                     {
-                        int select = Random.Range(1, 4);
-
-                        if (select == 1)
+                        if (select2 == 1)
                         {
-                            //nothinh
-                        }
-                        else if (select == 2)
-                        {
-                            int box;
-                            if (temp.card1 != -1)
-                                box = temp.card1;
-                            else
-                                box = temp.card2;
+                            int box = temp.card2;
 
-                            if (temp.card1 != -1)
-                            {
-                                if (temp == cpu1)
-                                cpu1.card1 = Role1;
-                            else if (temp == cpu2)
-                                cpu2.card1 = Role1;
-                            else if (temp == cpu3)
-                                cpu3.card1 = Role1;
-                                numbers[index1] = box;
-                            }
-                            else
-                            {
-                               if (temp == cpu1)
+                            if (temp == cpu1)
                                 cpu1.card2 = Role2;
                             else if (temp == cpu2)
                                 cpu2.card2 = Role2;
                             else if (temp == cpu3)
                                 cpu3.card2 = Role2;
-                                numbers[index1] = box;
-                            }
-                        }
-                        else if (select == 3)
-                        {
-                            int box;
-                            if (temp.card1 != -1)
-                                box = temp.card1;
-                            else
-                                box = temp.card2;
 
-                            if (temp.card1 != -1)
-                            {
-                                if (temp == cpu1)
+                            numbers[index2] = box;
+                        }
+                        else if (select2 == 2)
+                        {
+                            int box = temp.card1;
+
+                            if (temp == cpu1)
                                 cpu1.card1 = Role2;
                             else if (temp == cpu2)
                                 cpu2.card1 = Role2;
                             else if (temp == cpu3)
                                 cpu3.card1 = Role2;
-                                numbers[index2] = box;
-                            }
-                            else
-                            {
-                               if (temp == cpu1)
+
+                            numbers[index2] = box;
+                        }
+                        else if (select2 == 3)
+                        {
+                            int box1 = temp.card1;
+                            int box2 = temp.card2;
+
+                            if (temp == cpu1)
+                                cpu1.card1 = Role1;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role1;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role1;
+
+                            if (temp == cpu1)
                                 cpu1.card2 = Role2;
                             else if (temp == cpu2)
                                 cpu2.card2 = Role2;
                             else if (temp == cpu3)
                                 cpu3.card2 = Role2;
-                                numbers[index2] = box;
-                            }
+
+                            numbers[index1] = box1;
+                            numbers[index2] = box2;
                         }
-                    }  
+                    }
+
+                }
+                else if (joon == 1)
+                {
+                    int select = Random.Range(1, 4);
+print("select : " + select);
+                    if (select == 1)
+                    {
+                        //nothinh
+                    }
+                    else if (select == 2)
+                    {
+                        int box;
+                        if (temp.card1 != -1)
+                            box = temp.card1;
+                        else
+                            box = temp.card2;
+
+                        if (temp.card1 != -1)
+                        {
+                            if (temp == cpu1)
+                                cpu1.card1 = Role1;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role1;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role1;
+                            numbers[index1] = box;
+                        }
+                        else
+                        {
+                            if (temp == cpu1)
+                                cpu1.card2 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role2;
+                            numbers[index1] = box;
+                        }
+                    }
+                    else if (select == 3)
+                    {
+                        int box;
+                        if (temp.card1 != -1)
+                            box = temp.card1;
+                        else
+                            box = temp.card2;
+
+                        if (temp.card1 != -1)
+                        {
+                            if (temp == cpu1)
+                                cpu1.card1 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role2;
+                            numbers[index2] = box;
+                        }
+                        else
+                        {
+                            if (temp == cpu1)
+                                cpu1.card2 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role2;
+                            numbers[index2] = box;
+                        }
+                    }
+                }
+
+
+                if (temp == cpu1)
+                    print("now : " + cpu1.card1 + " , " + cpu1.card2);
+                else if (temp == cpu2)
+                    print("now : " + cpu2.card1 + " , " + cpu2.card2);
+                else if(temp == cpu3)
+                    print("now : " + cpu3.card1 + " , " + cpu3.card2);
             }
             
         }
