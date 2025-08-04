@@ -90,7 +90,7 @@ public class Game : MonoBehaviour
         {
 
             //testing
-            int ran = 1;//Random.Range(1, 5);
+            int ran = 2;//Random.Range(1, 5);
             //
             switch (ran)
             {
@@ -352,7 +352,7 @@ public class Game : MonoBehaviour
             }
             else
             {
-
+                StartCoroutine(ActionRob());
             }
             yield return new WaitForSeconds(1);
         }
@@ -598,68 +598,78 @@ public class Game : MonoBehaviour
                     cpu3cards[0].SetActive(false);
 
                     int box = temp.card1;
-                    temp.card1 = -1;
+                    if (temp == cpu1)
+                        cpu1.card1 = -1;
+                    else if (temp == cpu2)
+                        cpu2.card1 = -1;
+                    else if (temp == cpu3)
+                        cpu3.card1 = -1;
 
-                                if (box == 1)
-                                {
-                                    if (mali == "banker"){
-                                        if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
-                                    }
-                                        
-                                }
-                                else if (box == 2)
-                                {
-                                    if (ertebat == "director"){
-                                        if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
-                                    }
-                                        
-                                }
-                                else if (box == 3)
-                                {
-                                    if (attack == "cherik"){
-                                       if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name; 
-                                    }
-                                        
-                                }
-                                else if (box == 4)
-                                {
-                                    if (uniqe4 == "solh"){
-                                         if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name; 
-                                    }
-                                        
-                                }
-                                else if (box == 5)
-                                {
-                                    if (uniqe5 == "siasat"){
-                                        if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
-                                    }
-                                        
-                                }
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                            {
+                                if (temp == cpu1)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu1Name;
+                                else if (temp == cpu2)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
+                                else if (temp == cpu3)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                            }
+
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                            {
+                                if (temp == cpu1)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu1Name;
+                                else if (temp == cpu2)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
+                                else if (temp == cpu3)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                            }
+
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                            {
+                                if (temp == cpu1)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu1Name;
+                                else if (temp == cpu2)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
+                                else if (temp == cpu3)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                            }
+
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                            {
+                                if (temp == cpu1)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu1Name;
+                                else if (temp == cpu2)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
+                                else if (temp == cpu3)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                            }
+
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                            {
+                                if (temp == cpu1)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                else if (temp == cpu2)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                else if (temp == cpu3)
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                            }
+
+                        }
 
                                 for (int i = 0; i < lost.Length; i++)
                                 {
@@ -680,63 +690,74 @@ public class Game : MonoBehaviour
                     else if(temp == cpu3)
                     cpu3cards[1].SetActive(false);
                     int box = temp.card2;
-                    temp.card2 = -1;
+                    
+                    if (temp == cpu1)
+                        cpu1.card2 = -1;
+                    else if (temp == cpu2)
+                        cpu2.card2 = -1;
+                    else if (temp == cpu3)
+                        cpu3.card2 = -1;
 
-                                if (box == 1)
-                                {
-                                    if (mali == "banker"){
-                                        if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
-                                    }
-                                }
-                                else if (box == 2)
-                                {
-                                    if (ertebat == "director"){
-                                        if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
-                                    }
-                                }
-                                else if (box == 3)
-                                {
-                                    if (attack == "cherik"){
-                                       if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name; 
-                                    }
-                                }
-                                else if (box == 4)
-                                {
-                                   if (uniqe4 == "solh"){
-                                         if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name; 
-                                    }
-                                }
-                                else if (box == 5)
-                                {
-                                   if (uniqe5 == "siasat"){
-                                        if(temp == cpu1)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
-                                        else if(temp == cpu2)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
-                                        else if(temp == cpu3)
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
-                                    }
-                                }
+                    if (box == 1)
+                    {
+                        if (mali == "banker")
+                        {
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                        }
+                    }
+                    else if (box == 2)
+                    {
+                        if (ertebat == "director")
+                        {
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                        }
+                    }
+                    else if (box == 3)
+                    {
+                        if (attack == "cherik")
+                        {
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                        }
+                    }
+                    else if (box == 4)
+                    {
+                        if (uniqe4 == "solh")
+                        {
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                        }
+                    }
+                    else if (box == 5)
+                    {
+                        if (uniqe5 == "siasat")
+                        {
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                        }
+                    }
 
                                 for (int i = 0; i < lost.Length; i++)
                                 {
@@ -772,6 +793,436 @@ public class Game : MonoBehaviour
 
     }
 
+
+    IEnumerator cpuProgress(string whichAction)
+    {
+        bool[] result = { false, false, false };
+
+        if (cpu1turn)
+        {
+            if (whichAction == "mali")
+            {
+                if (mali == "banker")
+                {
+                    announcer.text = "ﻡﺭﺍﺪﮑﻧﺎﺑ : " + name_script.cpu1Name;
+                }
+                yield return new WaitForSeconds(1.5f);
+
+                if (cpu2.Alive)
+                {
+                    result[1] = cpu1.Chalesh(1, lost);
+                    announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
+                }
+                yield return new WaitForSeconds(1);
+                if (cpu3.Alive)
+                {
+                    result[2] = cpu2.Chalesh(1, lost);
+                    announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
+                }
+                yield return new WaitForSeconds(1);
+                if (Me.Alive)
+                {
+                    announcer.text = "";
+                    chalesh.SetActive(true);
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
+
+                }
+            }
+
+            bool permision = true;
+
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                if (result[i])
+                {
+                    permision = false;
+                    break;
+                }
+            }
+                if (mychallange)
+                    permision = false;
+
+            //testing
+            permision = true;
+
+
+            if (permision)
+            {
+                if (whichAction == "mali")
+                    StartCoroutine(Mali());
+                if (whichAction == "ertebat")
+                    StartCoroutine(ertebatat());
+                
+            }
+            else
+            {
+
+            }
+           
+        }
+
+
+
+            yield return new WaitForSeconds(2);
+    }
+
+    IEnumerator ActionRob()
+    {
+        bool[] result = { false, false, false };
+
+        if (cpu1turn)
+        {
+
+           
+            int ran = Random.Range(1,8);
+            // 1 = means cpu1 will select earn money
+
+            // 2 and 3 are BLOF
+
+            //4 and 5 and 6 and 7 are Real
+
+            //8 is coup
+
+            //testing
+            ran = 5;
+            //
+
+            if (cpu1.coin >= 7)
+                ran = 8;
+
+            if (ran == 1)
+            {
+                announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu1Name;
+                yield return new WaitForSeconds(2);
+                StartCoroutine(earny());
+            }
+            else if (ran == 2 || ran == 3)
+            {
+                print("BLOF");
+            }
+            else if (ran > 3 && ran < 8)
+            {
+                int ran2;
+                do
+                {
+                    ran2 = Random.Range(1, 3);
+                } while ((ran2 == 1 && cpu1.card1 == -1) || (ran2 == 2 && cpu1.card2 == -1));
+
+                int op=0;
+                if (ran2 == 1)
+                    op = cpu1.card1;
+                if (ran2 == 2)
+                    op = cpu1.card2;
+
+                // testing
+                op = 1;  
+                //
+
+                if (op == 1)
+                {
+                    StartCoroutine(cpuProgress("mali"));   
+                }
+                else if (op == 2)
+                {
+
+                }
+                else if (op == 3)
+                {
+
+                }
+                else if (op == 4)
+                {
+
+                }
+                else if (op == 5)
+                {
+
+                }
+
+            }
+            else if (ran == 8)
+            {
+                announcer.text = " ﻢﻨﮑﯿﻣ ﺎﺗﺩﻮﮐ : " + name_script.cpu1Name;
+                yield return new WaitForSeconds(2);
+                int coupChoose;
+                do
+                {
+                    coupChoose = Random.Range(1, 4);
+                } while ((coupChoose == 1 && !Me.Alive) || (coupChoose == 2 && !cpu2.Alive) || (coupChoose == 3 && !cpu3.Alive));
+
+
+
+                if (coupChoose == 1)
+                {
+
+                    announcer.text = "ﺪﺷ ﺎﺗﺩﻮﮐ ﻮﺗ ﻪﯿﻠﻋ";
+                    yield return new WaitForSeconds(1.5f);
+                    losingy();
+
+                }
+                else if (coupChoose == 2)
+                {
+                    announcer.text = " ﺪﺷ ﺎﺗﺩﻮﮐ " + name_script.cpu2Name + " ﻪﯿﻠﻋ ";
+                    yield return new WaitForSeconds(1.5f);
+
+                    int ran2;
+                    do
+                    {
+                        ran2 = Random.Range(1, 3);
+                    } while ((ran2 == 1 && cpu2.card1 == -1) || (ran2 == 2 && cpu2.card2 == -1));
+
+                    if (ran2 == 1)
+                    {
+
+
+                        int box = cpu2.card1;
+                        cpu2.card1 = -1;
+                        cpu2cards[0].SetActive(false);
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
+                            }
+
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
+                            }
+
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
+                            }
+
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
+                            }
+
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                            }
+
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                        yield return new WaitForSeconds(2);
+
+                    }
+                    else
+                    {
+                        int box = cpu2.card2;
+                        cpu2.card2 = -1;
+                        cpu2cards[1].SetActive(false);
+
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
+                            }
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
+                            }
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
+                            }
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
+                            }
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                            }
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                        yield return new WaitForSeconds(2);
+                    }
+
+                }
+                else if (coupChoose == 3)
+                {
+                    announcer.text = " ﺪﺷ ﺎﺗﺩﻮﮐ " + name_script.cpu3Name + " ﻪﯿﻠﻋ ";
+                    yield return new WaitForSeconds(1.5f);
+
+                    int ran2;
+                    do
+                    {
+                        ran2 = Random.Range(1, 3);
+                    } while ((ran2 == 1 && cpu3.card1 == -1) || (ran2 == 2 && cpu3.card2 == -1));
+
+                    if (ran2 == 1)
+                    {
+
+
+                        int box = cpu3.card1;
+                        cpu3.card1 = -1;
+                        cpu3cards[0].SetActive(false);
+
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                            }
+
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                            }
+
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                            }
+
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                            }
+
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                            }
+
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                        yield return new WaitForSeconds(2);
+
+                    }
+                    else
+                    {
+                        int box = cpu3.card2;
+                        cpu3.card2 = -1;
+                        cpu3cards[1].SetActive(false);
+
+                        if (box == 1)
+                        {
+                            if (mali == "banker")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                            }
+                        }
+                        else if (box == 2)
+                        {
+                            if (ertebat == "director")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                            }
+                        }
+                        else if (box == 3)
+                        {
+                            if (attack == "cherik")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                            }
+                        }
+                        else if (box == 4)
+                        {
+                            if (uniqe4 == "solh")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                            }
+                        }
+                        else if (box == 5)
+                        {
+                            if (uniqe5 == "siasat")
+                            {
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                            }
+                        }
+
+                        for (int i = 0; i < lost.Length; i++)
+                        {
+                            if (lost[i] == -1)
+                            {
+                                lost[i] = box;
+                                break;
+                            }
+                        }
+                        printLost();
+                        yield return new WaitForSeconds(2);
+                    }
+                }
+
+            }
+
+        }
+        yield return new WaitForSeconds(1);
+    }
 
     public void selectCoup(int who)
     {
@@ -1189,12 +1640,14 @@ public class Game : MonoBehaviour
 
         }
 
-        print(Me.card1 + " -- " + Me.card2);
-        midIconCheck(Role1, Role2);
-        midField.SetActive(true);
+
 
         if (myturn)
         {
+            print(Me.card1 + " -- " + Me.card2);
+            midIconCheck(Role1, Role2);
+            midField.SetActive(true);
+
             int lives = 0;
             if (Me.card1 != -1)
                 lives++;
@@ -1308,7 +1761,7 @@ public class Game : MonoBehaviour
                         }
                     }
                 }
-                else if(lives == 1)
+                else if (lives == 1)
                 {
                     if (Firstchoice != 2 && Firstchoice != 3)
                     {
@@ -1352,12 +1805,282 @@ public class Game : MonoBehaviour
 
             MeIconCheck();
             print("finaly : " + Me.card1 + " -- " + Me.card2);
-            
+
 
 
 
             Firstchoice = -1;
             secondchoice = -1;
+        }
+        else
+        {
+            int joon = 0;
+            if (cpu1.card1 != -1)
+                joon++;
+            if (cpu1.card2 != -1)
+                joon++;
+
+            if (ertebat == "director")
+            {
+                Player temp = new Player();
+                if (cpu1turn)
+                    temp = cpu1;
+                else if (cpu2turn)
+                    temp = cpu2;
+                else if (cpu3turn)
+                    temp = cpu3;
+
+                if (joon == 2)
+                    {
+                        int select1 = 0, select2 = 0;
+
+                        select1 = Random.Range(1, 5);
+
+                        do
+                        {
+                            select2 = Random.Range(1, 5);
+                        } while (select2 == select1);
+
+                        if (select1 == 1)
+                        {
+                            if (select2 == 2)
+                            {
+                                //nothing
+                            }
+                            else if (select2 == 3)
+                            {
+                                int box = temp.card2;
+
+                            if (temp == cpu1)
+                                cpu1.card2 = Role1;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role1;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role1;
+
+                                numbers[index1] = box;
+                            }
+                            else if (select2 == 4)
+                            {
+                                int box = temp.card2;
+
+                                if (temp == cpu1)
+                                cpu1.card2 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role2;
+
+                                numbers[index2] = box;
+                            }
+                        }
+                        else if (select1 == 2)
+                        {
+                            if (select2 == 1)
+                            {
+                                //nothing
+                            }
+                            else if (select2 == 3)
+                            {
+                                int box = temp.card1;
+                                
+                                if (temp == cpu1)
+                                cpu1.card1 = Role1;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role1;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role1;
+
+                                numbers[index1] = box;
+                            }
+                            else if (select2 == 4)
+                            {
+                                int box = temp.card1;
+                                
+                                if (temp == cpu1)
+                                cpu1.card1 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role2;
+                                
+                                numbers[index2] = box;
+                            }
+                        }
+                        else if (select1 == 3)
+                        {
+                        if (select2 == 1)
+                        {
+                            int box = temp.card2;
+
+                            if (temp == cpu1)
+                                cpu1.card2 = Role1;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role1;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role1;
+
+                            numbers[index1] = box;
+                        }
+                        else if (select2 == 2)
+                        {
+                            int box = temp.card1;
+
+                            if (temp == cpu1)
+                                cpu1.card1 = Role1;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role1;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role1;
+
+                            numbers[index1] = box;
+                                
+                            }
+                        else if (select2 == 4)
+                        {
+                            int box1 = temp.card1;
+                            int box2 = temp.card2;
+
+                            if (temp == cpu1)
+                                cpu1.card1 = Role1;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role1;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role1;
+
+                            if (temp == cpu1)
+                                cpu1.card2 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role2;
+
+                            numbers[index1] = box1;
+                            numbers[index2] = box2;
+                        }
+                        }
+                        else if (select1 == 4)
+                        {
+                            if (select2 == 1)
+                            {
+                                int box = temp.card2;
+
+                                if (temp == cpu1)
+                                cpu1.card2 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role2;
+                                
+                                numbers[index2] = box;
+                            }
+                            else if (select2 == 2)
+                            {
+                                int box = temp.card1;
+
+                                if (temp == cpu1)
+                                cpu1.card1 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role2;
+
+                                numbers[index2] = box;
+                            }
+                            else if (select2 == 3)
+                            {
+                                int box1 = temp.card1;
+                                int box2 = temp.card2;
+
+                                if (temp == cpu1)
+                                cpu1.card1 = Role1;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role1;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role1;
+
+                                if (temp == cpu1)
+                                cpu1.card2 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role2;
+
+                                numbers[index1] = box1;
+                                numbers[index2] = box2;
+                            }
+                        }
+
+                    }
+                    else if (joon == 1)
+                    {
+                        int select = Random.Range(1, 4);
+
+                        if (select == 1)
+                        {
+                            //nothinh
+                        }
+                        else if (select == 2)
+                        {
+                            int box;
+                            if (temp.card1 != -1)
+                                box = temp.card1;
+                            else
+                                box = temp.card2;
+
+                            if (temp.card1 != -1)
+                            {
+                                if (temp == cpu1)
+                                cpu1.card1 = Role1;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role1;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role1;
+                                numbers[index1] = box;
+                            }
+                            else
+                            {
+                               if (temp == cpu1)
+                                cpu1.card2 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role2;
+                                numbers[index1] = box;
+                            }
+                        }
+                        else if (select == 3)
+                        {
+                            int box;
+                            if (temp.card1 != -1)
+                                box = temp.card1;
+                            else
+                                box = temp.card2;
+
+                            if (temp.card1 != -1)
+                            {
+                                if (temp == cpu1)
+                                cpu1.card1 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card1 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card1 = Role2;
+                                numbers[index2] = box;
+                            }
+                            else
+                            {
+                               if (temp == cpu1)
+                                cpu1.card2 = Role2;
+                            else if (temp == cpu2)
+                                cpu2.card2 = Role2;
+                            else if (temp == cpu3)
+                                cpu3.card2 = Role2;
+                                numbers[index2] = box;
+                            }
+                        }
+                    }  
+            }
+            
         }
 
 
