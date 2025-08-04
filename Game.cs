@@ -367,6 +367,8 @@ public class Game : MonoBehaviour
         MeIconCheck();
         //testing
         Me.coin = 7;
+        cointxt[0].text = "7";
+      //  WhoSolh = 1;
         //
 
 
@@ -532,8 +534,8 @@ public class Game : MonoBehaviour
         }
 
         //testing
-        permision = false;
-        result[1] = true;
+        permision = true;
+      // result[1] = true;
         //
 
         if (permision)
@@ -592,7 +594,7 @@ public class Game : MonoBehaviour
                     cpu1cards[0].SetActive(false);
                     else if(temp == cpu2)
                     cpu2cards[0].SetActive(false);
-                    else if(temp == cpu2)
+                    else if(temp == cpu3)
                     cpu3cards[0].SetActive(false);
 
                     int box = temp.card1;
@@ -675,7 +677,7 @@ public class Game : MonoBehaviour
                     cpu1cards[1].SetActive(false);
                     else if(temp == cpu2)
                     cpu2cards[1].SetActive(false);
-                    else if(temp == cpu2)
+                    else if(temp == cpu3)
                     cpu3cards[1].SetActive(false);
                     int box = temp.card2;
                     temp.card2 = -1;
@@ -1446,8 +1448,8 @@ public class Game : MonoBehaviour
 
             }
             else
-            {   //testing
-                int ran = 2;//Random.Range(1, 5);
+            {  
+                int ran = Random.Range(1, 5);
 
                 if (ran == 1)
                 {
@@ -2272,8 +2274,8 @@ public class Game : MonoBehaviour
 
                 }
                 else
-                {   //testing
-                    int ran = 2;//Random.Range(1, 5);
+                { 
+                    int ran =Random.Range(1, 5);
 
                     if (ran == 1)
                     {
@@ -2341,7 +2343,7 @@ public class Game : MonoBehaviour
                                 printLost();
                                 yield return new WaitForSeconds(2);
                             }
-                            if (ran2 == 2)
+                            else if (ran2 == 2)
                             {
                                 int box = cpu1.card2;
                                 cpu1.card1 = -1;
@@ -2453,7 +2455,7 @@ public class Game : MonoBehaviour
             }
             else
             {
-              int ran = 2;//Random.Range(1, 5);
+              int ran =Random.Range(1, 5);
 
                     if (ran == 1)
                     {
@@ -2471,7 +2473,12 @@ public class Game : MonoBehaviour
                             announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
                             yield return new WaitForSeconds(1.5f);
 
-                            if (cpu2.card1 != -1)
+                            int ran2;
+                            do{
+                             ran2 = Random.Range(1,3);
+                            }while((ran2 == 1&&cpu2.card1 ==-1)||(ran2 == 2&&cpu2.card2 == -1));
+
+                            if (ran2 == 1)
                             {
                                 int box = cpu2.card1;
                                 cpu2.card1 = -1;
@@ -2514,7 +2521,7 @@ public class Game : MonoBehaviour
                                 printLost();
                                 yield return new WaitForSeconds(2);
                             }
-                            if (cpu2.card2 != -1)
+                            else if (ran2 == 2)
                             {
                                 int box = cpu2.card2;
                                 cpu2.card1 = -1;
@@ -2626,7 +2633,7 @@ public class Game : MonoBehaviour
             }
             else
             {
-             int ran = 2;//Random.Range(1, 5);
+             int ran = Random.Range(1, 5);
 
                     if (ran == 1)
                     {
@@ -2643,14 +2650,18 @@ public class Game : MonoBehaviour
                         {
                             announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
                             yield return new WaitForSeconds(1.5f);
+                           
+                           int ran2;
+                           do{
+                           ran2 = Random.Range(1,3);
+                           }while((ran2 == 1&&cpu3.card1 == -1) || (ran2 == 2&&cpu3.card2 == -1));
 
-                            if (cpu3.card1 != -1)
-                            {
-                                int box = cpu3.card1;
-                                cpu3.card1 = -1;
-                                cpu3cards[0].SetActive(false);
-
-                                if (box == 1)
+                           if(ran2 == 1){
+                            int box = cpu3.card1;
+                            cpu3.card1 = -1;
+                            cpu3cards[0].SetActive(false);
+                            
+                                 if (box == 1)
                                 {
                                     if (mali == "banker")
                                         announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
@@ -2686,14 +2697,11 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-                            }
-                            if (cpu3.card2 != -1)
-                            {
-                                int box = cpu3.card2;
-                                cpu3.card1 = -1;
-                                cpu3cards[1].SetActive(false);
-
-                                if (box == 1)
+                           }else if(ran2 == 2){
+                            int box = cpu3.card2;
+                            cpu3.card2 = -1;
+                            cpu3cards[1].SetActive(false);
+                               if (box == 1)
                                 {
                                     if (mali == "banker")
                                         announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
@@ -2729,7 +2737,9 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-                            }
+                           }
+                   
+
 
                             if (cpu3.coin >= 2)
                             {
