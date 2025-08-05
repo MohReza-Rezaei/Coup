@@ -1407,72 +1407,87 @@ public class Game : MonoBehaviour
                                 ran2 = Random.Range(1, 3);
                             } while ((ran2 == 1 && cpu1.card1 == -1) || (ran2 == 2 && cpu1.card2 == -1));
 
-                           int box = 0;
+                            int box = 0;
                             if (ran2 == 1)
                             {
-                            box = cpu1.card1;
-                            cpu1.card1 = -1;
-                            cpu1cards[0].SetActive(false);
+                                box = cpu1.card1;
+                                cpu1.card1 = -1;
+                                cpu1cards[0].SetActive(false);
                             }
                             else
                             {
-                            box = cpu1.card2;
-                            cpu1.card2 = -1;
-                            cpu1cards[1].SetActive(false);
+                                box = cpu1.card2;
+                                cpu1.card2 = -1;
+                                cpu1cards[1].SetActive(false);
                             }
 
-                        if (box == 1)
-                        {
-                            if (mali == "banker")
+                            if (box == 1)
                             {
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                                if (mali == "banker")
+                                {
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                                }
                             }
-                        }
-                        else if (box == 2)
-                        {
-                            if (ertebat == "director")
+                            else if (box == 2)
                             {
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                                if (ertebat == "director")
+                                {
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                                }
                             }
-                        }
-                        else if (box == 3)
-                        {
-                            if (attack == "cherik")
+                            else if (box == 3)
                             {
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                                if (attack == "cherik")
+                                {
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                                }
                             }
-                        }
-                        else if (box == 4)
-                        {
-                            if (uniqe4 == "solh")
+                            else if (box == 4)
                             {
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                                if (uniqe4 == "solh")
+                                {
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                                }
                             }
-                        }
-                        else if (box == 5)
-                        {
-                            if (uniqe5 == "siasat")
+                            else if (box == 5)
                             {
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                if (uniqe5 == "siasat")
+                                {
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                }
                             }
-                        }
 
-                        for (int i = 0; i < lost.Length; i++)
-                        {
-                            if (lost[i] == -1)
+                            for (int i = 0; i < lost.Length; i++)
                             {
-                                lost[i] = box;
-                                break;
+                                if (lost[i] == -1)
+                                {
+                                    lost[i] = box;
+                                    break;
+                                }
                             }
-                        }
-                        printLost();
-                        yield return new WaitForSeconds(2);
+                            printLost();
+                            yield return new WaitForSeconds(2);
 
-                            
+
                         }
                         else
                         {
-
+                            int joon = 0;
+                            if (Me.card1 != -1)
+                                joon++;
+                            if (Me.card2 != -1)
+                                joon++;
+                            if (joon == 2)
+                            {
+                                losingy();
+                                yield return new WaitForSeconds(2);
+                                losingy();
+                            }
+                            else
+                            {
+                                losingy(); 
+                            }
+                            
                         }
                     }
                     else
