@@ -93,7 +93,7 @@ public class Game : MonoBehaviour
         {
 
             //testing
-            int ran = 2;//Random.Range(1, 5);
+            int ran = 1;//Random.Range(1, 5);
             //
             switch (ran)
             {
@@ -512,6 +512,7 @@ public class Game : MonoBehaviour
     {
         ShuffleArray(numbers, true);
         MeIconCheck();
+
         //testing
         
         //
@@ -681,7 +682,7 @@ public class Game : MonoBehaviour
         }
 
         //testing
-       
+        
         //
 
         if (permision)
@@ -696,8 +697,10 @@ public class Game : MonoBehaviour
                 StartCoroutine(uniqe4y());
             else if (whichAction == "uniqe5")
                 StartCoroutine(uniqe5y());
-        }else{
-           
+        }
+        else
+        {
+
             Player temp = new Player();
             announcer.color = Color.gray;
             if (result[0])
@@ -716,31 +719,41 @@ public class Game : MonoBehaviour
                 temp = cpu3;
             }
 
-            
+
             yield return new WaitForSeconds(2);
             announcer.color = Color.black;
 
-               int operation=0;
-                if(whichAction == "mali"){
+            int operation = 0;
+            if (whichAction == "mali")
+            {
                 operation = 1;
-                }else if(whichAction == "ertebat"){
+            }
+            else if (whichAction == "ertebat")
+            {
                 operation = 2;
-                }else if(whichAction == "uniqe4"){
+            }
+            else if (whichAction == "uniqe4")
+            {
                 operation = 4;
-                }else if(whichAction == "uniqe5"){
+            }
+            else if (whichAction == "uniqe5")
+            {
                 operation = 5;
-                }else if(whichAction == "attack"){
+            }
+            else if (whichAction == "attack")
+            {
                 operation = 3;
-                }
+            }
 
-                if(Me.card1 == operation || Me.card2 == operation){
+            if (Me.card1 == operation || Me.card2 == operation)
+            {
                 announcer.color = Color.green;
                 announcer.text = "ﯼﺪﺷ ﻩﺪﻧﺮﺑ ﺍﺭ ﺶﻟﺎﭼ";
                 yield return new WaitForSeconds(1.5f);
                 announcer.color = Color.black;
 
                 announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
-                
+
 
                 if (Me.card1 == operation)
                 {
@@ -754,10 +767,10 @@ public class Game : MonoBehaviour
                     mycards[1].GetComponent<Image>().color = Color.white;
                     mytext[1].text = "";
                 }
-                yield return new WaitForSeconds(2);    
+                yield return new WaitForSeconds(2);
 
                 backToDeck(operation);
-                ShuffleArray(numbers,false);
+                ShuffleArray(numbers, false);
 
                 if (Me.card1 == operation)
                     Me.card1 = getFromDeck();
@@ -769,17 +782,19 @@ public class Game : MonoBehaviour
                 yield return new WaitForSeconds(1.5f);
 
                 int ran;
-                do{
-                    ran = Random.Range(1,3);
-                }while((ran == 1 && temp.card1 == -1)||(ran == 2 && temp.card2 == -1));
-                
-                if(ran == 1){
-                    if(temp == cpu1)
-                    cpu1cards[0].SetActive(false);
-                    else if(temp == cpu2)
-                    cpu2cards[0].SetActive(false);
-                    else if(temp == cpu3)
-                    cpu3cards[0].SetActive(false);
+                do
+                {
+                    ran = Random.Range(1, 3);
+                } while ((ran == 1 && temp.card1 == -1) || (ran == 2 && temp.card2 == -1));
+
+                if (ran == 1)
+                {
+                    if (temp == cpu1)
+                        cpu1cards[0].SetActive(false);
+                    else if (temp == cpu2)
+                        cpu2cards[0].SetActive(false);
+                    else if (temp == cpu3)
+                        cpu3cards[0].SetActive(false);
 
                     int box = temp.card1;
                     if (temp == cpu1)
@@ -789,92 +804,94 @@ public class Game : MonoBehaviour
                     else if (temp == cpu3)
                         cpu3.card1 = -1;
 
-                        if (box == 1)
+                    if (box == 1)
+                    {
+                        if (mali == "banker")
                         {
-                            if (mali == "banker")
-                            {
-                                if (temp == cpu1)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
-                                else if (temp == cpu2)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
-                                else if (temp == cpu3)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
-                            }
-
-                        }
-                        else if (box == 2)
-                        {
-                            if (ertebat == "director")
-                            {
-                                if (temp == cpu1)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
-                                else if (temp == cpu2)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
-                                else if (temp == cpu3)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
-                            }
-
-                        }
-                        else if (box == 3)
-                        {
-                            if (attack == "cherik")
-                            {
-                                if (temp == cpu1)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
-                                else if (temp == cpu2)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
-                                else if (temp == cpu3)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
-                            }
-
-                        }
-                        else if (box == 4)
-                        {
-                            if (uniqe4 == "solh")
-                            {
-                                if (temp == cpu1)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
-                                else if (temp == cpu2)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
-                                else if (temp == cpu3)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
-                            }
-
-                        }
-                        else if (box == 5)
-                        {
-                            if (uniqe5 == "siasat")
-                            {
-                                if (temp == cpu1)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
-                                else if (temp == cpu2)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
-                                else if (temp == cpu3)
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
-                            }
-
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
                         }
 
-                                for (int i = 0; i < lost.Length; i++)
-                                {
-                                    if (lost[i] == -1)
-                                    {
-                                        lost[i] = box;
-                                        break;
-                                    }
-                                }
-                                printLost();
-                                yield return new WaitForSeconds(2);
+                    }
+                    else if (box == 2)
+                    {
+                        if (ertebat == "director")
+                        {
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                        }
 
-                }else{
-                   if(temp == cpu1)
-                    cpu1cards[1].SetActive(false);
-                    else if(temp == cpu2)
-                    cpu2cards[1].SetActive(false);
-                    else if(temp == cpu3)
-                    cpu3cards[1].SetActive(false);
+                    }
+                    else if (box == 3)
+                    {
+                        if (attack == "cherik")
+                        {
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                        }
+
+                    }
+                    else if (box == 4)
+                    {
+                        if (uniqe4 == "solh")
+                        {
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                        }
+
+                    }
+                    else if (box == 5)
+                    {
+                        if (uniqe5 == "siasat")
+                        {
+                            if (temp == cpu1)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
+                            else if (temp == cpu2)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
+                            else if (temp == cpu3)
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
+                        }
+
+                    }
+
+                    for (int i = 0; i < lost.Length; i++)
+                    {
+                        if (lost[i] == -1)
+                        {
+                            lost[i] = box;
+                            break;
+                        }
+                    }
+                    printLost();
+                    yield return new WaitForSeconds(2);
+
+                }
+                else
+                {
+                    if (temp == cpu1)
+                        cpu1cards[1].SetActive(false);
+                    else if (temp == cpu2)
+                        cpu2cards[1].SetActive(false);
+                    else if (temp == cpu3)
+                        cpu3cards[1].SetActive(false);
                     int box = temp.card2;
-                    
+
                     if (temp == cpu1)
                         cpu1.card2 = -1;
                     else if (temp == cpu2)
@@ -943,39 +960,41 @@ public class Game : MonoBehaviour
                         }
                     }
 
-                                for (int i = 0; i < lost.Length; i++)
-                                {
-                                    if (lost[i] == -1)
-                                    {
-                                        lost[i] = box;
-                                        break;
-                                    }
-                                }
-                                printLost();
-                                yield return new WaitForSeconds(2);
+                    for (int i = 0; i < lost.Length; i++)
+                    {
+                        if (lost[i] == -1)
+                        {
+                            lost[i] = box;
+                            break;
+                        }
+                    }
+                    printLost();
+                    yield return new WaitForSeconds(2);
                 }
-                 
-                 if (whichAction == "mali")
-                StartCoroutine(Mali());
-            else if (whichAction == "ertebat")
-                StartCoroutine(ertebatat());
-            else if (whichAction == "attack")
-                StartCoroutine(Attack());
-            else if (whichAction == "uniqe4")
-                StartCoroutine(uniqe4y());
-            else if (whichAction == "uniqe5")
-                StartCoroutine(uniqe5y());
 
-                }else{
+                if (whichAction == "mali")
+                    StartCoroutine(Mali());
+                else if (whichAction == "ertebat")
+                    StartCoroutine(ertebatat());
+                else if (whichAction == "attack")
+                    StartCoroutine(Attack());
+                else if (whichAction == "uniqe4")
+                    StartCoroutine(uniqe4y());
+                else if (whichAction == "uniqe5")
+                    StartCoroutine(uniqe5y());
+
+            }
+            else
+            {
                 announcer.color = Color.red;
-                 announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
-                    yield return new WaitForSeconds(1.5f);
+                announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
+                yield return new WaitForSeconds(1.5f);
                 announcer.color = Color.black;
                 announcer.text = "";
 
-                    losingy();
-                }
-            
+                losingy();
+            }
+
         }
 
     }
@@ -1042,7 +1061,7 @@ public class Game : MonoBehaviour
             } while ((ran == 1) || (ran == 2 && !cpu2.Alive) || (ran == 3 && !cpu3.Alive) || (ran == WhoSolh));
 
             //testing
-            ran = 0;
+            
 
             if (ran == 2)
             {
@@ -5019,6 +5038,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "director")
                 {
                     announcer.text = "ﻢﻧﺍﺩﺮﮔﺭﺎﮐ : " + name_script.cpu1Name;
+                    edea[0].SetActive(true);
+                    edea[0].GetComponent<Image>().color = roleColor[1];
                 }
                 yield return new WaitForSeconds(1.5f);
 
@@ -5048,6 +5069,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "cherik")
                 {
                     announcer.text = "ﻢﮑﯾﺮﭼ : " + name_script.cpu1Name;
+                    edea[0].SetActive(true);
+                    edea[0].GetComponent<Image>().color = roleColor[2];
                 }
                 yield return new WaitForSeconds(1.5f);
 
@@ -5077,6 +5100,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "solh")
                 {
                     announcer.text = "ﻢﺒﻠﻃ ﺢﻠﺻ : " + name_script.cpu1Name;
+                    edea[0].SetActive(true);
+                    edea[0].GetComponent<Image>().color = roleColor[3];
                 }
                 yield return new WaitForSeconds(1.5f);
 
@@ -5106,6 +5131,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "siasat")
                 {
                     announcer.text = "ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ : " + name_script.cpu1Name;
+                    edea[0].SetActive(true);
+                    edea[0].GetComponent<Image>().color = roleColor[4];
                 }
                 yield return new WaitForSeconds(1.5f);
 
@@ -5146,6 +5173,7 @@ public class Game : MonoBehaviour
                 permision = false;
 
             //testing
+
             permision = false;
             result[1] = true;
             //
@@ -5165,7 +5193,7 @@ public class Game : MonoBehaviour
             }
             else
             {
-               
+
                 if (result[1])
                 {
                     announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu1Name + " " + name_script.cpu2Name;
@@ -5197,26 +5225,26 @@ public class Game : MonoBehaviour
                         announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu1Name;
                         yield return new WaitForSeconds(2);
 
-                       announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+                        announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
 
-                        print("cpu1 : " +cpu1.card1 + " - " + cpu1.card2);
+                        print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
 
-                backToDeck(target);
-                ShuffleArray(numbers,false);
+                        backToDeck(target);
+                        ShuffleArray(numbers, false);
 
-                if (cpu1.card1 == target)
-                    cpu1.card1 = getFromDeck();
-                else
-                    cpu1.card2 = getFromDeck();
+                        if (cpu1.card1 == target)
+                            cpu1.card1 = getFromDeck();
+                        else
+                            cpu1.card2 = getFromDeck();
 
-                    print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
+                        print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
 
-               
-                announcer.text = "";
-                yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        
 
 
-                        yield return new WaitForSeconds(2);
+                        
                         int ran;
                         do
                         {
@@ -5248,7 +5276,7 @@ public class Game : MonoBehaviour
                             else if (cpu2.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5287,7 +5315,7 @@ public class Game : MonoBehaviour
                             else if (cpu2.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5352,7 +5380,7 @@ public class Game : MonoBehaviour
                             else if (cpu1.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5391,7 +5419,7 @@ public class Game : MonoBehaviour
                             else if (cpu1.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5446,21 +5474,21 @@ public class Game : MonoBehaviour
 
                         announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
 
-                        print("cpu1 : " +cpu1.card1 + " - " + cpu1.card2);
+                        print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
 
-                backToDeck(target);
-                ShuffleArray(numbers,false);
+                        backToDeck(target);
+                        ShuffleArray(numbers, false);
 
-                if (cpu1.card1 == target)
-                    cpu1.card1 = getFromDeck();
-                else
-                    cpu1.card2 = getFromDeck();
+                        if (cpu1.card1 == target)
+                            cpu1.card1 = getFromDeck();
+                        else
+                            cpu1.card2 = getFromDeck();
 
-                    print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
+                        print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
 
-               
-                announcer.text = "";
-                yield return new WaitForSeconds(1.5f);
+yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        
 
                         int ran;
                         do
@@ -5493,7 +5521,7 @@ public class Game : MonoBehaviour
                             else if (cpu3.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5532,7 +5560,7 @@ public class Game : MonoBehaviour
                             else if (cpu3.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5597,7 +5625,7 @@ public class Game : MonoBehaviour
                             else if (cpu1.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5636,7 +5664,7 @@ public class Game : MonoBehaviour
                             else if (cpu1.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5660,8 +5688,8 @@ public class Game : MonoBehaviour
                 {
                     announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu1Name + " ﺎﻤﺷ ";
                     yield return new WaitForSeconds(2);
-                      
-                        
+
+
 
                     int target = 0;
                     if (whichAction == "mali")
@@ -5692,23 +5720,25 @@ public class Game : MonoBehaviour
 
                         announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
 
-                        print("cpu1 : " +cpu1.card1 + " - " + cpu1.card2);
+                        print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
 
-                backToDeck(target);
-                ShuffleArray(numbers,false);
+                        backToDeck(target);
+                        ShuffleArray(numbers, false);
 
-                if (cpu1.card1 == target)
-                    cpu1.card1 = getFromDeck();
-                else
-                    cpu1.card2 = getFromDeck();
+                        if (cpu1.card1 == target)
+                            cpu1.card1 = getFromDeck();
+                        else
+                            cpu1.card2 = getFromDeck();
 
-                    print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
+                        print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
 
-               
-                announcer.text = "";
-                yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+
 
                         losingy();
+                        yield return new WaitUntil(() => losetwice == true);
+                        losetwice = false;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
@@ -5757,7 +5787,7 @@ public class Game : MonoBehaviour
                             else if (cpu1.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5796,7 +5826,7 @@ public class Game : MonoBehaviour
                             else if (cpu1.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -5859,6 +5889,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "director")
                 {
                     announcer.text = "ﻢﻧﺍﺩﺮﮔﺭﺎﮐ : " + name_script.cpu2Name;
+                    edea[1].SetActive(true);
+                    edea[1].GetComponent<Image>().color = roleColor[1];
                 }
                 yield return new WaitForSeconds(1.5f);
 
@@ -5890,6 +5922,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "cherik")
                 {
                     announcer.text = "ﻢﮑﯾﺮﭼ : " + name_script.cpu1Name;
+                    edea[1].SetActive(true);
+                    edea[1].GetComponent<Image>().color = roleColor[2];
                 }
                 yield return new WaitForSeconds(1.5f);
 
@@ -5921,6 +5955,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "solh")
                 {
                     announcer.text = "ﻢﺒﻠﻃ ﺢﻠﺻ : " + name_script.cpu2Name;
+                    edea[1].SetActive(true);
+                    edea[1].GetComponent<Image>().color = roleColor[3];
                 }
                 yield return new WaitForSeconds(1.5f);
 
@@ -5951,6 +5987,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "siasat")
                 {
                     announcer.text = "ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ : " + name_script.cpu2Name;
+                    edea[1].SetActive(true);
+                    edea[1].GetComponent<Image>().color = roleColor[4];
                 }
                 yield return new WaitForSeconds(1.5f);
 
@@ -5993,7 +6031,7 @@ public class Game : MonoBehaviour
                 permision = false;
 
             //testing
-            permision = true;
+          
 
 
             if (permision)
@@ -6056,9 +6094,9 @@ public class Game : MonoBehaviour
 
                     print("cpu2 : " + cpu2.card1 + " - " + cpu2.card2);
 
-               
+               yield return new WaitForSeconds(1.5f);
                 announcer.text = "";
-                yield return new WaitForSeconds(1.5f);
+                
        
 
                         int ran;
@@ -6092,7 +6130,7 @@ public class Game : MonoBehaviour
                             else if (cpu3.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6131,7 +6169,7 @@ public class Game : MonoBehaviour
                             else if (cpu3.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6196,7 +6234,7 @@ public class Game : MonoBehaviour
                             else if (cpu2.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6235,7 +6273,7 @@ public class Game : MonoBehaviour
                             else if (cpu2.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6300,12 +6338,14 @@ public class Game : MonoBehaviour
 
                     print("cpu2 : " + cpu2.card1 + " - " + cpu2.card2);
 
-               
+               yield return new WaitForSeconds(1.5f);
                 announcer.text = "";
-                yield return new WaitForSeconds(1.5f);
+                
                     
 
                         losingy();
+                        yield return new WaitUntil(() => losetwice == true);
+                        losetwice = false;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
@@ -6355,7 +6395,7 @@ public class Game : MonoBehaviour
                             else if (cpu2.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6394,7 +6434,7 @@ public class Game : MonoBehaviour
                             else if (cpu2.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6461,9 +6501,9 @@ public class Game : MonoBehaviour
                     print("cpu2 : " + cpu2.card1 + " - " + cpu2.card2);
 
                
-                announcer.text = "";
+                
                 yield return new WaitForSeconds(1.5f);
-
+announcer.text = "";
                         int ran;
                         do
                         {
@@ -6495,7 +6535,7 @@ public class Game : MonoBehaviour
                             else if (cpu1.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6534,7 +6574,7 @@ public class Game : MonoBehaviour
                             else if (cpu1.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6599,7 +6639,7 @@ public class Game : MonoBehaviour
                             else if (cpu2.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6638,7 +6678,7 @@ public class Game : MonoBehaviour
                             else if (cpu2.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6704,6 +6744,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "director")
                 {
                     announcer.text = "ﻢﻧﺍﺩﺮﮔﺭﺎﮐ : " + name_script.cpu3Name;
+                    edea[2].SetActive(true);
+                    edea[2].GetComponent<Image>().color = roleColor[1];
                 }
                 yield return new WaitForSeconds(1.5f);
                 if (Me.Alive)
@@ -6735,6 +6777,8 @@ public class Game : MonoBehaviour
                 if (ertebat == "cherik")
                 {
                     announcer.text = "ﻢﮑﯾﺮﭼ : " + name_script.cpu3Name;
+                    edea[2].SetActive(true);
+                    edea[2].GetComponent<Image>().color = roleColor[2];
                 }
                 yield return new WaitForSeconds(1.5f);
 if (Me.Alive)
@@ -6767,6 +6811,8 @@ if (Me.Alive)
                 if (ertebat == "solh")
                 {
                     announcer.text = "ﻢﺒﻠﻃ ﺢﻠﺻ : " + name_script.cpu3Name;
+                    edea[2].SetActive(true);
+                    edea[2].GetComponent<Image>().color = roleColor[3];
                 }
                 yield return new WaitForSeconds(1.5f);
 if (Me.Alive)
@@ -6798,6 +6844,8 @@ if (Me.Alive)
                 if (ertebat == "siasat")
                 {
                     announcer.text = "ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ : " + name_script.cpu3Name;
+                    edea[2].SetActive(true);
+                    edea[2].GetComponent<Image>().color = roleColor[4];
                 }
                 yield return new WaitForSeconds(1.5f);
 if (Me.Alive)
@@ -6841,8 +6889,7 @@ if (Me.Alive)
                 permision = false;
 
             //testing
-            permision = true;
-
+          
 
             if (permision)
             {
@@ -6909,9 +6956,11 @@ if (Me.Alive)
                     cpu3.card2 = getFromDeck();
 
                     print("cpu3 : " + cpu3.card1 + " - " + cpu3.card2);
-                 
 
+                        yield return new WaitForSeconds(1.5f);
                         losingy();
+                        yield return new WaitUntil(() => losetwice == true);
+                        losetwice = false;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
@@ -6960,7 +7009,7 @@ if (Me.Alive)
                             else if (cpu3.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -6999,7 +7048,7 @@ if (Me.Alive)
                             else if (cpu3.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -7062,7 +7111,7 @@ if (Me.Alive)
                     cpu3.card2 = getFromDeck();
 
                     print("cpu3 : " + cpu3.card1 + " - " + cpu3.card2);
-               
+                    yield return new WaitForSeconds(1.5f);
 
                         int ran;
                         do
@@ -7095,7 +7144,7 @@ if (Me.Alive)
                             else if (cpu1.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -7134,7 +7183,7 @@ if (Me.Alive)
                             else if (cpu1.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -7199,7 +7248,7 @@ if (Me.Alive)
                             else if (cpu3.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -7238,7 +7287,7 @@ if (Me.Alive)
                             else if (cpu3.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -7304,7 +7353,7 @@ if (Me.Alive)
                     cpu3.card2 = getFromDeck();
 
                     print("cpu3 : " + cpu3.card1 + " - " + cpu3.card2);
-
+                  yield return new WaitForSeconds(1.5f);
                         int ran;
                         do
                         {
@@ -7336,7 +7385,7 @@ if (Me.Alive)
                             else if (cpu2.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -7375,7 +7424,7 @@ if (Me.Alive)
                             else if (cpu2.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -7440,7 +7489,7 @@ if (Me.Alive)
                             else if (cpu3.card1 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -7479,7 +7528,7 @@ if (Me.Alive)
                             else if (cpu3.card2 == 5)
                             {
                                 if (uniqe5 == "siasat")
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                             }
 
                             for (int i = 0; i < lost.Length; i++)
@@ -7557,7 +7606,7 @@ if (Me.Alive)
                     op = cpu1.card2;
 
                 // testing
-                op = 1;  
+                op = 2;  
                 //
 
                 if (op == 1)
