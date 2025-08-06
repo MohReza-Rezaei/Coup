@@ -346,6 +346,102 @@ public class Game : MonoBehaviour
         losetwice = true;
     }
 
+    void AllCheckAlive()
+    {
+        if (Me.card1 == -1 && Me.card2 == -1)
+            Me.Alive = false;
+
+        if (cpu1.card1 == -1 && cpu1.card2 == -1)
+            cpu1.Alive = false;
+
+        if (cpu2.card1 == -1 && cpu2.card2 == -1)
+            cpu2.Alive = false;
+
+        if (cpu3.card1 == -1 && cpu3.card2 == -1)
+            cpu3.Alive = false;
+    }
+
+    void next()
+    {
+        if (myturn)
+        {
+            myturn = false;
+            if (cpu1.Alive)
+                cpu1turn = true;
+            else if (cpu2.Alive)
+                cpu2turn = true;
+            else if (cpu3.Alive)
+                cpu3turn = true;
+        }
+        else if (cpu1turn)
+        {
+            cpu1turn = false;
+            if (cpu2.Alive)
+                cpu2turn = true;
+            else if (cpu3.Alive)
+                cpu3turn = true;
+            else if (Me.Alive)
+                myturn = true;
+        }
+        else if (cpu2turn)
+        {
+            cpu2turn = false;
+            if (cpu3.Alive)
+                cpu3turn = true;
+            else if (Me.Alive)
+                myturn = true;
+            else if (cpu1.Alive)
+                cpu1turn = true;
+        }else if (cpu3turn)
+        {
+            cpu3turn = false;
+            if (Me.Alive)
+                myturn = true;
+            else if (cpu1.Alive)
+                cpu1turn = true;
+            else if (cpu2.Alive)
+                cpu2turn = true;
+        }
+    }
+
+    void Point()
+    {
+        if (Me.Alive)
+        {  // win
+
+            int trophy = PlayerPrefs.GetInt("Trophy");
+            trophy += Random.Range(15, 25);
+            PlayerPrefs.SetInt("Trophy", trophy);
+
+            int win = PlayerPrefs.GetInt("Win");
+            win++;
+            PlayerPrefs.SetInt("Win", win);
+
+            int TheHighestTrophy = PlayerPrefs.GetInt("HighestTrophy");
+            if (trophy > TheHighestTrophy)
+                PlayerPrefs.SetInt("HighestTrophy", trophy);
+
+        }
+        else
+        {  // lose
+            int trophy = PlayerPrefs.GetInt("Trophy");
+            trophy -= Random.Range(15, 25);
+            if (trophy <= 0)
+                PlayerPrefs.SetInt("Trophy", 0);
+            else
+                PlayerPrefs.SetInt("Trophy", trophy);
+
+            int lose = PlayerPrefs.GetInt("Lose");
+            lose++;
+            PlayerPrefs.SetInt("lose", lose);
+        }
+
+        int playTimes = PlayerPrefs.GetInt("PlayTimes");
+        playTimes++;
+        PlayerPrefs.SetInt("PlayTimes",playTimes);
+
+    }
+
     IEnumerator Robot()
     {
         //testing
@@ -371,6 +467,7 @@ public class Game : MonoBehaviour
         }
 
         // point
+        Point();
     }
 
 
