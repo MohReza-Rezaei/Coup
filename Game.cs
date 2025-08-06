@@ -5196,6 +5196,27 @@ public class Game : MonoBehaviour
                     {
                         announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu1Name;
                         yield return new WaitForSeconds(2);
+
+                       announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+
+                        print("cpu1 : " +cpu1.card1 + " - " + cpu1.card2);
+
+                backToDeck(target);
+                ShuffleArray(numbers,false);
+
+                if (cpu1.card1 == target)
+                    cpu1.card1 = getFromDeck();
+                else
+                    cpu1.card2 = getFromDeck();
+
+                    print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
+
+               
+                announcer.text = "";
+                yield return new WaitForSeconds(1.5f);
+
+
+                        yield return new WaitForSeconds(2);
                         int ran;
                         do
                         {
@@ -5423,6 +5444,23 @@ public class Game : MonoBehaviour
                         announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu1Name;
                         yield return new WaitForSeconds(2);
 
+                        announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+
+                        print("cpu1 : " +cpu1.card1 + " - " + cpu1.card2);
+
+                backToDeck(target);
+                ShuffleArray(numbers,false);
+
+                if (cpu1.card1 == target)
+                    cpu1.card1 = getFromDeck();
+                else
+                    cpu1.card2 = getFromDeck();
+
+                    print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
+
+               
+                announcer.text = "";
+                yield return new WaitForSeconds(1.5f);
 
                         int ran;
                         do
@@ -5651,6 +5689,24 @@ public class Game : MonoBehaviour
                     {
                         announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu1Name;
                         yield return new WaitForSeconds(2);
+
+                        announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+
+                        print("cpu1 : " +cpu1.card1 + " - " + cpu1.card2);
+
+                backToDeck(target);
+                ShuffleArray(numbers,false);
+
+                if (cpu1.card1 == target)
+                    cpu1.card1 = getFromDeck();
+                else
+                    cpu1.card2 = getFromDeck();
+
+                    print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
+
+               
+                announcer.text = "";
+                yield return new WaitForSeconds(1.5f);
 
                         losingy();
 
@@ -5985,6 +6041,24 @@ public class Game : MonoBehaviour
                     { 
                      announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu2Name;
                         yield return new WaitForSeconds(2);
+
+                        announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+
+                        print("cpu2 : " +cpu2.card1 + " - " + cpu2.card2);
+
+                backToDeck(target);
+                ShuffleArray(numbers,false);
+
+                if (cpu2.card1 == target)
+                    cpu2.card1 = getFromDeck();
+                else
+                    cpu2.card2 = getFromDeck();
+
+                    print("cpu2 : " + cpu2.card1 + " - " + cpu2.card2);
+
+               
+                announcer.text = "";
+                yield return new WaitForSeconds(1.5f);
        
 
                         int ran;
@@ -6211,6 +6285,24 @@ public class Game : MonoBehaviour
                     {
                         announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu2Name;
                     yield return new WaitForSeconds(2);
+
+                      announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+
+                        print("cpu2 : " +cpu2.card1 + " - " + cpu2.card2);
+
+                backToDeck(target);
+                ShuffleArray(numbers,false);
+
+                if (cpu2.card1 == target)
+                    cpu2.card1 = getFromDeck();
+                else
+                    cpu2.card2 = getFromDeck();
+
+                    print("cpu2 : " + cpu2.card1 + " - " + cpu2.card2);
+
+               
+                announcer.text = "";
+                yield return new WaitForSeconds(1.5f);
                     
 
                         losingy();
@@ -6354,6 +6446,23 @@ public class Game : MonoBehaviour
                 announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu2Name;
                 yield return new WaitForSeconds(2);
                
+                  announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+
+                        print("cpu2 : " +cpu2.card1 + " - " + cpu2.card2);
+
+                backToDeck(target);
+                ShuffleArray(numbers,false);
+
+                if (cpu2.card1 == target)
+                    cpu2.card1 = getFromDeck();
+                else
+                    cpu2.card2 = getFromDeck();
+
+                    print("cpu2 : " + cpu2.card1 + " - " + cpu2.card2);
+
+               
+                announcer.text = "";
+                yield return new WaitForSeconds(1.5f);
 
                         int ran;
                         do
@@ -6597,7 +6706,7 @@ public class Game : MonoBehaviour
                     announcer.text = "ﻢﻧﺍﺩﺮﮔﺭﺎﮐ : " + name_script.cpu3Name;
                 }
                 yield return new WaitForSeconds(1.5f);
-if (Me.Alive)
+                if (Me.Alive)
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
@@ -6753,6 +6862,12 @@ if (Me.Alive)
                 if (mychallange)
                 {announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " ﺎﻤﺷ ";
                     yield return new WaitForSeconds(2);
+
+                    
+
+               
+                announcer.text = "";
+                yield return new WaitForSeconds(1.5f);
                       
                     int target = 0;
                     if (whichAction == "mali")
@@ -6780,6 +6895,20 @@ if (Me.Alive)
                     {
                         announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu3Name;
                     yield return new WaitForSeconds(2);
+
+                      announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+
+                        print("cpu3 : " +cpu3.card1 + " - " + cpu3.card2);
+
+                backToDeck(target);
+                ShuffleArray(numbers,false);
+
+                if (cpu3.card1 == target)
+                    cpu3.card1 = getFromDeck();
+                else
+                    cpu3.card2 = getFromDeck();
+
+                    print("cpu3 : " + cpu3.card1 + " - " + cpu3.card2);
                  
 
                         losingy();
@@ -6919,6 +7048,20 @@ if (Me.Alive)
                     { 
                      announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu3Name;
                         yield return new WaitForSeconds(2);
+
+                          announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+
+                        print("cpu3 : " +cpu3.card1 + " - " + cpu3.card2);
+
+                backToDeck(target);
+                ShuffleArray(numbers,false);
+
+                if (cpu3.card1 == target)
+                    cpu3.card1 = getFromDeck();
+                else
+                    cpu3.card2 = getFromDeck();
+
+                    print("cpu3 : " + cpu3.card1 + " - " + cpu3.card2);
                
 
                         int ran;
@@ -7119,6 +7262,7 @@ if (Me.Alive)
                 else if (result[1])
                 { announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " " + name_script.cpu2Name;
                     yield return new WaitForSeconds(2);
+
                  
                     int target = 0;
                     if (whichAction == "mali")
@@ -7147,6 +7291,19 @@ if (Me.Alive)
                      announcer.text = " ﺪﺷ ﻩﺪﻧﺮﺑ " + name_script.cpu3Name;
                         yield return new WaitForSeconds(2);
                  
+                          announcer.text = "ﺪﯾﺪﺟ ﺕﺭﺎﮐ ﺏﺎﺨﺘﻧﺍ ﻝﺎﺣ ﺭﺩ";
+
+                        print("cpu3 : " +cpu3.card1 + " - " + cpu3.card2);
+
+                backToDeck(target);
+                ShuffleArray(numbers,false);
+
+                if (cpu3.card1 == target)
+                    cpu3.card1 = getFromDeck();
+                else
+                    cpu3.card2 = getFromDeck();
+
+                    print("cpu3 : " + cpu3.card1 + " - " + cpu3.card2);
 
                         int ran;
                         do
