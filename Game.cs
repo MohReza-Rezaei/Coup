@@ -747,7 +747,7 @@ public class Game : MonoBehaviour
             }
 
             if (Me.card1 == operation || Me.card2 == operation)
-            {
+            {   
                 announcer.color = Color.green;
                 announcer.text = "ﯼﺪﺷ ﻩﺪﻧﺮﺑ ﺍﺭ ﺶﻟﺎﭼ";
                 yield return new WaitForSeconds(1.5f);
@@ -983,7 +983,8 @@ public class Game : MonoBehaviour
                     StartCoroutine(uniqe4y());
                 else if (whichAction == "uniqe5")
                     StartCoroutine(uniqe5y());
-
+                
+                endgame--;
             }
             else
             {
@@ -1151,7 +1152,7 @@ public class Game : MonoBehaviour
                         printLost();
                         yield return new WaitForSeconds(2);
 
-
+                      endgame--;
                     }
                     else
                     {
@@ -1288,7 +1289,7 @@ public class Game : MonoBehaviour
 
 
 
-
+                         endgame-=2;
                         }
                         else
                         {
@@ -1368,7 +1369,7 @@ public class Game : MonoBehaviour
                         }
                         printLost();
                         yield return new WaitForSeconds(2);
-
+                     endgame--;
                     }
                 }
             }
@@ -1460,7 +1461,7 @@ public class Game : MonoBehaviour
                         printLost();
                         yield return new WaitForSeconds(2);
 
-
+                     endgame--;
                     }
                     else
                     {
@@ -1598,7 +1599,7 @@ public class Game : MonoBehaviour
 
 
 
-
+                         endgame-=2;
                         }
                         else
                         {
@@ -1678,7 +1679,7 @@ public class Game : MonoBehaviour
                         }
                         printLost();
                         yield return new WaitForSeconds(2);
-
+                      endgame--;
                     }
                 }
             }
@@ -1762,7 +1763,7 @@ public class Game : MonoBehaviour
                             printLost();
                             yield return new WaitForSeconds(2);
 
-
+                          endgame--;
                         }
                         else
                         {
@@ -1906,7 +1907,7 @@ public class Game : MonoBehaviour
                         printLost();
                         yield return new WaitForSeconds(2);
 
-
+endgame--;
                     }
                     else
                     {
@@ -2044,7 +2045,7 @@ public class Game : MonoBehaviour
 
 
                         
-
+endgame-=2;
 
                         }
                         else
@@ -2125,7 +2126,7 @@ public class Game : MonoBehaviour
                         }
                         printLost();
                         yield return new WaitForSeconds(2);
-
+endgame--;
                     }
                 }
             }
@@ -2217,7 +2218,7 @@ public class Game : MonoBehaviour
                         printLost();
                         yield return new WaitForSeconds(2);
 
-
+endgame--;
                     }
                     else
                     {
@@ -2355,7 +2356,7 @@ public class Game : MonoBehaviour
 
 
                            
-
+endgame-=2;
 
                         }
                         else
@@ -2436,7 +2437,7 @@ public class Game : MonoBehaviour
                         }
                         printLost();
                         yield return new WaitForSeconds(2);
-
+endgame--;
                     }
                 }
             }
@@ -2520,7 +2521,7 @@ public class Game : MonoBehaviour
                             printLost();
                             yield return new WaitForSeconds(2);
 
-
+endgame--;
                         }
                         else
                         {
@@ -2661,7 +2662,7 @@ public class Game : MonoBehaviour
                         printLost();
                         yield return new WaitForSeconds(2);
 
-
+endgame--;
                     }
                     else
                     {
@@ -2797,7 +2798,7 @@ public class Game : MonoBehaviour
 
 
 
-
+endgame-=2;
                         }
                         else
                         {
@@ -2877,7 +2878,7 @@ public class Game : MonoBehaviour
                         }
                         printLost();
                         yield return new WaitForSeconds(2);
-
+endgame--;
                     }
                 }
             }
@@ -2969,7 +2970,7 @@ public class Game : MonoBehaviour
                         printLost();
                         yield return new WaitForSeconds(2);
 
-
+endgame--;
                     }
                     else
                     {
@@ -3108,7 +3109,7 @@ public class Game : MonoBehaviour
 
                            
 
-
+endgame-=2;
                         }
                         else
                         {
@@ -3188,7 +3189,7 @@ public class Game : MonoBehaviour
                         }
                         printLost();
                         yield return new WaitForSeconds(2);
-
+endgame--;
                     }
                 }
             }
@@ -3272,7 +3273,7 @@ public class Game : MonoBehaviour
                             printLost();
                             yield return new WaitForSeconds(2);
 
-
+endgame--;
                         }
                         else
                         {
@@ -3407,7 +3408,7 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-
+endgame--;
                             }
                             else
                             {
@@ -3511,6 +3512,7 @@ public class Game : MonoBehaviour
                                     }
                                     cointxt[1].text = cpu1.coin.ToString();
                                     cointxt[2].text = cpu2.coin.ToString();
+                                    endgame--;
                                 }
                                 else
                                 {
@@ -3615,7 +3617,7 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-
+endgame--;
                             }
                             else
                             {
@@ -3719,6 +3721,7 @@ public class Game : MonoBehaviour
                                     }
                                     cointxt[1].text = cpu1.coin.ToString();
                                     cointxt[3].text = cpu3.coin.ToString();
+                                    endgame--;
                                 }
                                 else
                                 {
@@ -3827,6 +3830,7 @@ public class Game : MonoBehaviour
                                     }
                                     printLost();
                                     yield return new WaitForSeconds(2);
+                                    endgame--;
                                 }
                                 else
                                 {
@@ -3968,7 +3972,7 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-
+endgame--;
                             }
                             else
                             {
@@ -4072,6 +4076,7 @@ public class Game : MonoBehaviour
                                     }
                                     cointxt[2].text = cpu2.coin.ToString();
                                     cointxt[1].text = cpu1.coin.ToString();
+                                    endgame--;
                                 }
                                 else
                                 {
@@ -4176,7 +4181,7 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-
+endgame--;
                             }
                             else
                             {
@@ -4280,6 +4285,7 @@ public class Game : MonoBehaviour
                                     }
                                     cointxt[2].text = cpu2.coin.ToString();
                                     cointxt[3].text = cpu3.coin.ToString();
+                                    endgame--;
                                 }
                                 else
                                 {
@@ -4388,6 +4394,7 @@ public class Game : MonoBehaviour
                                     }
                                     printLost();
                                     yield return new WaitForSeconds(2);
+                                    endgame--;
                                 }
                                 else
                                 {
@@ -4528,7 +4535,7 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-
+endgame--;
                             }
                             else
                             {
@@ -4632,6 +4639,7 @@ public class Game : MonoBehaviour
                                     }
                                     cointxt[3].text = cpu3.coin.ToString();
                                     cointxt[1].text = cpu1.coin.ToString();
+                                    endgame--;
                                 }
                                 else
                                 {
@@ -4736,7 +4744,7 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-
+endgame--;
                             }
                             else
                             {
@@ -4840,6 +4848,7 @@ public class Game : MonoBehaviour
                                     }
                                     cointxt[2].text = cpu2.coin.ToString();
                                     cointxt[3].text = cpu3.coin.ToString();
+                                    endgame--;
                                 }
                                 else
                                 {
@@ -4948,6 +4957,7 @@ public class Game : MonoBehaviour
                                     }
                                     printLost();
                                     yield return new WaitForSeconds(2);
+                                    endgame--;
                                 }
                                 else
                                 {
@@ -5439,7 +5449,7 @@ public class Game : MonoBehaviour
                         yield return new WaitForSeconds(3);
 
                     }
-
+                endgame--;
                 }
                 else if (result[2])
                 {
@@ -5684,6 +5694,7 @@ yield return new WaitForSeconds(1.5f);
                         yield return new WaitForSeconds(3);
 
                     }
+                    endgame--;
                 }
                 else if (mychallange)
                 {
@@ -5844,7 +5855,7 @@ yield return new WaitForSeconds(1.5f);
 
                         printLost();
                         yield return new WaitForSeconds(3);
-
+                     endgame--;
                     }
                 }
             }
@@ -6293,7 +6304,7 @@ yield return new WaitForSeconds(1.5f);
                         yield return new WaitForSeconds(3);
 
                     }
-
+                endgame--;
                 }else if (mychallange)
                 {announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu2Name + " ﺎﻤﺷ ";
                     yield return new WaitForSeconds(2);
@@ -6452,7 +6463,7 @@ yield return new WaitForSeconds(1.5f);
 
                         printLost();
                         yield return new WaitForSeconds(3);
-
+                    endgame--;
                     }
                 }
                 else if (result[0])
@@ -6698,6 +6709,7 @@ announcer.text = "";
                         yield return new WaitForSeconds(3);
 
                     }
+                    endgame--;
                 }
                 
             }
@@ -7066,7 +7078,7 @@ if (Me.Alive)
 
                         printLost();
                         yield return new WaitForSeconds(3);
-
+                     endgame--;
                     }
                 }else if (result[0])
                 { announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " " + name_script.cpu1Name;
@@ -7307,7 +7319,7 @@ if (Me.Alive)
                         yield return new WaitForSeconds(3);
 
                     }
-
+                 endgame--;
                 }
                 else if (result[1])
                 { announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " " + name_script.cpu2Name;
@@ -7548,6 +7560,7 @@ if (Me.Alive)
                         yield return new WaitForSeconds(3);
 
                     }
+                    endgame--;
                 }
                 
             }
@@ -7778,7 +7791,7 @@ if (Me.Alive)
                         printLost();
                         yield return new WaitForSeconds(2);
                     }
-
+                   endgame--;
                 }
                 else if (coupChoose == 3)
                 {
@@ -7906,8 +7919,9 @@ if (Me.Alive)
                         printLost();
                         yield return new WaitForSeconds(2);
                     }
+                    endgame--;
                 }
-
+              
             }
 
         }else if(cpu2turn){
@@ -8123,7 +8137,7 @@ if (Me.Alive)
                         printLost();
                         yield return new WaitForSeconds(2);
                     }
-
+                 endgame--;
                 }
                 else if (coupChoose == 3)
                 {
@@ -8251,6 +8265,7 @@ if (Me.Alive)
                         printLost();
                         yield return new WaitForSeconds(2);
                     }
+                    endgame--;
                 }
 
             }
@@ -8468,7 +8483,7 @@ if (Me.Alive)
                         printLost();
                         yield return new WaitForSeconds(2);
                     }
-
+                endgame--;
                 }
                 else if (coupChoose == 1)
                 {
@@ -8596,6 +8611,7 @@ if (Me.Alive)
                         printLost();
                         yield return new WaitForSeconds(2);
                     }
+                    endgame--;
                 }
 
             }
@@ -8618,7 +8634,7 @@ if (Me.Alive)
     IEnumerator coupy()
     {
         if (myturn)
-        {
+        {  
             Me.coin -= 7;
             cointxt[0].text = Me.coin.ToString();
             if (!cpu1.Alive)
@@ -8919,6 +8935,7 @@ if (Me.Alive)
         {
             // me being attacked
         }
+        endgame--;
     }
 
 
@@ -9673,6 +9690,7 @@ print("select : " + select);
                             printLost();
                             yield return new WaitForSeconds(2);
                         }
+                        endgame-=2;
                 }
                 else
                 {
@@ -9774,6 +9792,7 @@ print("select : " + select);
                         printLost();
                     }
                     yield return new WaitForSeconds(2);
+                    endgame--;
                 }
             }
         }
@@ -9910,6 +9929,7 @@ print("select : " + select);
                             printLost();
                             yield return new WaitForSeconds(2);
                         }
+                        endgame-=2;
                 }
                 else
                 {
@@ -10011,6 +10031,7 @@ print("select : " + select);
                         printLost();
                     }
                     yield return new WaitForSeconds(2);
+                    endgame--;
                 }
             }
         }
@@ -10148,6 +10169,7 @@ print("select : " + select);
                             printLost();
                             yield return new WaitForSeconds(2);
                         }
+                        endgame-=2;
                 }
                 else
                 {
@@ -10249,6 +10271,7 @@ print("select : " + select);
                         printLost();
                     }
                     yield return new WaitForSeconds(2);
+                    endgame--;
                 }
             }
         }
@@ -10520,6 +10543,7 @@ print("select : " + select);
                                 cointxt[0].text = Me.coin.ToString();
                                 cointxt[1].text = cpu1.coin.ToString();
                             }
+                            endgame--;
                         }
                         else
                         {
@@ -10698,6 +10722,7 @@ print("select : " + select);
                                 cointxt[0].text = Me.coin.ToString();
                                 cointxt[2].text = cpu2.coin.ToString();
                             }
+                            endgame--;
                         }
                         else
                         {
@@ -10874,6 +10899,7 @@ print("select : " + select);
                                 cointxt[0].text = Me.coin.ToString();
                                 cointxt[3].text = cpu3.coin.ToString();
                             }
+                            endgame--;
                         }
                         else
                         {
