@@ -35,6 +35,8 @@ public class Game : MonoBehaviour
     int whoCoup;
     bool mychallange = false , myReaction = false , losetwice = false;
     public Color[] roleColor = new Color[5];
+
+    bool stop = false;
     
 
     /// <Mali>
@@ -177,6 +179,118 @@ public class Game : MonoBehaviour
 
     }
 
+    bool RobotOffCheck(Player temp, int action)
+    {
+        if (action == 1)
+        {
+            // mali
+            return true;
+        }
+        else if (action == 2)
+        {
+            // ertebat
+            return true;
+        }
+        else if (action == 3)
+        {
+            //attack
+            int three = 0;
+            if (temp == cpu1)
+            {
+                if (!cpu2.Alive || WhoSolh == 2)
+                    three++;
+                if (!cpu3.Alive || WhoSolh == 3)
+                    three++;
+                if (WhoSolh == 0)
+                    three++;
+
+                if (three == 3)
+                    return false;
+            }
+            else if (temp == cpu2)
+            {
+                if (!cpu1.Alive || WhoSolh == 1)
+                    three++;
+                if (!cpu3.Alive || WhoSolh == 3)
+                    three++;
+                if (WhoSolh == 0)
+                    three++;
+
+                if (three == 3)
+                    return false;
+            }
+            else if (temp == cpu3)
+            {
+                if (!cpu1.Alive || WhoSolh == 1)
+                    three++;
+                if (!cpu2.Alive || WhoSolh == 2)
+                    three++;
+                if (WhoSolh == 0)
+                    three++;
+
+                if (three == 3)
+                    return false;
+            }
+
+            if (attack == "cherik")
+            {
+                if (temp.coin < 4)
+                    return false;
+            }
+            return true;
+        }
+        else if (action == 4)
+        {
+            // solh
+            return true;
+        }
+        else if (action == 5)
+        {
+            //siasat 
+            if (uniqe5 == "siasat")
+            {
+                int three = 0;
+            if (temp == cpu1)
+            {
+                if (!cpu2.Alive || WhoSolh == 2)
+                    three++;
+                if (!cpu3.Alive || WhoSolh == 3)
+                    three++;
+                if (WhoSolh == 0)
+                    three++;
+
+                if (three == 3)
+                    return false;
+            }
+            else if (temp == cpu2)
+            {
+                if (!cpu1.Alive || WhoSolh == 1)
+                    three++;
+                if (!cpu3.Alive || WhoSolh == 3)
+                    three++;
+                if (WhoSolh == 0)
+                    three++;
+
+                if (three == 3)
+                    return false;
+            }
+            else if (temp == cpu3)
+            {
+                if (!cpu1.Alive || WhoSolh == 1)
+                    three++;
+                if (!cpu2.Alive || WhoSolh == 2)
+                    three++;
+                if (WhoSolh == 0)
+                    three++;
+
+                if (three == 3)
+                    return false;
+            }
+            }
+        }
+        return false;
+    }
+
     void printLost()
     {
         int funanc = 0, comnu = 0, atk = 0, uq4 = 0, uq5 = 0;
@@ -297,6 +411,26 @@ public class Game : MonoBehaviour
             }
         }
     }
+
+    public void PAUSE()
+    {
+        if (!stop)
+        {
+            Time.timeScale = 0;
+            stop = true;
+            print("stop");
+        }
+        else
+        {
+            Time.timeScale = 1;
+            stop = false;
+            print("continue");
+        } 
+    }
+
+    
+
+    
 
     public void ChaleshBtn()
     {
@@ -535,8 +669,7 @@ public class Game : MonoBehaviour
         MeIconCheck();
 
         //testing
-        Me.coin = 4;
-        cointxt[0].text = Me.coin.ToString();
+        
         //
 
 
@@ -7641,29 +7774,39 @@ if (Me.Alive)
                     op = cpu1.card2;
 
                 // testing
-                op = 2;  
+                op = 2;
                 //
-
-                if (op == 1)
+                bool allow = RobotOffCheck(cpu1, op);
+                if (allow)
                 {
-                    StartCoroutine(cpuProgress("mali"));   
+                    if (op == 1)
+                    {
+                        StartCoroutine(cpuProgress("mali"));
+                    }
+                    else if (op == 2)
+                    {
+                        StartCoroutine(cpuProgress("ertebat"));
+                    }
+                    else if (op == 3)
+                    {
+                        StartCoroutine(cpuProgress("attack"));
+                    }
+                    else if (op == 4)
+                    {
+                        StartCoroutine(cpuProgress("uniqe4"));
+                    }
+                    else if (op == 5)
+                    {
+                        StartCoroutine(cpuProgress("uniqe5"));
+                    }
                 }
-                else if (op == 2)
+                else
                 {
-                   StartCoroutine(cpuProgress("ertebat"));
+                    announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu1Name;
+                    yield return new WaitForSeconds(2);
+                    StartCoroutine(earny());
                 }
-                else if (op == 3)
-                {
-                   StartCoroutine(cpuProgress("attack"));
-                }
-                else if (op == 4)
-                {
-                   StartCoroutine(cpuProgress("uniqe4"));
-                }
-                else if (op == 5)
-                {
-                   StartCoroutine(cpuProgress("uniqe5"));
-                }
+                
 
             }
             else if (ran == 8)
@@ -7959,6 +8102,7 @@ if (Me.Alive)
             ran = 5;
             //
 
+
             if (cpu2.coin >= 7)
                 ran = 8;
 
@@ -7987,29 +8131,41 @@ if (Me.Alive)
                     op = cpu2.card2;
 
                 // testing
-                op = 1;  
+                op = 1;
                 //
 
-                if (op == 1)
+                bool allow = RobotOffCheck(cpu2, op);
+
+                if (allow)
                 {
-                    StartCoroutine(cpuProgress("mali"));   
+                    if (op == 1)
+                    {
+                        StartCoroutine(cpuProgress("mali"));
+                    }
+                    else if (op == 2)
+                    {
+                        StartCoroutine(cpuProgress("ertebat"));
+                    }
+                    else if (op == 3)
+                    {
+                        StartCoroutine(cpuProgress("attack"));
+                    }
+                    else if (op == 4)
+                    {
+                        StartCoroutine(cpuProgress("uniqe4"));
+                    }
+                    else if (op == 5)
+                    {
+                        StartCoroutine(cpuProgress("uniqe5"));
+                    }
                 }
-                else if (op == 2)
+                else
                 {
-                   StartCoroutine(cpuProgress("ertebat"));
+                  announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu2Name;
+                yield return new WaitForSeconds(2);
+                StartCoroutine(earny());  
                 }
-                else if (op == 3)
-                {
-                   StartCoroutine(cpuProgress("attack"));
-                }
-                else if (op == 4)
-                {
-                   StartCoroutine(cpuProgress("uniqe4"));
-                }
-                else if (op == 5)
-                {
-                   StartCoroutine(cpuProgress("uniqe5"));
-                }
+                
 
             }
             else if (ran == 8)
@@ -8333,29 +8489,40 @@ if (Me.Alive)
                     op = cpu3.card2;
 
                 // testing
-                op = 1;  
+                op = 1;
                 //
 
-                if (op == 1)
+                bool allow = RobotOffCheck(cpu3, op);
+                if (allow)
                 {
-                    StartCoroutine(cpuProgress("mali"));   
+                    if (op == 1)
+                    {
+                        StartCoroutine(cpuProgress("mali"));
+                    }
+                    else if (op == 2)
+                    {
+                        StartCoroutine(cpuProgress("ertebat"));
+                    }
+                    else if (op == 3)
+                    {
+                        StartCoroutine(cpuProgress("attack"));
+                    }
+                    else if (op == 4)
+                    {
+                        StartCoroutine(cpuProgress("uniqe4"));
+                    }
+                    else if (op == 5)
+                    {
+                        StartCoroutine(cpuProgress("uniqe5"));
+                    }
                 }
-                else if (op == 2)
+                else
                 {
-                   StartCoroutine(cpuProgress("ertebat"));
-                }
-                else if (op == 3)
-                {
-                   StartCoroutine(cpuProgress("attack"));
-                }
-                else if (op == 4)
-                {
-                   StartCoroutine(cpuProgress("uniqe4"));
-                }
-                else if (op == 5)
-                {
-                   StartCoroutine(cpuProgress("uniqe5"));
-                }
+                announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu3Name;
+                yield return new WaitForSeconds(2);
+                StartCoroutine(earny());
+               }
+                
 
             }
             else if (ran == 8)
