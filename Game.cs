@@ -508,7 +508,6 @@ public class Game : MonoBehaviour
         }
         lostSection.SetActive(true);
         yield return new WaitUntil(() => cClicked == true);
-        cClicked = false;
         lostSection.SetActive(false);
         losetwice = true;
     }
@@ -643,6 +642,7 @@ public class Game : MonoBehaviour
         while (endgame != 0 && Me.Alive)
         {
             yield return new WaitUntil(() => Done == true);
+            yield return new WaitForSeconds(1.5f);
             Done = false;
             if (myturn)
             {
@@ -901,7 +901,7 @@ public class Game : MonoBehaviour
             }
 
             if (Me.card1 == operation || Me.card2 == operation)
-            {   
+            {
                 announcer.color = Color.green;
                 announcer.text = "ﯼﺪﺷ ﻩﺪﻧﺮﺑ ﺍﺭ ﺶﻟﺎﭼ";
                 yield return new WaitForSeconds(1.5f);
@@ -1137,7 +1137,7 @@ public class Game : MonoBehaviour
                     StartCoroutine(uniqe4y());
                 else if (whichAction == "uniqe5")
                     StartCoroutine(uniqe5y());
-                
+
                 endgame--;
             }
             else
@@ -1149,10 +1149,15 @@ public class Game : MonoBehaviour
                 announcer.text = "";
 
                 losingy();
+                yield return new WaitUntil(() => cClicked == true);
+                cClicked = false;
             }
 
         }
 
+        AllCheckAlive();
+        next();
+        Done = true;
     }
 
     bool canAttack(int who) {
@@ -1917,7 +1922,7 @@ public class Game : MonoBehaviour
                             printLost();
                             yield return new WaitForSeconds(2);
 
-                          endgame--;
+                            endgame--;
                         }
                         else
                         {
@@ -1929,14 +1934,20 @@ public class Game : MonoBehaviour
                             if (joon == 2)
                             {
                                 losingy();
+                                yield return new WaitUntil(() => cClicked == true);
+                                cClicked = false;
                                 losetwice = false;
                                 yield return new WaitUntil(() => losetwice == true);
                                 losetwice = false;
                                 losingy();
+                                yield return new WaitUntil(() => cClicked == true);
+                                cClicked = false;
                             }
                             else
                             {
                                 losingy();
+                                yield return new WaitUntil(() => cClicked == true);
+                                cClicked = false;
                             }
 
                         }
@@ -1949,6 +1960,8 @@ public class Game : MonoBehaviour
                 else
                 {
                     losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                cClicked = false;
                 }
 
             }
@@ -2675,7 +2688,7 @@ endgame--;
                             printLost();
                             yield return new WaitForSeconds(2);
 
-endgame--;
+                            endgame--;
                         }
                         else
                         {
@@ -2687,14 +2700,20 @@ endgame--;
                             if (joon == 2)
                             {
                                 losingy();
+                                yield return new WaitUntil(() => cClicked == true);
+                                cClicked = false;
                                 yield return new WaitForSeconds(2);
                                 losingy();
+                                yield return new WaitUntil(() => cClicked == true);
+                                cClicked = false;
                             }
                             else
                             {
-                                losingy(); 
+                                losingy();
+                                yield return new WaitUntil(() => cClicked == true);
+                                cClicked = false;
                             }
-                            
+
                         }
                     }
                     else
@@ -2705,6 +2724,8 @@ endgame--;
                 else
                 {
                     losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
                 }
 
             }
@@ -3427,7 +3448,7 @@ endgame--;
                             printLost();
                             yield return new WaitForSeconds(2);
 
-endgame--;
+                            endgame--;
                         }
                         else
                         {
@@ -3439,14 +3460,20 @@ endgame--;
                             if (joon == 2)
                             {
                                 losingy();
+                                yield return new WaitUntil(() => cClicked == true);
+                                cClicked = false;
                                 yield return new WaitForSeconds(2);
                                 losingy();
+                                yield return new WaitUntil(() => cClicked == true);
+                                cClicked = false;
                             }
                             else
                             {
-                                losingy(); 
+                                losingy();
+                                yield return new WaitUntil(() => cClicked == true);
+                                cClicked = false;
                             }
-                            
+
                         }
                     }
                     else
@@ -3457,6 +3484,8 @@ endgame--;
                 else
                 {
                     losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
                 }
 
             }
@@ -3991,6 +4020,8 @@ endgame--;
                                     announcer.text = " ﯽﺘﺧﺎﺑ ﺍﺭ ﺶﻟﺎﭼ ";
                                     yield return new WaitForSeconds(2);
                                     losingy();
+                                    yield return new WaitUntil(() => cClicked == true);
+                                    cClicked = false;
 
                                     if (Me.coin >= 2)
                                     {
@@ -4555,6 +4586,8 @@ endgame--;
                                     announcer.text = " ﯽﺘﺧﺎﺑ ﺍﺭ ﺶﻟﺎﭼ ";
                                     yield return new WaitForSeconds(2);
                                     losingy();
+                                    yield return new WaitUntil(() => cClicked == true);
+                                    cClicked = false;
 
                                     if (Me.coin >= 2)
                                     {
@@ -5118,6 +5151,8 @@ endgame--;
                                     announcer.text = " ﯽﺘﺧﺎﺑ ﺍﺭ ﺶﻟﺎﭼ ";
                                     yield return new WaitForSeconds(2);
                                     losingy();
+                                    yield return new WaitUntil(() => cClicked == true);
+                                    cClicked = false;
 
                                     if (Me.coin >= 2)
                                     {
@@ -5338,9 +5373,7 @@ endgame--;
                 permision = false;
 
             //testing
-
-            permision = false;
-            result[1] = true;
+            
             //
 
             if (permision)
@@ -5406,10 +5439,10 @@ endgame--;
 
                         yield return new WaitForSeconds(1.5f);
                         announcer.text = "";
-                        
 
 
-                        
+
+
                         int ran;
                         do
                         {
@@ -5603,7 +5636,7 @@ endgame--;
                         yield return new WaitForSeconds(3);
 
                     }
-                endgame--;
+                    endgame--;
                 }
                 else if (result[2])
                 {
@@ -5651,9 +5684,9 @@ endgame--;
 
                         print("cpu1 : " + cpu1.card1 + " - " + cpu1.card2);
 
-yield return new WaitForSeconds(1.5f);
+                        yield return new WaitForSeconds(1.5f);
                         announcer.text = "";
-                        
+
 
                         int ran;
                         do
@@ -5903,8 +5936,9 @@ yield return new WaitForSeconds(1.5f);
 
 
                         losingy();
-                        yield return new WaitUntil(() => losetwice == true);
-                        losetwice = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false;
+                       
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
@@ -6009,7 +6043,7 @@ yield return new WaitForSeconds(1.5f);
 
                         printLost();
                         yield return new WaitForSeconds(3);
-                     endgame--;
+                        endgame--;
                     }
                 }
             }
@@ -6510,8 +6544,8 @@ yield return new WaitForSeconds(1.5f);
                     
 
                         losingy();
-                        yield return new WaitUntil(() => losetwice == true);
-                        losetwice = false;
+                       yield return new WaitUntil(() => cClicked == true);
+                       cClicked = false;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
@@ -7126,8 +7160,8 @@ if (Me.Alive)
 
                         yield return new WaitForSeconds(1.5f);
                         losingy();
-                        yield return new WaitUntil(() => losetwice == true);
-                        losetwice = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
@@ -7721,7 +7755,12 @@ if (Me.Alive)
         }
 
 
-
+        edea[0].SetActive(false);
+        edea[1].SetActive(false);
+        edea[2].SetActive(false);
+        AllCheckAlive();
+        next();
+        Done = true;
             yield return new WaitForSeconds(2);
     }
 
@@ -7743,7 +7782,7 @@ if (Me.Alive)
             //8 is coup
 
             //testing
-            ran = 5;
+             
             //
 
             if (cpu1.coin >= 7)
@@ -7762,6 +7801,10 @@ if (Me.Alive)
                 announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu1Name;
                 yield return new WaitForSeconds(2);
                 StartCoroutine(earny());
+                yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
             }
             else if (ran == 2 || ran == 3)
             {
@@ -7769,9 +7812,9 @@ if (Me.Alive)
                 int ran2;
                 do
                 {
-                ran2 = Random.Range(1, 6);
+                    ran2 = Random.Range(1, 6);
                 } while (ran2 == cpu1.card1 || ran2 == cpu1.card2);
-                
+
                 bool allow = RobotOffCheck(cpu1, ran2);
                 if (allow)
                 {
@@ -7801,10 +7844,14 @@ if (Me.Alive)
                     announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu1Name;
                     yield return new WaitForSeconds(2);
                     StartCoroutine(earny());
+                    yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
                 }
 
-                
-                }
+
+            }
             else if (ran > 3 && ran < 8)
             {
                 int ran2;
@@ -7820,7 +7867,7 @@ if (Me.Alive)
                     op = cpu1.card2;
 
                 // testing
-                op = 2;
+
                 //
                 bool allow = RobotOffCheck(cpu1, op);
                 if (allow)
@@ -7851,6 +7898,10 @@ if (Me.Alive)
                     announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu1Name;
                     yield return new WaitForSeconds(2);
                     StartCoroutine(earny());
+                    yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
                 }
 
 
@@ -7873,6 +7924,8 @@ if (Me.Alive)
                     announcer.text = "ﺪﺷ ﺎﺗﺩﻮﮐ ﻮﺗ ﻪﯿﻠﻋ";
                     yield return new WaitForSeconds(1.5f);
                     losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                     cClicked = false;
 
                 }
                 else if (coupChoose == 2)
@@ -8131,7 +8184,10 @@ if (Me.Alive)
                     }
                     endgame--;
                 }
-
+               yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
             }
 
         }else if(cpu2turn){
@@ -8145,7 +8201,7 @@ if (Me.Alive)
             //8 is coup
 
             //testing
-            ran = 5;
+           
             //
 
 
@@ -8164,6 +8220,10 @@ if (Me.Alive)
                 announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu2Name;
                 yield return new WaitForSeconds(2);
                 StartCoroutine(earny());
+                yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
             }
             else if (ran == 2 || ran == 3)
             {
@@ -8171,9 +8231,9 @@ if (Me.Alive)
                 int ran2;
                 do
                 {
-                ran2 = Random.Range(1, 6);
+                    ran2 = Random.Range(1, 6);
                 } while (ran2 == cpu2.card1 || ran2 == cpu2.card2);
-                
+
                 bool allow = RobotOffCheck(cpu2, ran2);
                 if (allow)
                 {
@@ -8203,6 +8263,10 @@ if (Me.Alive)
                     announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu2Name;
                     yield return new WaitForSeconds(2);
                     StartCoroutine(earny());
+                    yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
                 }
             }
             else if (ran > 3 && ran < 8)
@@ -8213,14 +8277,14 @@ if (Me.Alive)
                     ran2 = Random.Range(1, 3);
                 } while ((ran2 == 1 && cpu2.card1 == -1) || (ran2 == 2 && cpu2.card2 == -1));
 
-                int op=0;
+                int op = 0;
                 if (ran2 == 1)
                     op = cpu2.card1;
                 if (ran2 == 2)
                     op = cpu2.card2;
 
                 // testing
-                op = 1;
+
                 //
 
                 bool allow = RobotOffCheck(cpu2, op);
@@ -8250,11 +8314,15 @@ if (Me.Alive)
                 }
                 else
                 {
-                  announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu2Name;
-                yield return new WaitForSeconds(2);
-                StartCoroutine(earny());  
+                    announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu2Name;
+                    yield return new WaitForSeconds(2);
+                    StartCoroutine(earny());
+                    yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
                 }
-                
+
 
             }
             else if (ran == 8)
@@ -8275,6 +8343,8 @@ if (Me.Alive)
                     announcer.text = "ﺪﺷ ﺎﺗﺩﻮﮐ ﻮﺗ ﻪﯿﻠﻋ";
                     yield return new WaitForSeconds(1.5f);
                     losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
 
                 }
                 else if (coupChoose == 1)
@@ -8403,7 +8473,7 @@ if (Me.Alive)
                         printLost();
                         yield return new WaitForSeconds(2);
                     }
-                 endgame--;
+                    endgame--;
                 }
                 else if (coupChoose == 3)
                 {
@@ -8533,7 +8603,10 @@ if (Me.Alive)
                     }
                     endgame--;
                 }
-
+yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
             }
 
         }else if(cpu3turn){
@@ -8547,7 +8620,7 @@ if (Me.Alive)
             //8 is coup
 
             //testing
-            ran = 5;
+           
             //
 
             if (cpu3.coin >= 7)
@@ -8565,6 +8638,10 @@ if (Me.Alive)
                 announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu3Name;
                 yield return new WaitForSeconds(2);
                 StartCoroutine(earny());
+                yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
             }
             else if (ran == 2 || ran == 3)
             {
@@ -8572,9 +8649,9 @@ if (Me.Alive)
                 int ran2;
                 do
                 {
-                ran2 = Random.Range(1, 6);
+                    ran2 = Random.Range(1, 6);
                 } while (ran2 == cpu3.card1 || ran2 == cpu3.card2);
-                
+
                 bool allow = RobotOffCheck(cpu3, ran2);
                 if (allow)
                 {
@@ -8604,6 +8681,10 @@ if (Me.Alive)
                     announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu3Name;
                     yield return new WaitForSeconds(2);
                     StartCoroutine(earny());
+                    yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
                 }
             }
             else if (ran > 3 && ran < 8)
@@ -8614,14 +8695,14 @@ if (Me.Alive)
                     ran2 = Random.Range(1, 3);
                 } while ((ran2 == 1 && cpu3.card1 == -1) || (ran2 == 2 && cpu3.card2 == -1));
 
-                int op=0;
+                int op = 0;
                 if (ran2 == 1)
                     op = cpu3.card1;
                 if (ran2 == 2)
                     op = cpu3.card2;
 
                 // testing
-                op = 1;
+
                 //
 
                 bool allow = RobotOffCheck(cpu3, op);
@@ -8650,11 +8731,15 @@ if (Me.Alive)
                 }
                 else
                 {
-                announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu3Name;
-                yield return new WaitForSeconds(2);
-                StartCoroutine(earny());
-               }
-                
+                    announcer.text = " ﻢﻨﮐ ﯽﻣ ﺪﻣﺁﺭﺩ ﺐﺴﮐ :" + name_script.cpu3Name;
+                    yield return new WaitForSeconds(2);
+                    StartCoroutine(earny());
+                    yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
+                }
+
 
             }
             else if (ran == 8)
@@ -8675,6 +8760,8 @@ if (Me.Alive)
                     announcer.text = "ﺪﺷ ﺎﺗﺩﻮﮐ ﻮﺗ ﻪﯿﻠﻋ";
                     yield return new WaitForSeconds(1.5f);
                     losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
 
                 }
                 else if (coupChoose == 2)
@@ -8803,7 +8890,7 @@ if (Me.Alive)
                         printLost();
                         yield return new WaitForSeconds(2);
                     }
-                endgame--;
+                    endgame--;
                 }
                 else if (coupChoose == 1)
                 {
@@ -8933,7 +9020,10 @@ if (Me.Alive)
                     }
                     endgame--;
                 }
-
+yield return new WaitForSeconds(1);
+                AllCheckAlive();
+                next();
+                Done = true;
             }
 
         }
@@ -9895,6 +9985,8 @@ print("select : " + select);
                     yield return new WaitForSeconds(1.5f);
 
                     losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
 
                 }
                 else
@@ -10128,13 +10220,15 @@ print("select : " + select);
                 chalesh.SetActive(true);
                 yield return new WaitUntil(() => cClicked == true);
                 cClicked = false;
-                
+
                 if (mychallange)
                 {
                     announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
                     yield return new WaitForSeconds(1.5f);
 
                     losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
 
                 }
                 else
@@ -10367,13 +10461,15 @@ print("select : " + select);
                 chalesh.SetActive(true);
                 yield return new WaitUntil(() => cClicked == true);
                 cClicked = false;
-                
+
                 if (mychallange)
                 {
                     announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
                     yield return new WaitForSeconds(1.5f);
 
                     losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
 
                 }
                 else
@@ -10727,6 +10823,8 @@ print("select : " + select);
                         yield return new WaitForSeconds(1.5f);
 
                         losingy();
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false;
 
                     }
                     else
@@ -10902,19 +11000,21 @@ print("select : " + select);
                 chalesh.SetActive(true);
                 yield return new WaitUntil(() => cClicked == true);
                 cClicked = false;
-                
-                if (mychallange)
-                {
-                    announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
-                    yield return new WaitForSeconds(1.5f);
 
-                    losingy();
+                    if (mychallange)
+                    {
+                        announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
+                        yield return new WaitForSeconds(1.5f);
+
+                        losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
 
                 }
-                else
-                {
-                    // Done
-                }
+                    else
+                    {
+                        // Done
+                    }
             }
             else
             {
@@ -11081,19 +11181,21 @@ print("select : " + select);
                 chalesh.SetActive(true);
                 yield return new WaitUntil(() => cClicked == true);
                 cClicked = false;
-                
-                if (mychallange)
-                {
-                    announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
-                    yield return new WaitForSeconds(1.5f);
 
-                    losingy();
+                    if (mychallange)
+                    {
+                        announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
+                        yield return new WaitForSeconds(1.5f);
+
+                        losingy();
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
 
                 }
-                else
-                {
-                    // Done
-                }
+                    else
+                    {
+                        // Done
+                    }
             }
             else
             {
@@ -11508,14 +11610,11 @@ public class Player
         {
             float formula;
             formula = (float)(3 - res) / (15 - burn - hand);
-            Debug.Log(formula);
             formula *= 300;
-            Debug.Log(formula);
             formula = 100 - formula;
-            formula /= 4;
+            formula /= 3;
             Debug.Log(formula);
             int go = Random.Range(1, 101);
-            go *= 2;
             Debug.Log(go);
             if (go < formula)
             {
