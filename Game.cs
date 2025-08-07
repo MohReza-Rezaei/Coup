@@ -49,7 +49,7 @@ public class Game : MonoBehaviour
     public GameObject[] midFiledIcon = new GameObject[4];
     public GameObject[] midFiledCards = new GameObject[4];
     public Text[] midFiledText = new Text[4];
-
+    public Text joontitle;
     //(Me)
     int ertebatClick = 0;
     int Firstchoice = -1,secondchoice = -1;
@@ -642,8 +642,8 @@ public class Game : MonoBehaviour
         while (endgame != 0 && Me.Alive)
         {
             yield return new WaitUntil(() => Done == true);
-            yield return new WaitForSeconds(1.5f);
             Done = false;
+        //    yield return new WaitForSeconds(2f);
             if (myturn)
             {
 
@@ -658,6 +658,7 @@ public class Game : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
+        print("endgame");
         // point
         Point();
     }
@@ -716,11 +717,13 @@ public class Game : MonoBehaviour
         }else if (whichAction == "attack")
         {
             if (attack == "cherik")
-            {
+            {   
+                announcer.color = Color.white;
                 announcer.text = "ﻢﮑﯾﺮﭼ";
             }
+             yield return new WaitForSeconds(1.5f);
+            announcer.color = Color.black;
 
-            yield return new WaitForSeconds(1.5f);
 
             if (cpu1.Alive)
             {
@@ -743,11 +746,12 @@ public class Game : MonoBehaviour
         }else if (whichAction == "ertebat")
         {
             if (ertebat == "director")
-            {
+            {   announcer.color = Color.white;
                 announcer.text = "ﻢﻧﺍﺩﺮﮔﺭﺎﮐ";
             }
-
             yield return new WaitForSeconds(1.5f);
+            announcer.color = Color.black;
+
 
             if (cpu1.Alive)
             {
@@ -770,11 +774,12 @@ public class Game : MonoBehaviour
         }  else if (whichAction == "uniqe4")
         {
             if (uniqe4 == "solh")
-            {
+            {   announcer.color = Color.white;
                 announcer.text = "ﻢﺒﻠﻃ ﺢﻠﺻ";
             }
-
             yield return new WaitForSeconds(1.5f);
+            announcer.color = Color.black;
+
 
             if (cpu1.Alive)
             {
@@ -797,11 +802,12 @@ public class Game : MonoBehaviour
         }else if (whichAction == "uniqe5")
         {
             if (uniqe5 == "siasat")
-            {
+            {   announcer.color = Color.white;
                 announcer.text ="ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ";
             }
 
-            yield return new WaitForSeconds(1.5f);
+           yield return new WaitForSeconds(1.5f);
+            announcer.color = Color.black;
 
             if (cpu1.Alive)
             {
@@ -837,7 +843,8 @@ public class Game : MonoBehaviour
         }
 
         //testing
-        
+        permision = false;
+        result[1] = true;
         //
 
         if (permision)
@@ -845,7 +852,11 @@ public class Game : MonoBehaviour
             if (whichAction == "mali")
                 StartCoroutine(Mali());
             else if (whichAction == "ertebat")
+            {
                 StartCoroutine(ertebatat());
+                yield return new WaitUntil(() => cClicked == true);
+                cClicked = false;
+            }
             else if (whichAction == "attack")
                 StartCoroutine(Attack());
             else if (whichAction == "uniqe4")
@@ -1059,11 +1070,11 @@ public class Game : MonoBehaviour
                         if (mali == "banker")
                         {
                             if (temp == cpu1)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu1Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
                             else if (temp == cpu2)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
                             else if (temp == cpu3)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
                         }
                     }
                     else if (box == 2)
@@ -1071,11 +1082,11 @@ public class Game : MonoBehaviour
                         if (ertebat == "director")
                         {
                             if (temp == cpu1)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu1Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
                             else if (temp == cpu2)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
                             else if (temp == cpu3)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
                         }
                     }
                     else if (box == 3)
@@ -1083,11 +1094,11 @@ public class Game : MonoBehaviour
                         if (attack == "cherik")
                         {
                             if (temp == cpu1)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu1Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
                             else if (temp == cpu2)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
                             else if (temp == cpu3)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
                         }
                     }
                     else if (box == 4)
@@ -1095,11 +1106,11 @@ public class Game : MonoBehaviour
                         if (uniqe4 == "solh")
                         {
                             if (temp == cpu1)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu1Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
                             else if (temp == cpu2)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
                             else if (temp == cpu3)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
                         }
                     }
                     else if (box == 5)
@@ -1107,11 +1118,11 @@ public class Game : MonoBehaviour
                         if (uniqe5 == "siasat")
                         {
                             if (temp == cpu1)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                             else if (temp == cpu2)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             else if (temp == cpu3)
-                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                         }
                     }
 
@@ -1130,7 +1141,11 @@ public class Game : MonoBehaviour
                 if (whichAction == "mali")
                     StartCoroutine(Mali());
                 else if (whichAction == "ertebat")
+                {
                     StartCoroutine(ertebatat());
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
+                }
                 else if (whichAction == "attack")
                     StartCoroutine(Attack());
                 else if (whichAction == "uniqe4")
@@ -1154,7 +1169,7 @@ public class Game : MonoBehaviour
             }
 
         }
-
+        yield return new WaitForSeconds(1);
         AllCheckAlive();
         next();
         Done = true;
@@ -5373,7 +5388,8 @@ endgame--;
                 permision = false;
 
             //testing
-            
+            permision = false;
+            result[1] = true;
             //
 
             if (permision)
@@ -5938,7 +5954,7 @@ endgame--;
                         losingy();
                         yield return new WaitUntil(() => cClicked == true);
                         cClicked = false;
-                       
+
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
@@ -7755,19 +7771,20 @@ if (Me.Alive)
         }
 
 
+        yield return new WaitForSeconds(2);
         edea[0].SetActive(false);
         edea[1].SetActive(false);
         edea[2].SetActive(false);
         AllCheckAlive();
         next();
         Done = true;
-            yield return new WaitForSeconds(2);
+        
     }
 
     IEnumerator ActionRob()
     {
         bool[] result = { false, false, false };
-
+        announcer.color = Color.black;
         if (cpu1turn)
         {
 
@@ -7782,7 +7799,7 @@ if (Me.Alive)
             //8 is coup
 
             //testing
-             
+            ran = 5; 
             //
 
             if (cpu1.coin >= 7)
@@ -7867,7 +7884,7 @@ if (Me.Alive)
                     op = cpu1.card2;
 
                 // testing
-
+                op = 1;
                 //
                 bool allow = RobotOffCheck(cpu1, op);
                 if (allow)
@@ -9415,10 +9432,11 @@ yield return new WaitForSeconds(1);
 
             }
             yield return new WaitForSeconds(2.5f);
-            announcer.color = Color.black;
-            announcer.text = "";
+        announcer.color = Color.black;
+        announcer.text = "";
+        yield return new WaitForSeconds(1.5f);
         }
-
+        
     }
 
     IEnumerator ertebatat()
@@ -9455,7 +9473,7 @@ yield return new WaitForSeconds(1);
         {
             print(Me.card1 + " -- " + Me.card2);
             midIconCheck(Role1, Role2);
-            midField.SetActive(true);
+            
 
             int lives = 0;
             if (Me.card1 != -1)
@@ -9463,6 +9481,12 @@ yield return new WaitForSeconds(1);
             if (Me.card2 != -1)
                 lives++;
 
+            if (lives == 1)
+                joontitle.text = "ﻦﮐ ﺏﺎﺨﺘﻧﺍ ﺕﺭﺎﮐ ﮏﯾ";
+            else if(lives == 2)
+                joontitle.text = "ﻦﮐ ﺏﺎﺨﺘﻧﺍ ﺕﺭﺎﮐ ﻭﺩ";
+
+            midField.SetActive(true);
             yield return new WaitUntil(() => ertebatClick == lives);
             midField.SetActive(false);
             ertebatClick = 0;
@@ -9472,6 +9496,7 @@ yield return new WaitForSeconds(1);
             {
                 if (lives == 2)
                 {
+
                     if (Firstchoice == 0)
                     {
                         if (secondchoice == 1)
@@ -9907,7 +9932,7 @@ print("select : " + select);
         }
 
 
-
+        cClicked = true;
     }
 
     IEnumerator Attack()
