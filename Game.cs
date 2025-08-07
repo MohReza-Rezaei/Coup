@@ -17,7 +17,6 @@ public class Game : MonoBehaviour
     int endgame = 6;
     bool Done = true, cClicked = false;
     public Text announcer;
-
     public Text[] mytext = new Text[2];
     public Text[] lostText = new Text[5];
     public Sprite[] Logo = new Sprite[25];
@@ -27,7 +26,7 @@ public class Game : MonoBehaviour
     public GameObject[] cpu1cards = new GameObject[2];
     public GameObject[] cpu2cards = new GameObject[2];
     public GameObject[] cpu3cards = new GameObject[2];
-    public GameObject pannel, coupOff, coupCanvas;
+    public GameObject pannel, coupOff, coupCanvas , siasatOff;
     public GameObject[] coupCircle = new GameObject[3];
     public GameObject[] losingCircle = new GameObject[2];
     public GameObject[] edea = new GameObject[3];
@@ -143,7 +142,17 @@ public class Game : MonoBehaviour
 
         //attack
         if (attack == "cherik")
+        {   
+            if ((!cpu1.Alive && !cpu2.Alive && WhoSolh == 3) || (!cpu2.Alive && !cpu3.Alive && WhoSolh == 1) || (!cpu1.Alive && !cpu3.Alive && WhoSolh == 2))
         {
+            attackOff.SetActive(true);
+        }
+        else
+        {
+            attackOff.SetActive(false);
+        }
+
+
             if (Me.coin < 4)
             {
                 attackOff.SetActive(true);
@@ -153,6 +162,18 @@ public class Game : MonoBehaviour
                 attackOff.SetActive(false);
             }
         }
+
+
+        //siasat
+        if ((!cpu1.Alive && !cpu2.Alive && WhoSolh == 3) || (!cpu2.Alive && !cpu3.Alive && WhoSolh == 1) || (!cpu1.Alive && !cpu3.Alive && WhoSolh == 2))
+        {
+            siasatOff.SetActive(true);
+        }
+        else
+        {
+            siasatOff.SetActive(false);
+        }
+        
 
     }
 
