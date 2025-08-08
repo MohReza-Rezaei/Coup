@@ -36,7 +36,7 @@ public class Game : MonoBehaviour
     bool mychallange = false , myReaction = false , losetwice = false;
     public Color[] roleColor = new Color[5];
 
-    bool stop = false;
+    bool stop = false , robotWait = false;
     
 
     /// <Mali>
@@ -94,7 +94,7 @@ public class Game : MonoBehaviour
         {
 
             //testing
-            int ran = 1;//Random.Range(1, 5);
+            int ran = 2;//Random.Range(1, 5);
             //
             switch (ran)
             {
@@ -447,13 +447,13 @@ public class Game : MonoBehaviour
     public void reactionBtn()
     {
         myReaction = true;
-        cClicked = true;
+        robotWait = true;
     }
 
     public void DisreactionBtn()
     {
         myReaction = false;
-        cClicked = true;
+        robotWait = true;
     }
 
     void losingy()
@@ -568,6 +568,8 @@ public class Game : MonoBehaviour
             else if (cpu2.Alive)
                 cpu2turn = true;
         }
+
+       
     }
 
     void backToDeck(int naghsh)
@@ -670,7 +672,8 @@ public class Game : MonoBehaviour
         MeIconCheck();
 
         //testing
-        
+        Me.coin = 4;
+        cpu1.coin = 4;
         //
 
 
@@ -843,8 +846,8 @@ public class Game : MonoBehaviour
         }
 
         //testing
-        permision = false;
-        result[1] = true;
+        permision = true;
+       
         //
 
         if (permision)
@@ -857,8 +860,11 @@ public class Game : MonoBehaviour
                 yield return new WaitUntil(() => cClicked == true);
                 cClicked = false;
             }
-            else if (whichAction == "attack")
-                StartCoroutine(Attack());
+            else if (whichAction == "attack"){
+                 StartCoroutine(Attack());
+                 yield return new WaitUntil(()=>cClicked == true);
+                 cClicked = false;
+            }
             else if (whichAction == "uniqe4")
                 StartCoroutine(uniqe4y());
             else if (whichAction == "uniqe5")
@@ -1146,8 +1152,11 @@ public class Game : MonoBehaviour
                     yield return new WaitUntil(() => cClicked == true);
                     cClicked = false;
                 }
-                else if (whichAction == "attack")
+                else if (whichAction == "attack"){
                     StartCoroutine(Attack());
+                    yield return new WaitUntil(()=>cClicked == true);
+                    cClicked = false;
+                }   
                 else if (whichAction == "uniqe4")
                     StartCoroutine(uniqe4y());
                 else if (whichAction == "uniqe5")
@@ -1169,6 +1178,7 @@ public class Game : MonoBehaviour
             }
 
         }
+
         yield return new WaitForSeconds(1);
         AllCheckAlive();
         next();
@@ -1224,23 +1234,24 @@ public class Game : MonoBehaviour
                 cointxt[1].text = cpu1.coin.ToString();
             }
 
-            if (!canAttack(1))
-            {
-                StopCoroutine(RobAttack());
-            }
+            // if (!canAttack(1))
+            // {
+            //     StopCoroutine(RobAttack());
+            // }
 
 
             int ran;
             do
             {
-                ran = Random.Range(0, 4);
+                ran = Random.Range(0, 4); 
             } while ((ran == 1) || (ran == 2 && !cpu2.Alive) || (ran == 3 && !cpu3.Alive) || (ran == WhoSolh));
 
             //testing
-            
+           
 
             if (ran == 2)
             {
+                
                 announcer.text = " ﺩﺮﮐ ﻪﻠﻤﺣ " + name_script.cpu2Name + " ﻪﺑ " + name_script.cpu1Name;
                 yield return new WaitForSeconds(4);
                 if (cpu2.card1 == 3 || cpu2.card2 == 3)
@@ -1338,6 +1349,9 @@ public class Game : MonoBehaviour
                 else
                 {
                     int ran4 = Random.Range(1, 5);
+                    //testing
+                   
+                    //
                     if (ran4 == 1)
                     {
                         print("BLOF");
@@ -1548,7 +1562,8 @@ public class Game : MonoBehaviour
                 }
             }
             else if (ran == 3)
-            {
+            {print("here3");
+                
 
                 announcer.text = " ﺩﺮﮐ ﻪﻠﻤﺣ " + name_script.cpu3Name + " ﻪﺑ " + name_script.cpu1Name;
                 yield return new WaitForSeconds(4);
@@ -1858,18 +1873,30 @@ public class Game : MonoBehaviour
                 }
             }
             else if (ran == 0)
-            {
+            {print("wow");
+                announcer.text = " ﺩﺮﮐ ﻪﻠﻤﺣ ﺎﻤﺷ ﻪﺑ " + name_script.cpu1Name;
+                yield return new WaitForSeconds(2.5f);
                 Reaction.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
-
+                yield return new WaitUntil(()=> robotWait == true);
+                robotWait = false;
+                 
+                print("myreaction = " + myReaction);
+                yield return new WaitForSeconds(1);
                 if (myReaction)
                 {
                     int ran3 = Random.Range(1, 4);
                     if (ran3 == 1)
                     {
+                        announcer.text = " ﺖﻓﺮﯾﺬﭙﻧ ﺍﺭ ﺎﻤﺷ ﻡﺍﺪﻗﺍ " + name_script.cpu1Name;
+                        yield return new WaitForSeconds(1);
+                        
+
                         if (Me.card1 == 3 || Me.card2 == 3)
-                        {
+                        {announcer.color = Color.green;
+                        announcer.text =  " ﯼﺪﺷ ﻩﺪﻧﺮﺑ ";
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
                             int ran2;
                             do
                             {
@@ -1941,6 +1968,11 @@ public class Game : MonoBehaviour
                         }
                         else
                         {
+                        announcer.color = Color.green;
+                        announcer.text =  " ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ ";
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
                             int joon = 0;
                             if (Me.card1 != -1)
                                 joon++;
@@ -1949,34 +1981,32 @@ public class Game : MonoBehaviour
                             if (joon == 2)
                             {
                                 losingy();
-                                yield return new WaitUntil(() => cClicked == true);
-                                cClicked = false;
-                                losetwice = false;
                                 yield return new WaitUntil(() => losetwice == true);
                                 losetwice = false;
                                 losingy();
-                                yield return new WaitUntil(() => cClicked == true);
-                                cClicked = false;
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
                             }
                             else
                             {
                                 losingy();
-                                yield return new WaitUntil(() => cClicked == true);
-                                cClicked = false;
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
                             }
 
                         }
                     }
                     else
-                    {
+                    {announcer.text = " ﺖﻓﺮﯾﺬﭙ ﺍﺭ ﺎﻤﺷ ﻡﺍﺪﻗﺍ " + name_script.cpu1Name;
+                        yield return new WaitForSeconds(1);
                         //done;
                     }
                 }
                 else
                 {
                     losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                    yield return new WaitUntil(() => losetwice == true);
+                    losetwice = false;
                 }
 
             }
@@ -2625,17 +2655,25 @@ endgame--;
             }
             else if (ran == 0)
             {
+                announcer.text = " ﺩﺮﮐ ﻪﻠﻤﺣ ﺎﻤﺷ ﻪﺑ " + name_script.cpu2Name;
+                yield return new WaitForSeconds(2.5f);
                 Reaction.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
-
+                yield return new WaitUntil(()=> robotWait == true);
+                robotWait = false;
+ yield return new WaitForSeconds(1);
                 if (myReaction)
                 {
                     int ran3 = Random.Range(1, 4);
                     if (ran3 == 1)
                     {
+                         announcer.text = " ﺖﻓﺮﯾﺬﭙﻧ ﺍﺭ ﺎﻤﺷ ﻡﺍﺪﻗﺍ " + name_script.cpu2Name;
+                        yield return new WaitForSeconds(1);
                         if (Me.card1 == 3 || Me.card2 == 3)
-                        {
+                        {announcer.color = Color.green;
+                        announcer.text =  " ﯼﺪﺷ ﻩﺪﻧﺮﺑ ";
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
                             int ran2;
                             do
                             {
@@ -2706,7 +2744,11 @@ endgame--;
                             endgame--;
                         }
                         else
-                        {
+                        {announcer.color = Color.green;
+                        announcer.text =  " ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ ";
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
                             int joon = 0;
                             if (Me.card1 != -1)
                                 joon++;
@@ -2714,33 +2756,35 @@ endgame--;
                                 joon++;
                             if (joon == 2)
                             {
+                                 losingy();
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
                                 losingy();
-                                yield return new WaitUntil(() => cClicked == true);
-                                cClicked = false;
-                                yield return new WaitForSeconds(2);
-                                losingy();
-                                yield return new WaitUntil(() => cClicked == true);
-                                cClicked = false;
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
                             }
                             else
                             {
-                                losingy();
-                                yield return new WaitUntil(() => cClicked == true);
-                                cClicked = false;
+                            losingy();
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
+                              
                             }
 
                         }
                     }
                     else
-                    {
+                    {announcer.text = " ﺖﻓﺮﯾﺬﭙ ﺍﺭ ﺎﻤﺷ ﻡﺍﺪﻗﺍ " + name_script.cpu2Name;
+                        yield return new WaitForSeconds(1);
                         //done;
                     }
                 }
                 else
                 {
-                    losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                                 losingy();
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
+                              
                 }
 
             }
@@ -3385,17 +3429,25 @@ endgame--;
             }
             else if (ran == 0)
             {
+                 announcer.text = " ﺩﺮﮐ ﻪﻠﻤﺣ ﺎﻤﺷ ﻪﺑ " + name_script.cpu3Name;
+                yield return new WaitForSeconds(2.5f);
                 Reaction.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                yield return new WaitUntil(()=> robotWait == true);
+                robotWait = false;
+ yield return new WaitForSeconds(1);
 
                 if (myReaction)
                 {
                     int ran3 = Random.Range(1, 4);
                     if (ran3 == 1)
-                    {
+                    {  announcer.text = " ﺖﻓﺮﯾﺬﭙﻧ ﺍﺭ ﺎﻤﺷ ﻡﺍﺪﻗﺍ " + name_script.cpu3Name;
+                        yield return new WaitForSeconds(1);
                         if (Me.card1 == 3 || Me.card2 == 3)
-                        {
+                        {announcer.color = Color.green;
+                        announcer.text =  " ﯼﺪﺷ ﻩﺪﻧﺮﺑ ";
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
                             int ran2;
                             do
                             {
@@ -3466,7 +3518,11 @@ endgame--;
                             endgame--;
                         }
                         else
-                        {
+                        {announcer.color = Color.green;
+                        announcer.text =  " ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ ";
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
                             int joon = 0;
                             if (Me.card1 != -1)
                                 joon++;
@@ -3475,36 +3531,39 @@ endgame--;
                             if (joon == 2)
                             {
                                 losingy();
-                                yield return new WaitUntil(() => cClicked == true);
-                                cClicked = false;
-                                yield return new WaitForSeconds(2);
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
                                 losingy();
-                                yield return new WaitUntil(() => cClicked == true);
-                                cClicked = false;
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
                             }
                             else
                             {
-                                losingy();
-                                yield return new WaitUntil(() => cClicked == true);
-                                cClicked = false;
+                               losingy();
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
+                                
                             }
 
                         }
                     }
                     else
-                    {
+                    {announcer.text = " ﺖﻓﺮﯾﺬﭙ ﺍﺭ ﺎﻤﺷ ﻡﺍﺪﻗﺍ " + name_script.cpu3Name;
+                        yield return new WaitForSeconds(1);
                         //done;
                     }
                 }
                 else
                 {
                     losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                                yield return new WaitUntil(() => losetwice == true);
+                                losetwice = false;
+                               
                 }
 
             }
         }
+        cClicked = true;
     }
 
     IEnumerator Robuniqe5()
@@ -5281,7 +5340,7 @@ endgame--;
             }
             else if (whichAction == "attack")
             {
-                if (ertebat == "cherik")
+                if (attack == "cherik")
                 {
                     announcer.text = "ﻢﮑﯾﺮﭼ : " + name_script.cpu1Name;
                     edea[0].SetActive(true);
@@ -5312,7 +5371,7 @@ endgame--;
             }
             else if (whichAction == "uniqe4")
             {
-                if (ertebat == "solh")
+                if (uniqe4 == "solh")
                 {
                     announcer.text = "ﻢﺒﻠﻃ ﺢﻠﺻ : " + name_script.cpu1Name;
                     edea[0].SetActive(true);
@@ -5343,7 +5402,7 @@ endgame--;
             }
             else if (whichAction == "uniqe5")
             {
-                if (ertebat == "siasat")
+                if (uniqe5 == "siasat")
                 {
                     announcer.text = "ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ : " + name_script.cpu1Name;
                     edea[0].SetActive(true);
@@ -5388,21 +5447,24 @@ endgame--;
                 permision = false;
 
             //testing
-            permision = false;
-            result[1] = true;
+            permision = true;
+            
             //
 
             if (permision)
             {
                 if (whichAction == "mali")
                     StartCoroutine(Mali());
-                if (whichAction == "ertebat")
+                else if (whichAction == "ertebat")
                     StartCoroutine(ertebatat());
-                if (whichAction == "attack")
-                    StartCoroutine(RobAttack());
-                if (whichAction == "uniqe4")
+                else if (whichAction == "attack"){
+                     StartCoroutine(RobAttack());
+                     yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                }  
+                else if (whichAction == "uniqe4")
                     StartCoroutine(uniqe4y());
-                if (whichAction == "uniqe5")
+                else if (whichAction == "uniqe5")
                     StartCoroutine(Robuniqe5());
             }
             else
@@ -5549,13 +5611,16 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        if (whichAction == "attack")
+                        else if (whichAction == "attack"){
                             StartCoroutine(RobAttack());
-                        if (whichAction == "uniqe4")
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }  
+                        else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
-                        if (whichAction == "uniqe5")
+                        else if (whichAction == "uniqe5")
                             StartCoroutine(Robuniqe5());
 
                     }
@@ -5794,13 +5859,16 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        if (whichAction == "attack")
+                        else if (whichAction == "attack"){
                             StartCoroutine(RobAttack());
-                        if (whichAction == "uniqe4")
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }
+                        else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
-                        if (whichAction == "uniqe5")
+                        else if (whichAction == "uniqe5")
                             StartCoroutine(Robuniqe5());
 
                     }
@@ -5958,13 +6026,16 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        if (whichAction == "attack")
+                        else if (whichAction == "attack"){
                             StartCoroutine(RobAttack());
-                        if (whichAction == "uniqe4")
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }   
+                        else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
-                        if (whichAction == "uniqe5")
+                        else if (whichAction == "uniqe5")
                             StartCoroutine(Robuniqe5());
 
                     }
@@ -6135,7 +6206,7 @@ endgame--;
             }
             else if (whichAction == "attack")
             {
-                if (ertebat == "cherik")
+                if (attack == "cherik")
                 {
                     announcer.text = "ﻢﮑﯾﺮﭼ : " + name_script.cpu1Name;
                     edea[1].SetActive(true);
@@ -6168,7 +6239,7 @@ endgame--;
             }
             else if (whichAction == "uniqe4")
             {
-                if (ertebat == "solh")
+                if (uniqe4 == "solh")
                 {
                     announcer.text = "ﻢﺒﻠﻃ ﺢﻠﺻ : " + name_script.cpu2Name;
                     edea[1].SetActive(true);
@@ -6200,7 +6271,7 @@ endgame--;
             }
             else if (whichAction == "uniqe5")
             {
-                if (ertebat == "siasat")
+                if (uniqe5 == "siasat")
                 {
                     announcer.text = "ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ : " + name_script.cpu2Name;
                     edea[1].SetActive(true);
@@ -6253,15 +6324,18 @@ endgame--;
             if (permision)
             {
                 if (whichAction == "mali")
-                    StartCoroutine(Mali());
-                if (whichAction == "ertebat")
-                    StartCoroutine(ertebatat());
-                if (whichAction == "attack")
-                    StartCoroutine(RobAttack());
-                if (whichAction == "uniqe4")
-                    StartCoroutine(uniqe4y());
-                if (whichAction == "uniqe5")
-                    StartCoroutine(Robuniqe5());
+                            StartCoroutine(Mali());
+                        else if (whichAction == "ertebat")
+                            StartCoroutine(ertebatat());
+                        else if (whichAction == "attack"){
+                            StartCoroutine(RobAttack());
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }   
+                        else if (whichAction == "uniqe4")
+                            StartCoroutine(uniqe4y());
+                        else if (whichAction == "uniqe5")
+                            StartCoroutine(Robuniqe5());
             }
             else
             {
@@ -6405,13 +6479,16 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        if (whichAction == "attack")
+                        else if (whichAction == "attack"){
                             StartCoroutine(RobAttack());
-                        if (whichAction == "uniqe4")
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }   
+                        else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
-                        if (whichAction == "uniqe5")
+                        else if (whichAction == "uniqe5")
                             StartCoroutine(Robuniqe5());
 
                     }
@@ -6565,13 +6642,16 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        if (whichAction == "attack")
+                        else if (whichAction == "attack"){
                             StartCoroutine(RobAttack());
-                        if (whichAction == "uniqe4")
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }   
+                        else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
-                        if (whichAction == "uniqe5")
+                        else if (whichAction == "uniqe5")
                             StartCoroutine(Robuniqe5());
 
                     }
@@ -6810,13 +6890,16 @@ announcer.text = "";
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        if (whichAction == "attack")
+                        else if (whichAction == "attack"){
                             StartCoroutine(RobAttack());
-                        if (whichAction == "uniqe4")
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }   
+                        else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
-                        if (whichAction == "uniqe5")
+                        else if (whichAction == "uniqe5")
                             StartCoroutine(Robuniqe5());
 
                     }
@@ -6991,7 +7074,7 @@ announcer.text = "";
             }
             else if (whichAction == "attack")
             {
-                if (ertebat == "cherik")
+                if (attack == "cherik")
                 {
                     announcer.text = "ﻢﮑﯾﺮﭼ : " + name_script.cpu3Name;
                     edea[2].SetActive(true);
@@ -7025,7 +7108,7 @@ if (Me.Alive)
             }
             else if (whichAction == "uniqe4")
             {
-                if (ertebat == "solh")
+                if (uniqe4 == "solh")
                 {
                     announcer.text = "ﻢﺒﻠﻃ ﺢﻠﺻ : " + name_script.cpu3Name;
                     edea[2].SetActive(true);
@@ -7058,7 +7141,7 @@ if (Me.Alive)
             }
             else if (whichAction == "uniqe5")
             {
-                if (ertebat == "siasat")
+                if (uniqe5 == "siasat")
                 {
                     announcer.text = "ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ : " + name_script.cpu3Name;
                     edea[2].SetActive(true);
@@ -7111,15 +7194,18 @@ if (Me.Alive)
             if (permision)
             {
                 if (whichAction == "mali")
-                    StartCoroutine(Mali());
-                if (whichAction == "ertebat")
-                    StartCoroutine(ertebatat());
-                if (whichAction == "attack")
-                    StartCoroutine(RobAttack());
-                if (whichAction == "uniqe4")
-                    StartCoroutine(uniqe4y());
-                if (whichAction == "uniqe5")
-                    StartCoroutine(Robuniqe5());
+                            StartCoroutine(Mali());
+                        else if (whichAction == "ertebat")
+                            StartCoroutine(ertebatat());
+                        else if (whichAction == "attack"){
+                            StartCoroutine(RobAttack());
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }   
+                        else if (whichAction == "uniqe4")
+                            StartCoroutine(uniqe4y());
+                        else if (whichAction == "uniqe5")
+                            StartCoroutine(Robuniqe5());
             }
             else
             {   
@@ -7181,13 +7267,16 @@ if (Me.Alive)
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        if (whichAction == "attack")
+                        else if (whichAction == "attack"){
                             StartCoroutine(RobAttack());
-                        if (whichAction == "uniqe4")
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }   
+                        else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
-                        if (whichAction == "uniqe5")
+                        else if (whichAction == "uniqe5")
                             StartCoroutine(Robuniqe5());
 
                     }
@@ -7420,13 +7509,16 @@ if (Me.Alive)
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        if (whichAction == "attack")
+                        else if (whichAction == "attack"){
                             StartCoroutine(RobAttack());
-                        if (whichAction == "uniqe4")
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }   
+                        else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
-                        if (whichAction == "uniqe5")
+                        else if (whichAction == "uniqe5")
                             StartCoroutine(Robuniqe5());
 
                     }
@@ -7661,13 +7753,16 @@ if (Me.Alive)
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        if (whichAction == "attack")
+                        else if (whichAction == "attack"){
                             StartCoroutine(RobAttack());
-                        if (whichAction == "uniqe4")
+                            yield return new WaitUntil(()=>cClicked == true);
+                     cClicked = false;
+                        }   
+                        else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
-                        if (whichAction == "uniqe5")
+                        else if (whichAction == "uniqe5")
                             StartCoroutine(Robuniqe5());
 
                     }
@@ -7883,10 +7978,13 @@ if (Me.Alive)
                 if (ran2 == 2)
                     op = cpu1.card2;
 
-                // testing
-                op = 1;
-                //
+                
                 bool allow = RobotOffCheck(cpu1, op);
+                // testing
+                op = 3;
+                WhoSolh = 2;
+                allow = true;
+                //
                 if (allow)
                 {
                     if (op == 1)
@@ -9940,18 +10038,6 @@ print("select : " + select);
 
         announcer.text = "";
 
-        if (!cpu1.Alive)
-        {
-            attackCircle[0].SetActive(false);
-        }
-        if (!cpu2.Alive)
-        {
-            attackCircle[1].SetActive(false);
-        }
-        if (!cpu3.Alive)
-        {
-            attackCircle[2].SetActive(false);
-        }
 
         if (WhoSolh == 1)
         {
@@ -9978,6 +10064,21 @@ print("select : " + select);
         {
             attackCircle[2].SetActive(true);
         }
+
+        if (!cpu1.Alive)
+        {
+            attackCircle[0].SetActive(false);
+        }
+        if (!cpu2.Alive)
+        {
+            attackCircle[1].SetActive(false);
+        }
+        if (!cpu3.Alive)
+        {
+            attackCircle[2].SetActive(false);
+        }
+
+       
 
         attackCanvas.SetActive(true);
 
@@ -10006,8 +10107,11 @@ print("select : " + select);
 
                 if (mychallange)
                 {
+                    announcer.color = Color.red;
                     announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
                     yield return new WaitForSeconds(1.5f);
+                    announcer.color = Color.black;
+                    announcer.text = "";
 
                     losingy();
                     yield return new WaitUntil(() => cClicked == true);
@@ -10038,8 +10142,11 @@ print("select : " + select);
                 
                 if (mychallange)
                 {
+                    announcer.color = Color.green;
                     announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
                     yield return new WaitForSeconds(1.5f);
+                    announcer.text = "";
+                    announcer.color = Color.black;
 
                         if (cpu1.card1 != -1)
                         {
@@ -10128,6 +10235,7 @@ print("select : " + select);
                             yield return new WaitForSeconds(2);
                         }
                         endgame-=2;
+                        cpu1.Alive = false;
                 }
                 else
                 {
@@ -10248,8 +10356,11 @@ print("select : " + select);
 
                 if (mychallange)
                 {
+                    announcer.color = Color.red;
                     announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
                     yield return new WaitForSeconds(1.5f);
+                    announcer.color = Color.black;
+                    announcer.text = "";
 
                     losingy();
                     yield return new WaitUntil(() => cClicked == true);
@@ -10279,8 +10390,11 @@ print("select : " + select);
                 
                 if (mychallange)
                 {
+                    announcer.color = Color.green;
                     announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
                     yield return new WaitForSeconds(1.5f);
+                    announcer.color = Color.black;
+                    announcer.text = "";
 
                         if (cpu2.card1 != -1)
                         {
@@ -10369,6 +10483,7 @@ print("select : " + select);
                             yield return new WaitForSeconds(2);
                         }
                         endgame-=2;
+                        cpu2.Alive = false;
                 }
                 else
                 {
@@ -10489,8 +10604,11 @@ print("select : " + select);
 
                 if (mychallange)
                 {
+                    announcer.color = Color.red;
                     announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
                     yield return new WaitForSeconds(1.5f);
+                    announcer.color = Color.black;
+                    announcer.text = "";
 
                     losingy();
                     yield return new WaitUntil(() => cClicked == true);
@@ -10521,8 +10639,11 @@ print("select : " + select);
                 
                 if (mychallange)
                 {
+                    announcer.color = Color.green;
                     announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
                     yield return new WaitForSeconds(1.5f);
+                    announcer.color = Color.black;
+                    announcer.text = "";
 
                         if (cpu3.card1 != -1)
                         {
@@ -10611,6 +10732,7 @@ print("select : " + select);
                             yield return new WaitForSeconds(2);
                         }
                         endgame-=2;
+                        cpu3.Alive = false;
                 }
                 else
                 {
@@ -10717,7 +10839,7 @@ print("select : " + select);
             }
         }
 
-
+    cClicked = true;
     }
 
 
