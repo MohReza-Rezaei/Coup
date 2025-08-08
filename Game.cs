@@ -3682,7 +3682,7 @@ endgame--;
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-endgame--;
+                                endgame--;
                             }
                             else
                             {
@@ -3891,7 +3891,7 @@ endgame--;
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-endgame--;
+                                endgame--;
                             }
                             else
                             {
@@ -4126,27 +4126,27 @@ endgame--;
                                     }
                                     cointxt[0].text = Me.coin.ToString();
                                     cointxt[1].text = cpu1.coin.ToString();
-                                }  
+                                }
                             }
                             else
                             {
-                            //done
+                                //done
                             }
                         }
                         else
                         {
-                                    if (Me.coin >= 2)
-                                    {
-                                        Me.coin -= 2;
-                                        cpu1.coin += 2;
-                                    }
-                                    else
-                                    {
-                                        cpu1.coin += Me.coin;
-                                        Me.coin = 0;
-                                    }
-                                    cointxt[0].text = Me.coin.ToString();
-                                    cointxt[1].text = cpu1.coin.ToString();
+                            if (Me.coin >= 2)
+                            {
+                                Me.coin -= 2;
+                                cpu1.coin += 2;
+                            }
+                            else
+                            {
+                                cpu1.coin += Me.coin;
+                                Me.coin = 0;
+                            }
+                            cointxt[0].text = Me.coin.ToString();
+                            cointxt[1].text = cpu1.coin.ToString();
                         }
                     }
 
@@ -4155,7 +4155,7 @@ endgame--;
             }
             else if (cpu2turn)
             {
-             bool can = true;
+                bool can = true;
                 can = canAttack(2);
 
                 if (can)
@@ -4248,7 +4248,7 @@ endgame--;
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-endgame--;
+                                endgame--;
                             }
                             else
                             {
@@ -4457,7 +4457,7 @@ endgame--;
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-endgame--;
+                                endgame--;
                             }
                             else
                             {
@@ -4692,27 +4692,27 @@ endgame--;
                                     }
                                     cointxt[0].text = Me.coin.ToString();
                                     cointxt[2].text = cpu2.coin.ToString();
-                                }  
+                                }
                             }
                             else
                             {
-                            //done
+                                //done
                             }
                         }
                         else
                         {
-                                    if (Me.coin >= 2)
-                                    {
-                                        Me.coin -= 2;
-                                        cpu2.coin += 2;
-                                    }
-                                    else
-                                    {
-                                        cpu2.coin += Me.coin;
-                                        Me.coin = 0;
-                                    }
-                                    cointxt[0].text = Me.coin.ToString();
-                                    cointxt[2].text = cpu2.coin.ToString();
+                            if (Me.coin >= 2)
+                            {
+                                Me.coin -= 2;
+                                cpu2.coin += 2;
+                            }
+                            else
+                            {
+                                cpu2.coin += Me.coin;
+                                Me.coin = 0;
+                            }
+                            cointxt[0].text = Me.coin.ToString();
+                            cointxt[2].text = cpu2.coin.ToString();
                         }
                     }
 
@@ -4720,7 +4720,7 @@ endgame--;
             }
             else if (cpu3turn)
             {
-            bool can = true;
+                bool can = true;
                 can = canAttack(3);
 
                 if (can)
@@ -4813,7 +4813,7 @@ endgame--;
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-endgame--;
+                                endgame--;
                             }
                             else
                             {
@@ -5022,7 +5022,7 @@ endgame--;
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-endgame--;
+                                endgame--;
                             }
                             else
                             {
@@ -5257,27 +5257,27 @@ endgame--;
                                     }
                                     cointxt[0].text = Me.coin.ToString();
                                     cointxt[3].text = cpu3.coin.ToString();
-                                }  
+                                }
                             }
                             else
                             {
-                            //done
+                                //done
                             }
                         }
                         else
                         {
-                                    if (Me.coin >= 2)
-                                    {
-                                        Me.coin -= 2;
-                                        cpu3.coin += 2;
-                                    }
-                                    else
-                                    {
-                                        cpu3.coin += Me.coin;
-                                        Me.coin = 0;
-                                    }
-                                    cointxt[0].text = Me.coin.ToString();
-                                    cointxt[3].text = cpu3.coin.ToString();
+                            if (Me.coin >= 2)
+                            {
+                                Me.coin -= 2;
+                                cpu3.coin += 2;
+                            }
+                            else
+                            {
+                                cpu3.coin += Me.coin;
+                                Me.coin = 0;
+                            }
+                            cointxt[0].text = Me.coin.ToString();
+                            cointxt[3].text = cpu3.coin.ToString();
                         }
                     }
 
@@ -5285,6 +5285,7 @@ endgame--;
             }
         }
         yield return new WaitForSeconds(2);
+        cClicked = true;
     }
 
     IEnumerator cpuProgress(string whichAction)
@@ -5474,15 +5475,21 @@ endgame--;
                     StartCoroutine(Mali());
                 else if (whichAction == "ertebat")
                     StartCoroutine(ertebatat());
-                else if (whichAction == "attack"){
-                     StartCoroutine(RobAttack());
-                     yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                }  
+                else if (whichAction == "attack")
+                {
+                    StartCoroutine(RobAttack());
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
+                }
                 else if (whichAction == "uniqe4")
                     StartCoroutine(uniqe4y());
                 else if (whichAction == "uniqe5")
+                {
                     StartCoroutine(Robuniqe5());
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
+                }
+                    
             }
             else
             {
@@ -5630,15 +5637,21 @@ endgame--;
                             StartCoroutine(Mali());
                         else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
+                        else if (whichAction == "attack")
+                        {
                             StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }  
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
+                        {
                             StartCoroutine(Robuniqe5());
+                             yield return new WaitUntil(() => cClicked == true);
+                             cClicked = false;
+                        }
+                           
 
                     }
                     else
@@ -5878,15 +5891,21 @@ endgame--;
                             StartCoroutine(Mali());
                         else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
+                        else if (whichAction == "attack")
+                        {
                             StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
+                        {
                             StartCoroutine(Robuniqe5());
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
+                            
 
                     }
                     else
@@ -6045,15 +6064,21 @@ endgame--;
                             StartCoroutine(Mali());
                         else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
+                        else if (whichAction == "attack")
+                        {
                             StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }   
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
+                        {
                             StartCoroutine(Robuniqe5());
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
+                           
 
                     }
                     else
@@ -6341,18 +6366,24 @@ endgame--;
             if (permision)
             {
                 if (whichAction == "mali")
-                            StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
-                            StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
-                            StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }   
-                        else if (whichAction == "uniqe4")
-                            StartCoroutine(uniqe4y());
-                        else if (whichAction == "uniqe5")
-                            StartCoroutine(Robuniqe5());
+                    StartCoroutine(Mali());
+                else if (whichAction == "ertebat")
+                    StartCoroutine(ertebatat());
+                else if (whichAction == "attack")
+                {
+                    StartCoroutine(RobAttack());
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
+                }
+                else if (whichAction == "uniqe4")
+                    StartCoroutine(uniqe4y());
+                else if (whichAction == "uniqe5")
+                {
+                    StartCoroutine(Robuniqe5());
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;       
+                }
+                            
             }
             else
             {
@@ -6498,15 +6529,21 @@ endgame--;
                             StartCoroutine(Mali());
                         else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
+                        else if (whichAction == "attack")
+                        {
                             StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }   
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
+                        {
                             StartCoroutine(Robuniqe5());
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
+                           
 
                     }
                     else
@@ -6661,15 +6698,21 @@ endgame--;
                             StartCoroutine(Mali());
                         else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
+                        else if (whichAction == "attack")
+                        {
                             StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }   
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
+                        {
                             StartCoroutine(Robuniqe5());
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
+                           
 
                     }
                     else
@@ -6909,15 +6952,21 @@ announcer.text = "";
                             StartCoroutine(Mali());
                         else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
+                        else if (whichAction == "attack")
+                        {
                             StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }   
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
+                        {
                             StartCoroutine(Robuniqe5());
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
+                            
 
                     }
                     else
@@ -7211,18 +7260,24 @@ if (Me.Alive)
             if (permision)
             {
                 if (whichAction == "mali")
-                            StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
-                            StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
-                            StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }   
-                        else if (whichAction == "uniqe4")
-                            StartCoroutine(uniqe4y());
-                        else if (whichAction == "uniqe5")
-                            StartCoroutine(Robuniqe5());
+                    StartCoroutine(Mali());
+                else if (whichAction == "ertebat")
+                    StartCoroutine(ertebatat());
+                else if (whichAction == "attack")
+                {
+                    StartCoroutine(RobAttack());
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
+                }
+                else if (whichAction == "uniqe4")
+                    StartCoroutine(uniqe4y());
+                else if (whichAction == "uniqe5")
+                {
+                    StartCoroutine(Robuniqe5());   
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;     
+                }
+                           
             }
             else
             {   
@@ -7286,15 +7341,21 @@ if (Me.Alive)
                             StartCoroutine(Mali());
                         else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
+                        else if (whichAction == "attack")
+                        {
                             StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }   
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
+                        {
                             StartCoroutine(Robuniqe5());
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
+                            
 
                     }
                     else
@@ -7528,15 +7589,21 @@ if (Me.Alive)
                             StartCoroutine(Mali());
                         else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
+                        else if (whichAction == "attack")
+                        {
                             StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }   
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
+                        {
                             StartCoroutine(Robuniqe5());
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
+                            
 
                     }
                     else
@@ -7772,15 +7839,21 @@ if (Me.Alive)
                             StartCoroutine(Mali());
                         else if (whichAction == "ertebat")
                             StartCoroutine(ertebatat());
-                        else if (whichAction == "attack"){
+                        else if (whichAction == "attack")
+                        {
                             StartCoroutine(RobAttack());
-                            yield return new WaitUntil(()=>cClicked == true);
-                     cClicked = false;
-                        }   
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
+                        {
                             StartCoroutine(Robuniqe5());
+                            yield return new WaitUntil(() => cClicked == true);
+                            cClicked = false;
+                        }
+                            
 
                     }
                     else
@@ -10976,7 +11049,7 @@ print("select : " + select);
 
                 if (cpu1.card1 == 5 || cpu1.card2 == 5)
                 {
-
+                    
                     announcer.text = " ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ : " + name_script.cpu1Name;
 
 
@@ -10986,8 +11059,11 @@ print("select : " + select);
 
                     if (mychallange)
                     {
+                        announcer.color = Color.red;
                         announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
                         yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
 
                         losingy();
                         yield return new WaitUntil(() => losingClick == true);
@@ -11018,8 +11094,11 @@ print("select : " + select);
 
                         if (mychallange)
                         {
+                            announcer.color = Color.green;
                             announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
                             yield return new WaitForSeconds(1.5f);
+                            announcer.text = "";
+                            announcer.color = Color.black;
 
                             int ran2;
                             do
@@ -11036,27 +11115,27 @@ print("select : " + select);
                                 if (box == 1)
                                 {
                                     if (mali == "banker")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
                                 }
                                 else if (box == 2)
                                 {
                                     if (ertebat == "director")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
                                 }
                                 else if (box == 3)
                                 {
                                     if (attack == "cherik")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
                                 }
                                 else if (box == 4)
                                 {
                                     if (uniqe4 == "solh")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
                                 }
                                 else if (box == 5)
                                 {
                                     if (uniqe5 == "siasat")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                                 }
 
                                 for (int i = 0; i < lost.Length; i++)
@@ -11079,27 +11158,27 @@ print("select : " + select);
                                 if (box == 1)
                                 {
                                     if (mali == "banker")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
                                 }
                                 else if (box == 2)
                                 {
                                     if (ertebat == "director")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
                                 }
                                 else if (box == 3)
                                 {
                                     if (attack == "cherik")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
                                 }
                                 else if (box == 4)
                                 {
                                     if (uniqe4 == "solh")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
                                 }
                                 else if (box == 5)
                                 {
                                     if (uniqe5 == "siasat")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu1Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                                 }
 
                                 for (int i = 0; i < lost.Length; i++)
@@ -11170,8 +11249,11 @@ print("select : " + select);
 
                     if (mychallange)
                     {
+                        announcer.color = Color.red;
                         announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
                         yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
 
                         losingy();
                         yield return new WaitUntil(() => losingClick == true);
@@ -11200,8 +11282,11 @@ print("select : " + select);
 
                         if (mychallange)
                         {
+                            announcer.color = Color.green;
                             announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
                             yield return new WaitForSeconds(1.5f);
+                            announcer.text = "";
+                            announcer.color = Color.black;
 
                             int ran2;
                             do
@@ -11218,27 +11303,27 @@ print("select : " + select);
                                 if (box == 1)
                                 {
                                     if (mali == "banker")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
                                 }
                                 else if (box == 2)
                                 {
                                     if (ertebat == "director")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
                                 }
                                 else if (box == 3)
                                 {
                                     if (attack == "cherik")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
                                 }
                                 else if (box == 4)
                                 {
                                     if (uniqe4 == "solh")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
                                 }
                                 else if (box == 5)
                                 {
                                     if (uniqe5 == "siasat")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                                 }
 
                                 for (int i = 0; i < lost.Length; i++)
@@ -11261,27 +11346,27 @@ print("select : " + select);
                                 if (box == 1)
                                 {
                                     if (mali == "banker")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
                                 }
                                 else if (box == 2)
                                 {
                                     if (ertebat == "director")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
                                 }
                                 else if (box == 3)
                                 {
                                     if (attack == "cherik")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
                                 }
                                 else if (box == 4)
                                 {
                                     if (uniqe4 == "solh")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
                                 }
                                 else if (box == 5)
                                 {
                                     if (uniqe5 == "siasat")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu2Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                                 }
 
                                 for (int i = 0; i < lost.Length; i++)
@@ -11352,8 +11437,11 @@ print("select : " + select);
 
                     if (mychallange)
                     {
+                        announcer.color = Color.red;
                         announcer.text = "ﯼﺩﺭﻮﺧ ﺖﺴﮑﺷ";
                         yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
 
                         losingy();
                         yield return new WaitUntil(() => losingClick == true);
@@ -11382,8 +11470,11 @@ print("select : " + select);
 
                         if (mychallange)
                         {
+                            announcer.color = Color.green;
                             announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
                             yield return new WaitForSeconds(1.5f);
+                            announcer.text = "";
+                            announcer.color = Color.black;
 
                             int ran2;
                             do
@@ -11400,27 +11491,27 @@ print("select : " + select);
                                 if (box == 1)
                                 {
                                     if (mali == "banker")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
                                 }
                                 else if (box == 2)
                                 {
                                     if (ertebat == "director")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
                                 }
                                 else if (box == 3)
                                 {
                                     if (attack == "cherik")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
                                 }
                                 else if (box == 4)
                                 {
                                     if (uniqe4 == "solh")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
                                 }
                                 else if (box == 5)
                                 {
                                     if (uniqe5 == "siasat")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                                 }
 
                                 for (int i = 0; i < lost.Length; i++)
@@ -11442,27 +11533,27 @@ print("select : " + select);
                                 if (box == 1)
                                 {
                                     if (mali == "banker")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
                                 }
                                 else if (box == 2)
                                 {
                                     if (ertebat == "director")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
                                 }
                                 else if (box == 3)
                                 {
                                     if (attack == "cherik")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
                                 }
                                 else if (box == 4)
                                 {
                                     if (uniqe4 == "solh")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
                                 }
                                 else if (box == 5)
                                 {
                                     if (uniqe5 == "siasat")
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ" + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
                                 }
 
                                 for (int i = 0; i < lost.Length; i++)
