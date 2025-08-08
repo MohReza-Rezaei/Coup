@@ -15,7 +15,7 @@ public class Game : MonoBehaviour
     bool myturn = false, cpu1turn = false, cpu2turn = false, cpu3turn = false;
     Player Me = new Player(); Player cpu1 = new Player(); Player cpu2 = new Player(); Player cpu3 = new Player();
     int endgame = 6;
-    bool Done = true, cClicked = false;
+    bool Done = true, cClicked = false , losingClick = false;
     public Text announcer;
     public Text[] mytext = new Text[2];
     public Text[] lostText = new Text[5];
@@ -36,8 +36,15 @@ public class Game : MonoBehaviour
     bool mychallange = false , myReaction = false , losetwice = false;
     public Color[] roleColor = new Color[5];
 
-    bool stop = false , robotWait = false;
-    
+    bool stop = false , robotWait = false , meWait = false;
+
+    // info for passing waitUntil
+    // cClicked = is for doing continueing Action and ActionRob functions -> end of ertbatat , attack , uniqe5 and . . 
+    // losingClick = for you to lose one cart then continue -- losingy function -> end of burn function
+    // Mewait = for continue after chalsh  ->  end of chaleshBtn and DischaleshBtn
+    // Robwait = for continue after reaction -> end of reactionBtn
+
+
 
     /// <Mali>
     public Text[] cointxt = new Text[4];
@@ -94,7 +101,7 @@ public class Game : MonoBehaviour
         {
 
             //testing
-            int ran = 2;//Random.Range(1, 5);
+            int ran = 1;//Random.Range(1, 5);
             //
             switch (ran)
             {
@@ -435,13 +442,13 @@ public class Game : MonoBehaviour
     public void ChaleshBtn()
     {
         mychallange = true;
-        cClicked = true;
+        meWait = true;
     }
 
     public void DisChaleshBtn()
     {
         mychallange = false;
-        cClicked = true;
+        meWait = true;
     }
 
     public void reactionBtn()
@@ -493,7 +500,7 @@ public class Game : MonoBehaviour
             }
             printLost();
         }
-        cClicked = true;   
+        losingClick = true;   
     }
 
     IEnumerator losing()
@@ -507,7 +514,7 @@ public class Game : MonoBehaviour
             losingCircle[1].SetActive(false);
         }
         lostSection.SetActive(true);
-        yield return new WaitUntil(() => cClicked == true);
+        yield return new WaitUntil(() => losingClick == true);
         lostSection.SetActive(false);
         losetwice = true;
     }
@@ -673,7 +680,6 @@ public class Game : MonoBehaviour
 
         //testing
         Me.coin = 4;
-        cpu1.coin = 4;
         //
 
 
@@ -860,15 +866,20 @@ public class Game : MonoBehaviour
                 yield return new WaitUntil(() => cClicked == true);
                 cClicked = false;
             }
-            else if (whichAction == "attack"){
-                 StartCoroutine(Attack());
-                 yield return new WaitUntil(()=>cClicked == true);
-                 cClicked = false;
+            else if (whichAction == "attack")
+            {
+                StartCoroutine(Attack());
+                yield return new WaitUntil(() => cClicked == true);
+                cClicked = false;
             }
             else if (whichAction == "uniqe4")
                 StartCoroutine(uniqe4y());
             else if (whichAction == "uniqe5")
-                StartCoroutine(uniqe5y());
+            {   StartCoroutine(uniqe5y());
+                yield return new WaitUntil(() => cClicked == true);
+                cClicked = false;
+            }
+                
         }
         else
         {
@@ -1152,15 +1163,21 @@ public class Game : MonoBehaviour
                     yield return new WaitUntil(() => cClicked == true);
                     cClicked = false;
                 }
-                else if (whichAction == "attack"){
+                else if (whichAction == "attack")
+                {
                     StartCoroutine(Attack());
-                    yield return new WaitUntil(()=>cClicked == true);
+                    yield return new WaitUntil(() => cClicked == true);
                     cClicked = false;
-                }   
+                }
                 else if (whichAction == "uniqe4")
                     StartCoroutine(uniqe4y());
                 else if (whichAction == "uniqe5")
+                {
                     StartCoroutine(uniqe5y());
+                    yield return new WaitUntil(() => cClicked == true);
+                    cClicked = false;
+                }
+                    
 
                 endgame--;
             }
@@ -1173,8 +1190,8 @@ public class Game : MonoBehaviour
                 announcer.text = "";
 
                 losingy();
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                yield return new WaitUntil(() => losingClick == true);
+                losingClick = false;
             }
 
         }
@@ -1990,8 +2007,8 @@ public class Game : MonoBehaviour
                             else
                             {
                                 losingy();
-                                yield return new WaitUntil(() => losetwice == true);
-                                losetwice = false;
+                                yield return new WaitUntil(() => losingClick == true);
+                                losingClick = false;
                             }
 
                         }
@@ -2005,8 +2022,8 @@ public class Game : MonoBehaviour
                 else
                 {
                     losingy();
-                    yield return new WaitUntil(() => losetwice == true);
-                    losetwice = false;
+                    yield return new WaitUntil(() => losingClick == true);
+                    losingClick = false;
                 }
 
             }
@@ -2766,8 +2783,8 @@ endgame--;
                             else
                             {
                             losingy();
-                                yield return new WaitUntil(() => losetwice == true);
-                                losetwice = false;
+                                yield return new WaitUntil(() => losingClick == true);
+                                losingClick = false;
                               
                             }
 
@@ -2782,8 +2799,8 @@ endgame--;
                 else
                 {
                                  losingy();
-                                yield return new WaitUntil(() => losetwice == true);
-                                losetwice = false;
+                                yield return new WaitUntil(() => losingClick == true);
+                                losingClick = false;
                               
                 }
 
@@ -3540,8 +3557,8 @@ endgame--;
                             else
                             {
                                losingy();
-                                yield return new WaitUntil(() => losetwice == true);
-                                losetwice = false;
+                                yield return new WaitUntil(() => losingClick == true);
+                                losingClick = false;
                                 
                             }
 
@@ -3556,8 +3573,8 @@ endgame--;
                 else
                 {
                     losingy();
-                                yield return new WaitUntil(() => losetwice == true);
-                                losetwice = false;
+                                yield return new WaitUntil(() => losingClick == true);
+                                losingClick = false;
                                
                 }
 
@@ -4008,8 +4025,8 @@ endgame--;
                         yield return new WaitForSeconds(2);
 
                         Reaction.SetActive(true);
-                        yield return new WaitUntil(() => cClicked == true);
-                        cClicked = false;
+                        yield return new WaitUntil(() => robotWait == true);
+                        robotWait = false;
 
                         if (myReaction)
                         {
@@ -4094,8 +4111,8 @@ endgame--;
                                     announcer.text = " ﯽﺘﺧﺎﺑ ﺍﺭ ﺶﻟﺎﭼ ";
                                     yield return new WaitForSeconds(2);
                                     losingy();
-                                    yield return new WaitUntil(() => cClicked == true);
-                                    cClicked = false;
+                                    yield return new WaitUntil(() => losingClick == true);
+                                    losingClick = false;
 
                                     if (Me.coin >= 2)
                                     {
@@ -4574,8 +4591,8 @@ endgame--;
                         yield return new WaitForSeconds(2);
 
                         Reaction.SetActive(true);
-                        yield return new WaitUntil(() => cClicked == true);
-                        cClicked = false;
+                        yield return new WaitUntil(() => robotWait == true);
+                        robotWait = false;
 
                         if (myReaction)
                         {
@@ -4660,8 +4677,8 @@ endgame--;
                                     announcer.text = " ﯽﺘﺧﺎﺑ ﺍﺭ ﺶﻟﺎﭼ ";
                                     yield return new WaitForSeconds(2);
                                     losingy();
-                                    yield return new WaitUntil(() => cClicked == true);
-                                    cClicked = false;
+                                    yield return new WaitUntil(() => losingClick == true);
+                                    losingClick = false;
 
                                     if (Me.coin >= 2)
                                     {
@@ -5139,8 +5156,8 @@ endgame--;
                         yield return new WaitForSeconds(2);
 
                         Reaction.SetActive(true);
-                        yield return new WaitUntil(() => cClicked == true);
-                        cClicked = false;
+                        yield return new WaitUntil(() => robotWait == true);
+                        robotWait = false;
 
                         if (myReaction)
                         {
@@ -5225,8 +5242,8 @@ endgame--;
                                     announcer.text = " ﯽﺘﺧﺎﺑ ﺍﺭ ﺶﻟﺎﭼ ";
                                     yield return new WaitForSeconds(2);
                                     losingy();
-                                    yield return new WaitUntil(() => cClicked == true);
-                                    cClicked = false;
+                                    yield return new WaitUntil(() => losingClick == true);
+                                    losingClick = false;
 
                                     if (Me.coin >= 2)
                                     {
@@ -5302,8 +5319,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
             }
@@ -5333,8 +5350,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
             }
@@ -5364,8 +5381,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
             }
@@ -5395,8 +5412,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
             }
@@ -5426,8 +5443,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
             }
@@ -6020,8 +6037,8 @@ endgame--;
 
 
                         losingy();
-                        yield return new WaitUntil(() => cClicked == true);
-                        cClicked = false;
+                        yield return new WaitUntil(() => losingClick == true);
+                        losingClick = false;
 
 
                         if (whichAction == "mali")
@@ -6158,8 +6175,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
                 yield return new WaitForSeconds(1);
@@ -6191,8 +6208,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
                 yield return new WaitForSeconds(1);
@@ -6225,8 +6242,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
                 yield return new WaitForSeconds(1);
@@ -6257,8 +6274,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }  yield return new WaitForSeconds(1);
                 if (cpu1.Alive)
@@ -6289,8 +6306,8 @@ endgame--;
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
                 yield return new WaitForSeconds(1);
@@ -6637,8 +6654,8 @@ endgame--;
                     
 
                         losingy();
-                       yield return new WaitUntil(() => cClicked == true);
-                       cClicked = false;
+                       yield return new WaitUntil(() => losingClick == true);
+                       losingClick = false;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
@@ -7018,8 +7035,8 @@ announcer.text = "";
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
                 yield return new WaitForSeconds(1);
@@ -7052,8 +7069,8 @@ announcer.text = "";
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }yield return new WaitForSeconds(1);
                 if (cpu1.Alive)
@@ -7085,8 +7102,8 @@ if (Me.Alive)
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
                 yield return new WaitForSeconds(1);
@@ -7119,8 +7136,8 @@ if (Me.Alive)
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }yield return new WaitForSeconds(1);
                 if (cpu1.Alive)
@@ -7152,8 +7169,8 @@ if (Me.Alive)
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                 }
                 yield return new WaitForSeconds(1);
@@ -7262,8 +7279,8 @@ if (Me.Alive)
 
                         yield return new WaitForSeconds(1.5f);
                         losingy();
-                        yield return new WaitUntil(() => cClicked == true);
-                        cClicked = false;
+                        yield return new WaitUntil(() => losingClick == true);
+                        losingClick = false;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
@@ -8039,8 +8056,8 @@ if (Me.Alive)
                     announcer.text = "ﺪﺷ ﺎﺗﺩﻮﮐ ﻮﺗ ﻪﯿﻠﻋ";
                     yield return new WaitForSeconds(1.5f);
                     losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                     cClicked = false;
+                    yield return new WaitUntil(() => losingClick == true);
+                    losingClick = false;
 
                 }
                 else if (coupChoose == 2)
@@ -8458,8 +8475,8 @@ if (Me.Alive)
                     announcer.text = "ﺪﺷ ﺎﺗﺩﻮﮐ ﻮﺗ ﻪﯿﻠﻋ";
                     yield return new WaitForSeconds(1.5f);
                     losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => losingClick == true);
+                    losingClick = false;
 
                 }
                 else if (coupChoose == 1)
@@ -8875,8 +8892,8 @@ yield return new WaitForSeconds(1);
                     announcer.text = "ﺪﺷ ﺎﺗﺩﻮﮐ ﻮﺗ ﻪﯿﻠﻋ";
                     yield return new WaitForSeconds(1.5f);
                     losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => losingClick == true);
+                    losingClick = false;
 
                 }
                 else if (coupChoose == 2)
@@ -10082,8 +10099,8 @@ print("select : " + select);
 
         attackCanvas.SetActive(true);
 
-        yield return new WaitUntil(() => cClicked == true);
-        cClicked = false;
+        yield return new WaitUntil(() => meWait == true);
+        meWait = false;
         attackCanvas.SetActive(false);
 
         if (whoAttacked == 1)
@@ -10102,8 +10119,8 @@ print("select : " + select);
                 }
 
                 chalesh.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                yield return new WaitUntil(() => meWait == true);
+                meWait = false;
 
                 if (mychallange)
                 {
@@ -10114,8 +10131,8 @@ print("select : " + select);
                     announcer.text = "";
 
                     losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => losingClick == true);
+                    losingClick = false;
 
                 }
                 else
@@ -10137,8 +10154,8 @@ print("select : " + select);
                 }
 
                 chalesh.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                yield return new WaitUntil(() => meWait == true);
+                meWait = false;
                 
                 if (mychallange)
                 {
@@ -10351,8 +10368,8 @@ print("select : " + select);
                 }
 
                 chalesh.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                yield return new WaitUntil(() => meWait == true);
+                meWait = false;
 
                 if (mychallange)
                 {
@@ -10363,8 +10380,8 @@ print("select : " + select);
                     announcer.text = "";
 
                     losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => losingClick == true);
+                    losingClick = false;
 
                 }
                 else
@@ -10385,8 +10402,8 @@ print("select : " + select);
                 }
 
                 chalesh.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                yield return new WaitUntil(() => meWait == true);
+                meWait = false;
                 
                 if (mychallange)
                 {
@@ -10599,8 +10616,8 @@ print("select : " + select);
                 }
 
                 chalesh.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                yield return new WaitUntil(() => meWait == true);
+                meWait = false;
 
                 if (mychallange)
                 {
@@ -10611,8 +10628,8 @@ print("select : " + select);
                     announcer.text = "";
 
                     losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => losingClick == true);
+                    losingClick = false;
 
                 }
                 else
@@ -10634,8 +10651,8 @@ print("select : " + select);
                 }
 
                 chalesh.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                yield return new WaitUntil(() => meWait == true);
+                meWait = false;
                 
                 if (mychallange)
                 {
@@ -10905,19 +10922,6 @@ print("select : " + select);
         {
             announcer.text = "";
 
-            if (!cpu1.Alive)
-            {
-                politicCircle[0].SetActive(false);
-            }
-            if (!cpu2.Alive)
-            {
-                politicCircle[1].SetActive(false);
-            }
-            if (!cpu3.Alive)
-            {
-                politicCircle[2].SetActive(false);
-            }
-
             if (WhoSolh == 1)
             {
                 politicCircle[0].SetActive(false);
@@ -10944,14 +10948,30 @@ print("select : " + select);
                 politicCircle[2].SetActive(true);
             }
 
+
+            if (!cpu1.Alive)
+            {
+                politicCircle[0].SetActive(false);
+            }
+            if (!cpu2.Alive)
+            {
+                politicCircle[1].SetActive(false);
+            }
+            if (!cpu3.Alive)
+            {
+                politicCircle[2].SetActive(false);
+            }
+
+
+
             politicCanvas.SetActive(true);
 
             yield return new WaitUntil(() => cClicked == true);
             cClicked = false;
             politicCanvas.SetActive(false);
-        
+
             if (whoPolitic == 1)
-        {
+            {
 
 
                 if (cpu1.card1 == 5 || cpu1.card2 == 5)
@@ -10961,8 +10981,8 @@ print("select : " + select);
 
 
                     chalesh.SetActive(true);
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                     if (mychallange)
                     {
@@ -10970,8 +10990,8 @@ print("select : " + select);
                         yield return new WaitForSeconds(1.5f);
 
                         losingy();
-                        yield return new WaitUntil(() => cClicked == true);
-                        cClicked = false;
+                        yield return new WaitUntil(() => losingClick == true);
+                        losingClick = false;
 
                     }
                     else
@@ -10981,8 +11001,8 @@ print("select : " + select);
 
                 }
                 else
-                { 
-                    int ran =Random.Range(1, 5);
+                {
+                    int ran = Random.Range(1, 5);
 
                     if (ran == 1)
                     {
@@ -10993,8 +11013,8 @@ print("select : " + select);
 
 
                         chalesh.SetActive(true);
-                        yield return new WaitUntil(() => cClicked == true);
-                        cClicked = false;
+                        yield return new WaitUntil(() => meWait == true);
+                        meWait = false;
 
                         if (mychallange)
                         {
@@ -11133,20 +11153,20 @@ print("select : " + select);
                             cointxt[1].text = cpu1.coin.ToString();
                         }
                     }
-                 
-            }
-        }
-        else if (whoPolitic == 2)
-        {
-            if (cpu2.card1 == 5 || cpu2.card2 == 5)
-            {
-           
-                announcer.text = " ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
-                
 
-                chalesh.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                }
+            }
+            else if (whoPolitic == 2)
+            {
+                if (cpu2.card1 == 5 || cpu2.card2 == 5)
+                {
+
+                    announcer.text = " ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
+
+
+                    chalesh.SetActive(true);
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                     if (mychallange)
                     {
@@ -11154,18 +11174,18 @@ print("select : " + select);
                         yield return new WaitForSeconds(1.5f);
 
                         losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                        yield return new WaitUntil(() => losingClick == true);
+                        losingClick = false;
 
-                }
+                    }
                     else
                     {
                         // Done
                     }
-            }
-            else
-            {
-              int ran =Random.Range(1, 5);
+                }
+                else
+                {
+                    int ran = Random.Range(1, 5);
 
                     if (ran == 1)
                     {
@@ -11175,8 +11195,8 @@ print("select : " + select);
 
 
                         chalesh.SetActive(true);
-                        yield return new WaitUntil(() => cClicked == true);
-                        cClicked = false;
+                        yield return new WaitUntil(() => meWait == true);
+                        meWait = false;
 
                         if (mychallange)
                         {
@@ -11184,9 +11204,10 @@ print("select : " + select);
                             yield return new WaitForSeconds(1.5f);
 
                             int ran2;
-                            do{
-                             ran2 = Random.Range(1,3);
-                            }while((ran2 == 1&&cpu2.card1 ==-1)||(ran2 == 2&&cpu2.card2 == -1));
+                            do
+                            {
+                                ran2 = Random.Range(1, 3);
+                            } while ((ran2 == 1 && cpu2.card1 == -1) || (ran2 == 2 && cpu2.card2 == -1));
 
                             if (ran2 == 1)
                             {
@@ -11299,35 +11320,35 @@ print("select : " + select);
                     }
                     else
                     {
-                        
-                     if (cpu2.coin >= 2)
-                            {
-                                Me.coin += 2;
-                                cpu2.coin -= 2;
-                                cointxt[0].text = Me.coin.ToString();
-                                cointxt[2].text = cpu2.coin.ToString();
-                            }
-                            else
-                            {
-                                Me.coin += cpu2.coin;
-                                cpu2.coin = 0;
-                                cointxt[0].text = Me.coin.ToString();
-                                cointxt[2].text = cpu2.coin.ToString();
-                            }
+
+                        if (cpu2.coin >= 2)
+                        {
+                            Me.coin += 2;
+                            cpu2.coin -= 2;
+                            cointxt[0].text = Me.coin.ToString();
+                            cointxt[2].text = cpu2.coin.ToString();
+                        }
+                        else
+                        {
+                            Me.coin += cpu2.coin;
+                            cpu2.coin = 0;
+                            cointxt[0].text = Me.coin.ToString();
+                            cointxt[2].text = cpu2.coin.ToString();
+                        }
+                    }
                 }
             }
-        }
-        else if (whoPolitic == 3)
-        {
-            if (cpu3.card1 == 5 || cpu3.card2 == 5)
+            else if (whoPolitic == 3)
             {
-             
-                    announcer.text = " ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
-                
+                if (cpu3.card1 == 5 || cpu3.card2 == 5)
+                {
 
-                chalesh.SetActive(true);
-                yield return new WaitUntil(() => cClicked == true);
-                cClicked = false;
+                    announcer.text = " ﻡﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
+
+
+                    chalesh.SetActive(true);
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
 
                     if (mychallange)
                     {
@@ -11335,18 +11356,18 @@ print("select : " + select);
                         yield return new WaitForSeconds(1.5f);
 
                         losingy();
-                    yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                        yield return new WaitUntil(() => losingClick == true);
+                        losingClick = false;
 
-                }
+                    }
                     else
                     {
                         // Done
                     }
-            }
-            else
-            {
-             int ran = Random.Range(1, 5);
+                }
+                else
+                {
+                    int ran = Random.Range(1, 5);
 
                     if (ran == 1)
                     {
@@ -11356,25 +11377,27 @@ print("select : " + select);
 
 
                         chalesh.SetActive(true);
-                        yield return new WaitUntil(() => cClicked == true);
-                        cClicked = false;
+                        yield return new WaitUntil(() => meWait == true);
+                        meWait = false;
 
                         if (mychallange)
                         {
                             announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
                             yield return new WaitForSeconds(1.5f);
-                           
-                           int ran2;
-                           do{
-                           ran2 = Random.Range(1,3);
-                           }while((ran2 == 1&&cpu3.card1 == -1) || (ran2 == 2&&cpu3.card2 == -1));
 
-                           if(ran2 == 1){
-                            int box = cpu3.card1;
-                            cpu3.card1 = -1;
-                            cpu3cards[0].SetActive(false);
-                            
-                                 if (box == 1)
+                            int ran2;
+                            do
+                            {
+                                ran2 = Random.Range(1, 3);
+                            } while ((ran2 == 1 && cpu3.card1 == -1) || (ran2 == 2 && cpu3.card2 == -1));
+
+                            if (ran2 == 1)
+                            {
+                                int box = cpu3.card1;
+                                cpu3.card1 = -1;
+                                cpu3cards[0].SetActive(false);
+
+                                if (box == 1)
                                 {
                                     if (mali == "banker")
                                         announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
@@ -11410,11 +11433,13 @@ print("select : " + select);
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-                           }else if(ran2 == 2){
-                            int box = cpu3.card2;
-                            cpu3.card2 = -1;
-                            cpu3cards[1].SetActive(false);
-                               if (box == 1)
+                            }
+                            else if (ran2 == 2)
+                            {
+                                int box = cpu3.card2;
+                                cpu3.card2 = -1;
+                                cpu3cards[1].SetActive(false);
+                                if (box == 1)
                                 {
                                     if (mali == "banker")
                                         announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ" + name_script.cpu3Name;
@@ -11450,8 +11475,8 @@ print("select : " + select);
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
-                           }
-                   
+                            }
+
 
 
                             if (cpu3.coin >= 2)
@@ -11478,7 +11503,7 @@ print("select : " + select);
                     }
                     else
                     {
-                       
+
 
                         if (cpu3.coin >= 2)
                         {
@@ -11494,12 +11519,13 @@ print("select : " + select);
                             cointxt[0].text = Me.coin.ToString();
                             cointxt[3].text = cpu3.coin.ToString();
                         }
-                            
+
+                    }
                 }
             }
-        }
 
         }
+        cClicked = true;
     }
 
     public void selectPolitic(int num)
@@ -11511,7 +11537,7 @@ print("select : " + select);
     public void selectAttack(int num)
     {
         whoAttacked = num;
-        cClicked = true;
+        meWait = true;
     }
 
     void midIconCheck(int role1, int role2)
