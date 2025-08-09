@@ -6174,7 +6174,7 @@ endgame--;
         }
         else if (cpu2turn)
         {
-         if (whichAction == "mali")
+            if (whichAction == "mali")
             {
                 if (mali == "banker")
                 {
@@ -6198,14 +6198,14 @@ endgame--;
                     meWait = false;
 
                 }
-                yield return new WaitForSeconds(1);
+
                 if (cpu1.Alive)
                 {
                     result[0] = cpu1.Chalesh(1, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
                 }
-                
-                
+                yield return new WaitForSeconds(1);
+
             }
             else if (whichAction == "ertebat")
             {
@@ -6231,14 +6231,14 @@ endgame--;
                     meWait = false;
 
                 }
-                yield return new WaitForSeconds(1);
+
                 if (cpu1.Alive)
                 {
                     result[0] = cpu1.Chalesh(2, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
                 }
-                
-                
+                yield return new WaitForSeconds(1);
+
             }
             else if (whichAction == "attack")
             {
@@ -6256,7 +6256,7 @@ endgame--;
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu3Name;
                 }
                 yield return new WaitForSeconds(1);
-                
+
                 if (Me.Alive)
                 {
                     announcer.text = "";
@@ -6265,12 +6265,13 @@ endgame--;
                     meWait = false;
 
                 }
-                yield return new WaitForSeconds(1);
+
                 if (cpu1.Alive)
                 {
                     result[0] = cpu2.Chalesh(3, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
                 }
+                yield return new WaitForSeconds(1);
                
             }
             else if (whichAction == "uniqe4")
@@ -6296,14 +6297,14 @@ endgame--;
                     yield return new WaitUntil(() => meWait == true);
                     meWait = false;
 
-                }  yield return new WaitForSeconds(1);
+                }
                 if (cpu1.Alive)
                 {
                     result[0] = cpu1.Chalesh(4, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
                 }
-              
-                
+                yield return new WaitForSeconds(1);
+
             }
             else if (whichAction == "uniqe5")
             {
@@ -6329,14 +6330,14 @@ endgame--;
                     meWait = false;
 
                 }
-                yield return new WaitForSeconds(1);
+
                 if (cpu1.Alive)
                 {
                     result[0] = cpu1.Chalesh(5, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
                 }
-                
-                
+                yield return new WaitForSeconds(1);
+
             }
 
             bool permision = true;
@@ -7096,7 +7097,7 @@ announcer.text = "";
                     result[1] = cpu2.Chalesh(1, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
                 }
-                
+                yield return new WaitForSeconds(1);
                 
             }
             else if (whichAction == "ertebat")
@@ -7127,7 +7128,7 @@ announcer.text = "";
                     result[1] = cpu2.Chalesh(2, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
                 }
-                
+                yield return new WaitForSeconds(1);
                 
                 
                 
@@ -7160,7 +7161,7 @@ announcer.text = "";
                     result[1] = cpu2.Chalesh(3, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
                 }
-                
+                yield return new WaitForSeconds(1);
                 
                 
                 
@@ -7193,7 +7194,7 @@ announcer.text = "";
                     result[1] = cpu2.Chalesh(4, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
                 }
-                
+                yield return new WaitForSeconds(1);
                   
                 
               
@@ -7227,7 +7228,7 @@ announcer.text = "";
                     result[1] = cpu2.Chalesh(5, lost);
                     announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
                 }
-               
+               yield return new WaitForSeconds(1);
                 
                 
                 
@@ -9562,6 +9563,9 @@ yield return new WaitForSeconds(1);
             pannel.SetActive(false);
             Me.coin += 1;
             cointxt[0].text = Me.coin.ToString();
+            AllCheckAlive();
+            next();
+            Done = true;
         }
         else if (cpu1turn)
         {
