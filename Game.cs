@@ -606,6 +606,7 @@ public class Game : MonoBehaviour
 
     void Point()
     {
+        print("yesssssss!");
         if (Me.Alive)
         {  // win
 
@@ -679,7 +680,7 @@ public class Game : MonoBehaviour
         MeIconCheck();
 
         //testing
-        Me.coin = 4;
+        
         //
 
 
@@ -852,7 +853,7 @@ public class Game : MonoBehaviour
         }
 
         //testing
-        permision = true;
+        
        
         //
 
@@ -869,6 +870,7 @@ public class Game : MonoBehaviour
             else if (whichAction == "attack")
             {
                 StartCoroutine(Attack());
+                cClicked = false;
                 yield return new WaitUntil(() => cClicked == true);
                 cClicked = false;
             }
@@ -876,6 +878,7 @@ public class Game : MonoBehaviour
                 StartCoroutine(uniqe4y());
             else if (whichAction == "uniqe5")
             {   StartCoroutine(uniqe5y());
+                cClicked = false;
                 yield return new WaitUntil(() => cClicked == true);
                 cClicked = false;
             }
@@ -1166,6 +1169,7 @@ public class Game : MonoBehaviour
                 else if (whichAction == "attack")
                 {
                     StartCoroutine(Attack());
+                    cClicked = false;
                     yield return new WaitUntil(() => cClicked == true);
                     cClicked = false;
                 }
@@ -1174,6 +1178,7 @@ public class Game : MonoBehaviour
                 else if (whichAction == "uniqe5")
                 {
                     StartCoroutine(uniqe5y());
+                    cClicked = false;
                     yield return new WaitUntil(() => cClicked == true);
                     cClicked = false;
                 }
@@ -1250,12 +1255,7 @@ public class Game : MonoBehaviour
                 cpu1.coin -= 4;
                 cointxt[1].text = cpu1.coin.ToString();
             }
-
-            // if (!canAttack(1))
-            // {
-            //     StopCoroutine(RobAttack());
-            // }
-
+        
 
             int ran;
             do
@@ -2037,10 +2037,7 @@ public class Game : MonoBehaviour
                 cointxt[2].text = cpu2.coin.ToString();
             }
 
-            if (!canAttack(2))
-            {
-                StopCoroutine(RobAttack());
-            }
+        
 
 
             int ran;
@@ -2814,10 +2811,7 @@ endgame--;
                 cointxt[3].text = cpu3.coin.ToString();
             }
 
-            if (!canAttack(3))
-            {
-                StopCoroutine(RobAttack());
-            }
+           
 
 
             int ran;
@@ -5465,7 +5459,7 @@ endgame--;
                 permision = false;
 
             //testing
-            permision = true;
+            
             
             //
 
@@ -7147,7 +7141,7 @@ announcer.text = "";
                     edea[2].GetComponent<Image>().color = roleColor[2];
                 }
                 yield return new WaitForSeconds(1.5f);
-if (Me.Alive)
+                if (Me.Alive)
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
@@ -7181,7 +7175,7 @@ if (Me.Alive)
                     edea[2].GetComponent<Image>().color = roleColor[3];
                 }
                 yield return new WaitForSeconds(1.5f);
-if (Me.Alive)
+                if (Me.Alive)
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
@@ -7214,7 +7208,7 @@ if (Me.Alive)
                     edea[2].GetComponent<Image>().color = roleColor[4];
                 }
                 yield return new WaitForSeconds(1.5f);
-if (Me.Alive)
+                if (Me.Alive)
                 {
                     announcer.text = "";
                     chalesh.SetActive(true);
@@ -7231,7 +7225,7 @@ if (Me.Alive)
                 if (cpu2.Alive)
                 {
                     result[1] = cpu2.Chalesh(5, lost);
-                    announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu1Name;
+                    announcer.text = ". . . ﻥﺩﺮﮐ ﺮﮑﻓ ﻝﺎﺣﺭﺩ " + name_script.cpu2Name;
                 }
                
                 
@@ -7984,7 +7978,7 @@ if (Me.Alive)
             //8 is coup
 
             //testing
-            ran = 5; 
+            
             //
 
             if (cpu1.coin >= 7)
@@ -8071,9 +8065,7 @@ if (Me.Alive)
                 
                 bool allow = RobotOffCheck(cpu1, op);
                 // testing
-                op = 3;
-                WhoSolh = 2;
-                allow = true;
+                
                 //
                 if (allow)
                 {
@@ -9249,7 +9241,7 @@ yield return new WaitForSeconds(1);
     IEnumerator coupy()
     {
         if (myturn)
-        {  
+        {
             Me.coin -= 7;
             cointxt[0].text = Me.coin.ToString();
             if (!cpu1.Alive)
@@ -9551,6 +9543,10 @@ yield return new WaitForSeconds(1);
             // me being attacked
         }
         endgame--;
+
+        AllCheckAlive();
+        next();
+        Done = true;
     }
 
 
@@ -10119,7 +10115,7 @@ print("select : " + select);
             
         }
 
-
+        
         cClicked = true;
     }
 
@@ -10175,14 +10171,16 @@ print("select : " + select);
         yield return new WaitUntil(() => meWait == true);
         meWait = false;
         attackCanvas.SetActive(false);
-
+        
+        if (attack == "cherik")
+        {
+            Me.coin -= 4;
+            cointxt[0].text = Me.coin.ToString();
+        }
+        
         if (whoAttacked == 1)
         {
-            if (attack == "cherik")
-            {
-                Me.coin -= 4;
-                cointxt[0].text = Me.coin.ToString();
-            }
+
 
             if (cpu1.card1 == 3 || cpu1.card2 == 3)
             {
@@ -10215,28 +10213,28 @@ print("select : " + select);
 
             }
             else
-            {  
+            {
                 int ran = Random.Range(1, 5);
 
                 if (ran == 1)
                 {
                     print("BLOF");
                     if (attack == "cherik")
-                {
-                    announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu1Name;
-                }
+                    {
+                        announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu1Name;
+                    }
 
-                chalesh.SetActive(true);
-                yield return new WaitUntil(() => meWait == true);
-                meWait = false;
-                
-                if (mychallange)
-                {
-                    announcer.color = Color.green;
-                    announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
-                    yield return new WaitForSeconds(1.5f);
-                    announcer.text = "";
-                    announcer.color = Color.black;
+                    chalesh.SetActive(true);
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
+
+                    if (mychallange)
+                    {
+                        announcer.color = Color.green;
+                        announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.text = "";
+                        announcer.color = Color.black;
 
                         if (cpu1.card1 != -1)
                         {
@@ -10280,6 +10278,7 @@ print("select : " + select);
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                         }
                         if (cpu1.card2 != -1)
                         {
@@ -10323,14 +10322,15 @@ print("select : " + select);
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                         }
-                        endgame-=2;
+                        
                         cpu1.Alive = false;
-                }
-                else
-                {
-                    // Done
-                }
+                    }
+                    else
+                    {
+                        // Done
+                    }
 
                 }
                 else
@@ -10382,11 +10382,11 @@ print("select : " + select);
                             }
                         }
                         printLost();
-                        
+
                     }
                     else
                     {
-                       int box = cpu1.card2;
+                        int box = cpu1.card2;
                         cpu1.card2 = -1;
                         cpu1cards[1].SetActive(false);
 
@@ -10435,7 +10435,7 @@ print("select : " + select);
         {
             if (cpu2.card1 == 3 || cpu2.card2 == 3)
             {
-            if (attack == "cherik")
+                if (attack == "cherik")
                 {
                     announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu2Name;
                 }
@@ -10464,27 +10464,27 @@ print("select : " + select);
             }
             else
             {
-              int ran = 2;//Random.Range(1, 5);
+                int ran = 2;//Random.Range(1, 5);
 
                 if (ran == 1)
                 {
                     print("BLOF");
-                          if (attack == "cherik")
-                {
-                    announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu2Name;
-                }
+                    if (attack == "cherik")
+                    {
+                        announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu2Name;
+                    }
 
-                chalesh.SetActive(true);
-                yield return new WaitUntil(() => meWait == true);
-                meWait = false;
-                
-                if (mychallange)
-                {
-                    announcer.color = Color.green;
-                    announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
-                    yield return new WaitForSeconds(1.5f);
-                    announcer.color = Color.black;
-                    announcer.text = "";
+                    chalesh.SetActive(true);
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
+
+                    if (mychallange)
+                    {
+                        announcer.color = Color.green;
+                        announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.color = Color.black;
+                        announcer.text = "";
 
                         if (cpu2.card1 != -1)
                         {
@@ -10528,6 +10528,7 @@ print("select : " + select);
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                         }
                         if (cpu2.card2 != -1)
                         {
@@ -10571,14 +10572,15 @@ print("select : " + select);
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                         }
-                        endgame-=2;
+                       
                         cpu2.Alive = false;
-                }
-                else
-                {
-                    // Done
-                }
+                    }
+                    else
+                    {
+                        // Done
+                    }
 
                 }
                 else
@@ -10683,7 +10685,7 @@ print("select : " + select);
         {
             if (cpu3.card1 == 3 || cpu3.card2 == 3)
             {
-             if (attack == "cherik")
+                if (attack == "cherik")
                 {
                     announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu3Name;
                 }
@@ -10712,28 +10714,28 @@ print("select : " + select);
             }
             else
             {
-             int ran = 2;//Random.Range(1, 5);
+                int ran = 2;//Random.Range(1, 5);
 
                 if (ran == 1)
                 {
                     print("BLOF");
-                        print("BLOF");
-                          if (attack == "cherik")
-                {
-                    announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu3Name;
-                }
+                   
+                    if (attack == "cherik")
+                    {
+                        announcer.text = " ﻡﺭﺍﺩ ﮏﯾﺮﭼ :" + name_script.cpu3Name;
+                    }
 
-                chalesh.SetActive(true);
-                yield return new WaitUntil(() => meWait == true);
-                meWait = false;
-                
-                if (mychallange)
-                {
-                    announcer.color = Color.green;
-                    announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
-                    yield return new WaitForSeconds(1.5f);
-                    announcer.color = Color.black;
-                    announcer.text = "";
+                    chalesh.SetActive(true);
+                    yield return new WaitUntil(() => meWait == true);
+                    meWait = false;
+
+                    if (mychallange)
+                    {
+                        announcer.color = Color.green;
+                        announcer.text = "ﺪﯾﺪﺷ ﺶﻟﺎﭼ ﻩﺪﻧﺮﺑ";
+                        yield return new WaitForSeconds(1.5f);
+                        announcer.color = Color.black;
+                        announcer.text = "";
 
                         if (cpu3.card1 != -1)
                         {
@@ -10777,6 +10779,7 @@ print("select : " + select);
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                         }
                         if (cpu3.card2 != -1)
                         {
@@ -10820,14 +10823,15 @@ print("select : " + select);
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                         }
-                        endgame-=2;
+                        
                         cpu3.Alive = false;
-                }
-                else
-                {
-                    // Done
-                }
+                    }
+                    else
+                    {
+                        // Done
+                    }
 
                 }
                 else
@@ -11633,6 +11637,11 @@ print("select : " + select);
 
     void midIconCheck(int role1, int role2)
     {
+        for (int i = 0; i < 4; i++)
+        {
+            midFiledCards[i].SetActive(true);
+        }
+
         if (Me.card1 == 1)
         {
             if (mali == "banker")
