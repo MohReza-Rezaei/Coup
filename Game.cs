@@ -151,8 +151,17 @@ public class Game : MonoBehaviour
 
         //attack
         if (attack == "cherik")
-        {   
-            if ((!cpu1.Alive && !cpu2.Alive && WhoSolh == 3) || (!cpu2.Alive && !cpu3.Alive && WhoSolh == 1) || (!cpu1.Alive && !cpu3.Alive && WhoSolh == 2))
+        {
+        if (Me.coin < 4)
+        {
+        attackOff.SetActive(true);
+        }
+        else
+        {
+         attackOff.SetActive(false);
+        }   
+
+        if ((!cpu1.Alive && !cpu2.Alive && WhoSolh == 3) || (!cpu2.Alive && !cpu3.Alive && WhoSolh == 1) || (!cpu1.Alive && !cpu3.Alive && WhoSolh == 2))
         {
             attackOff.SetActive(true);
         }
@@ -160,16 +169,7 @@ public class Game : MonoBehaviour
         {
             attackOff.SetActive(false);
         }
-
-
-            if (Me.coin < 4)
-            {
-                attackOff.SetActive(true);
-            }
-            else
-            {
-                attackOff.SetActive(false);
-            }
+            
         }
 
 
@@ -681,8 +681,7 @@ public class Game : MonoBehaviour
         MeIconCheck();
 
         //testing
-        cpu1.card1 = 5;
-        cpu1.card2 = 5;
+        
         //
 
 
@@ -1442,6 +1441,7 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
+                                endgame--;
                             }
                             if (cpu2.card2 != -1)
                             {
@@ -1495,11 +1495,9 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
+                                endgame--;
                             }
-
-
-
-                         endgame-=2;
+                        cpu2.Alive = false;
                         }
                         else
                         {
@@ -1752,6 +1750,7 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
+                                endgame--;
                             }
                             if (cpu3.card2 != -1)
                             {
@@ -1804,13 +1803,14 @@ public class Game : MonoBehaviour
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
+                                endgame--;
                             }
 
 
 
 
 
-                         endgame-=2;
+                         cpu3.Alive = false;
                         }
                         else
                         {
@@ -2138,7 +2138,7 @@ public class Game : MonoBehaviour
                         printLost();
                         yield return new WaitForSeconds(2);
 
-endgame--;
+                   endgame--;
                     }
                     else
                     {
@@ -2176,35 +2176,35 @@ endgame--;
                                 {
                                     if (mali == "banker")
                                     {
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
                                     }
                                 }
                                 else if (box == 2)
                                 {
                                     if (ertebat == "director")
                                     {
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
                                     }
                                 }
                                 else if (box == 3)
                                 {
                                     if (attack == "cherik")
                                     {
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
                                     }
                                 }
                                 else if (box == 4)
                                 {
                                     if (uniqe4 == "solh")
                                     {
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
                                     }
                                 }
                                 else if (box == 5)
                                 {
                                     if (uniqe5 == "siasat")
                                     {
-                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
+                                        announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                                     }
                                 }
 
@@ -2218,6 +2218,7 @@ endgame--;
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
+                                endgame--;
                             }
                             if (cpu1.card2 != -1)
                             {
@@ -2228,35 +2229,35 @@ endgame--;
                             {
                                 if (mali == "banker")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 2)
                             {
                                 if (ertebat == "director")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 3)
                             {
                                 if (attack == "cherik")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 4)
                             {
                                 if (uniqe4 == "solh")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 5)
                             {
                                 if (uniqe5 == "siasat")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                                 }
                             }
 
@@ -2270,13 +2271,14 @@ endgame--;
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                             }
 
 
 
 
                         
-endgame-=2;
+cpu1.Alive = false;
 
                         }
                         else
@@ -2529,6 +2531,7 @@ endgame--;
                                 }
                                 printLost();
                                 yield return new WaitForSeconds(2);
+                                endgame--;
                             }
                             if (cpu3.card2 != -1)
                             {
@@ -2581,13 +2584,14 @@ endgame--;
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                             }
 
 
 
 
                            
-endgame-=2;
+                        cpu3.Alive = false;
 
                         }
                         else
@@ -2950,35 +2954,35 @@ endgame--;
                             {
                                 if (mali == "banker")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
                                 }
                             }
                             else if (box == 2)
                             {
                                 if (ertebat == "director")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
                                 }
                             }
                             else if (box == 3)
                             {
                                 if (attack == "cherik")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
                                 }
                             }
                             else if (box == 4)
                             {
                                 if (uniqe4 == "solh")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
                                 }
                             }
                             else if (box == 5)
                             {
                                 if (uniqe5 == "siasat")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                                 }
                             }
 
@@ -2992,6 +2996,7 @@ endgame--;
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                             }
                             if (cpu1.card2 != -1)
                             {
@@ -3002,35 +3007,35 @@ endgame--;
                             {
                                 if (mali == "banker")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu1Name;
                                 }
                             }
                             else if (box == 2)
                             {
                                 if (ertebat == "director")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu1Name;
                                 }
                             }
                             else if (box == 3)
                             {
                                 if (attack == "cherik")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu1Name;
                                 }
                             }
                             else if (box == 4)
                             {
                                 if (uniqe4 == "solh")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu1Name;
                                 }
                             }
                             else if (box == 5)
                             {
                                 if (uniqe5 == "siasat")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
                                 }
                             }
 
@@ -3044,11 +3049,12 @@ endgame--;
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                             }
 
 
 
-endgame-=2;
+cpu1.Alive = false;
                         }
                         else
                         {
@@ -3258,35 +3264,35 @@ endgame--;
                             {
                                 if (mali == "banker")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 2)
                             {
                                 if (ertebat == "director")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 3)
                             {
                                 if (attack == "cherik")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 4)
                             {
                                 if (uniqe4 == "solh")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 5)
                             {
                                 if (uniqe5 == "siasat")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                                 }
                             }
 
@@ -3300,6 +3306,7 @@ endgame--;
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                             }
                             if (cpu2.card2 != -1)
                             {
@@ -3310,35 +3317,35 @@ endgame--;
                             {
                                 if (mali == "banker")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﮑﻧﺎﺑ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 2)
                             {
                                 if (ertebat == "director")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﻥﺍﺩﺮﮔﺭﺎﮐ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 3)
                             {
                                 if (attack == "cherik")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﮏﯾﺮﭼ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 4)
                             {
                                 if (uniqe4 == "solh")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺐﻠﻃ ﺢﻠﺻ " + name_script.cpu2Name;
                                 }
                             }
                             else if (box == 5)
                             {
                                 if (uniqe5 == "siasat")
                                 {
-                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
+                                    announcer.text = " ﺪﻧﺍﺯﻮﺳ ﺍﺭ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                                 }
                             }
 
@@ -3352,14 +3359,14 @@ endgame--;
                             }
                             printLost();
                             yield return new WaitForSeconds(2);
+                            endgame--;
                             }
 
 
 
 
                            
-
-endgame-=2;
+cpu2.Alive = false;
                         }
                         else
                         {
