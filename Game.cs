@@ -36,14 +36,14 @@ public class Game : MonoBehaviour
     bool mychallange = false , myReaction = false , losetwice = false;
     public Color[] roleColor = new Color[5];
 
-    bool stop = false , robotWait = false , meWait = false;
+    bool stop = false , robotWait = false , meWait = false , missionWait = false;
 
     // info for passing waitUntil
     // cClicked = is for doing continueing Action and ActionRob functions -> end of ertbatat , attack , uniqe5 and . . 
     // losingClick = for you to lose one cart then continue -- losingy function -> end of burn function
     // Mewait = for continue after chalsh  ->  end of chaleshBtn and DischaleshBtn
     // Robwait = for continue after reaction -> end of reactionBtn
-
+    // missionwait = for continue after a mission like attack or siasat is done -> Attack() and uniqe5y()
 
 
     /// <Mali>
@@ -252,10 +252,10 @@ public class Game : MonoBehaviour
             return true;
         }
         else if (action == 5)
-        {
+        {print("here");
             //siasat 
             if (uniqe5 == "siasat")
-            {
+            {print("lolo");
                 int three = 0;
             if (temp == cpu1)
             {
@@ -294,6 +294,7 @@ public class Game : MonoBehaviour
                     return false;
             }
             }
+            return true;
         }
         return false;
     }
@@ -680,7 +681,8 @@ public class Game : MonoBehaviour
         MeIconCheck();
 
         //testing
-        
+        cpu1.card1 = 5;
+        cpu1.card2 = 5;
         //
 
 
@@ -8006,7 +8008,7 @@ announcer.text = "";
             //8 is coup
 
             //testing
-            
+            ran = 5;
             //
 
             if (cpu1.coin >= 7)
@@ -8135,6 +8137,9 @@ announcer.text = "";
             {
                 announcer.text = " ﻢﻨﮑﯿﻣ ﺎﺗﺩﻮﮐ : " + name_script.cpu1Name;
                 yield return new WaitForSeconds(2);
+                cpu1.coin -= 7;
+                cointxt[1].text = cpu1.coin.ToString();
+
                 int coupChoose;
                 do
                 {
@@ -8554,6 +8559,9 @@ announcer.text = "";
             {
                 announcer.text = " ﻢﻨﮑﯿﻣ ﺎﺗﺩﻮﮐ : " + name_script.cpu2Name;
                 yield return new WaitForSeconds(2);
+                cpu2.coin -= 7;
+                cointxt[2].text = cpu2.coin.ToString();
+
                 int coupChoose;
                 do
                 {
@@ -8971,6 +8979,9 @@ yield return new WaitForSeconds(1);
             {
                 announcer.text = " ﻢﻨﮑﯿﻣ ﺎﺗﺩﻮﮐ : " + name_script.cpu3Name;
                 yield return new WaitForSeconds(2);
+                cpu3.coin -= 7;
+                cointxt[3].text = cpu3.coin.ToString();
+
                 int coupChoose;
                 do
                 {
@@ -10199,8 +10210,8 @@ print("select : " + select);
 
         attackCanvas.SetActive(true);
 
-        yield return new WaitUntil(() => meWait == true);
-        meWait = false;
+        yield return new WaitUntil(() => missionWait == true);
+        missionWait = false;
         attackCanvas.SetActive(false);
         
         if (attack == "cherik")
@@ -11074,8 +11085,8 @@ print("select : " + select);
 
             politicCanvas.SetActive(true);
 
-            yield return new WaitUntil(() => cClicked == true);
-            cClicked = false;
+            yield return new WaitUntil(() => missionWait == true);
+            missionWait = false;
             politicCanvas.SetActive(false);
 
             if (whoPolitic == 1)
@@ -11657,13 +11668,13 @@ print("select : " + select);
     public void selectPolitic(int num)
     {
         whoPolitic = num;
-        cClicked = true;
+        missionWait = true;
     }
 
     public void selectAttack(int num)
     {
         whoAttacked = num;
-        meWait = true;
+        missionWait = true;
     }
 
     void midIconCheck(int role1, int role2)
