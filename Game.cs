@@ -13,7 +13,7 @@ public class Game : MonoBehaviour
     int[] numbers = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
     int[] lost = { -1, -1, -1, -1, -1, -1, -1 };
     bool myturn = false, cpu1turn = false, cpu2turn = false, cpu3turn = false;
-    Player Me = new Player(); Player cpu1 = new Player(); Player cpu2 = new Player(); Player cpu3 = new Player();
+    public Player Me = new Player(); Player cpu1 = new Player(); Player cpu2 = new Player(); Player cpu3 = new Player();
     int endgame = 6;
     bool Done = true, cClicked = false , losingClick = false;
     public Text announcer;
@@ -30,7 +30,7 @@ public class Game : MonoBehaviour
     public GameObject[] coupCircle = new GameObject[3];
     public GameObject[] losingCircle = new GameObject[2];
     public GameObject[] edea = new GameObject[3];
-    public GameObject lostSection;
+    public GameObject lostSection , End_section;
     string mali = "banker", ertebat = "director", attack = "cherik", uniqe4 = "solh", uniqe5 = "siasat";
     int whoCoup;
     bool mychallange = false , myReaction = false , losetwice = false;
@@ -671,7 +671,7 @@ public class Game : MonoBehaviour
 
         print("endgame");
         // point
-        Point();
+        End_section.SetActive(true);
     }
 
 
@@ -2278,7 +2278,7 @@ public class Game : MonoBehaviour
 
 
                         
-cpu1.Alive = false;
+                cpu1.Alive = false;
 
                         }
                         else
@@ -8015,7 +8015,7 @@ announcer.text = "";
             //8 is coup
 
             //testing
-            ran = 5;
+           
             //
 
             if (cpu1.coin >= 7)
