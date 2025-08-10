@@ -862,8 +862,10 @@ public class Game : MonoBehaviour
             if (whichAction == "mali")
                 StartCoroutine(Mali());
             else if (whichAction == "ertebat")
-            {
+            {   
+                ShuffleArray(numbers,false);
                 StartCoroutine(ertebatat());
+                cClicked = false;
                 yield return new WaitUntil(() => cClicked == true);
                 cClicked = false;
             }
@@ -1161,8 +1163,9 @@ public class Game : MonoBehaviour
                 if (whichAction == "mali")
                     StartCoroutine(Mali());
                 else if (whichAction == "ertebat")
-                {
+                {   ShuffleArray(numbers,false);
                     StartCoroutine(ertebatat());
+                    cClicked = false;
                     yield return new WaitUntil(() => cClicked == true);
                     cClicked = false;
                 }
@@ -5467,8 +5470,10 @@ endgame--;
             {
                 if (whichAction == "mali")
                     StartCoroutine(Mali());
-                else if (whichAction == "ertebat")
+                else if (whichAction == "ertebat"){
+                    ShuffleArray(numbers,false);
                     StartCoroutine(ertebatat());
+                }    
                 else if (whichAction == "attack")
                 {
                     StartCoroutine(RobAttack());
@@ -5629,8 +5634,10 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat"){
+                            ShuffleArray(numbers,false);
                             StartCoroutine(ertebatat());
+                        }
                         else if (whichAction == "attack")
                         {
                             StartCoroutine(RobAttack());
@@ -5883,8 +5890,10 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat"){
+                            ShuffleArray(numbers,false);
                             StartCoroutine(ertebatat());
+                        }
                         else if (whichAction == "attack")
                         {
                             StartCoroutine(RobAttack());
@@ -6056,8 +6065,10 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat"){
+                            ShuffleArray(numbers,false);
                             StartCoroutine(ertebatat());
+                        }
                         else if (whichAction == "attack")
                         {
                             StartCoroutine(RobAttack());
@@ -6362,8 +6373,10 @@ endgame--;
             {
                 if (whichAction == "mali")
                     StartCoroutine(Mali());
-                else if (whichAction == "ertebat")
+                else if (whichAction == "ertebat"){
                     StartCoroutine(ertebatat());
+                    ShuffleArray(numbers,false);
+                }    
                 else if (whichAction == "attack")
                 {
                     StartCoroutine(RobAttack());
@@ -6522,8 +6535,10 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat"){
+                            ShuffleArray(numbers,false);
                             StartCoroutine(ertebatat());
+                        }   
                         else if (whichAction == "attack")
                         {
                             StartCoroutine(RobAttack());
@@ -6691,8 +6706,10 @@ endgame--;
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat"){
+                            ShuffleArray(numbers,false);
                             StartCoroutine(ertebatat());
+                        }
                         else if (whichAction == "attack")
                         {
                             StartCoroutine(RobAttack());
@@ -6945,8 +6962,10 @@ announcer.text = "";
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat"){
+                            ShuffleArray(numbers,false);
                             StartCoroutine(ertebatat());
+                        }
                         else if (whichAction == "attack")
                         {
                             StartCoroutine(RobAttack());
@@ -7256,8 +7275,10 @@ announcer.text = "";
             {
                 if (whichAction == "mali")
                     StartCoroutine(Mali());
-                else if (whichAction == "ertebat")
+                else if (whichAction == "ertebat"){
+                    ShuffleArray(numbers,false);
                     StartCoroutine(ertebatat());
+                } 
                 else if (whichAction == "attack")
                 {
                     StartCoroutine(RobAttack());
@@ -7334,8 +7355,10 @@ announcer.text = "";
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat"){
+                            ShuffleArray(numbers,false);
                             StartCoroutine(ertebatat());
+                        }
                         else if (whichAction == "attack")
                         {
                             StartCoroutine(RobAttack());
@@ -7582,8 +7605,10 @@ announcer.text = "";
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat"){
+                            ShuffleArray(numbers,false);
                             StartCoroutine(ertebatat());
+                        }
                         else if (whichAction == "attack")
                         {
                             StartCoroutine(RobAttack());
@@ -7832,8 +7857,10 @@ announcer.text = "";
 
                         if (whichAction == "mali")
                             StartCoroutine(Mali());
-                        else if (whichAction == "ertebat")
+                        else if (whichAction == "ertebat"){
+                            ShuffleArray(numbers,false); 
                             StartCoroutine(ertebatat());
+                        }
                         else if (whichAction == "attack")
                         {
                             StartCoroutine(RobAttack());
