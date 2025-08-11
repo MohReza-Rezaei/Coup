@@ -538,7 +538,6 @@ public class Game : MonoBehaviour
 
         if(!Me.Alive || (!cpu1.Alive && !cpu2.Alive && !cpu3.Alive)){
         Done = true;
-        announcer.SetActive(false);
         endgame = 0;
         }
     }
@@ -693,7 +692,7 @@ public class Game : MonoBehaviour
         MeIconCheck();
 
         //testing
-        
+        Me.Alive = false;
         //
 
 
