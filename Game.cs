@@ -3609,8 +3609,10 @@ endgame--;
 
                     if (ran == 2)
                     {
+                        announcer.text = " ﺩﺍﻮﺨﯿﻣ ﻪﮑﺳ " + name_script.cpu2Name+" ﺯﺍ " + name_script.cpu1Name;
+                        yield return new WaitForSeconds(1.5f);
                         if (cpu2.card1 == 5 || cpu2.card2 == 5)
-                        {
+                        { 
                             announcer.text = " ﻡﺭﺍﺩ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
                             yield return new WaitForSeconds(2);
 
@@ -3691,7 +3693,9 @@ endgame--;
                                 endgame--;
                             }
                             else
-                            {
+                            { 
+                                announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu1Name;
+                                yield return new WaitForSeconds(1.5f);
                                 //done;
                             }
 
@@ -3795,7 +3799,8 @@ endgame--;
                                     endgame--;
                                 }
                                 else
-                                {
+                                { announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu1Name;
+                                yield return new WaitForSeconds(1.5f);
                                     //done;
                                 }
                             }
@@ -3817,7 +3822,8 @@ endgame--;
                         }
                     }
                     else if (ran == 3)
-                    {
+                    {announcer.text = " ﺩﺍﻮﺨﯿﻣ ﻪﮑﺳ " + name_script.cpu3Name+" ﺯﺍ " + name_script.cpu1Name;
+                        yield return new WaitForSeconds(1.5f);
                         if (cpu3.card1 == 5 || cpu3.card2 == 5)
                         {
                             announcer.text = " ﻡﺭﺍﺩ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
@@ -3900,7 +3906,8 @@ endgame--;
                                 endgame--;
                             }
                             else
-                            {
+                            {announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu1Name;
+                                yield return new WaitForSeconds(1.5f);
                                 //done;
                             }
 
@@ -4004,7 +4011,8 @@ endgame--;
                                     endgame--;
                                 }
                                 else
-                                {
+                                {announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu1Name;
+                                yield return new WaitForSeconds(1.5f);
                                     //done;
                                 }
                             }
@@ -4031,14 +4039,20 @@ endgame--;
                         yield return new WaitForSeconds(2);
 
                         Reaction.SetActive(true);
+                        robotWait = false;
                         yield return new WaitUntil(() => robotWait == true);
                         robotWait = false;
+                        Reaction.SetActive(false);
 
                         if (myReaction)
                         {
                             int rand = Random.Range(1, 4);
                             if (rand == 1)
                             {
+
+                        announcer.text = " ﺖﻓﺮﯾﺬﭙﻧ ﺍﺭ ﺎﻤﺷ ﻡﺍﺪﻗﺍ " + name_script.cpu1Name;
+                        yield return new WaitForSeconds(1);
+
                                 if (Me.card1 == 5 || Me.card2 == 5)
                                 {
                                     announcer.text = " ﺩﺭﻮﺧ ﺖﺴﮑﺷ " + name_script.cpu1Name;
@@ -4113,9 +4127,12 @@ endgame--;
                                     endgame--;
                                 }
                                 else
-                                {
+                                {   
+                                    announcer.color = Color.red;
                                     announcer.text = " ﯽﺘﺧﺎﺑ ﺍﺭ ﺶﻟﺎﭼ ";
                                     yield return new WaitForSeconds(2);
+                                    announcer.text = "";
+                                    announcer.color = Color.black;
                                     losingy();
                                     yield return new WaitUntil(() => losingClick == true);
                                     losingClick = false;
@@ -4135,7 +4152,9 @@ endgame--;
                                 }
                             }
                             else
-                            {
+                            {  
+                                announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu1Name;
+                                yield return new WaitForSeconds(1.5f);
                                 //done
                             }
                         }
@@ -4174,7 +4193,8 @@ endgame--;
                     } while ((ran == 2) || (ran == 1 && !cpu1.Alive) || (ran == 3 && !cpu3.Alive) || (ran == WhoSolh));
 
                     if (ran == 1)
-                    {
+                    {announcer.text = " ﺩﺍﻮﺨﯿﻣ ﻪﮑﺳ " + name_script.cpu1Name+" ﺯﺍ " + name_script.cpu2Name;
+                        yield return new WaitForSeconds(1.5f);
                         if (cpu1.card1 == 5 || cpu1.card2 == 5)
                         {
                             announcer.text = " ﻡﺭﺍﺩ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
@@ -4257,7 +4277,8 @@ endgame--;
                                 endgame--;
                             }
                             else
-                            {
+                            {announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu2Name;
+                                yield return new WaitForSeconds(1.5f);
                                 //done;
                             }
 
@@ -4361,7 +4382,8 @@ endgame--;
                                     endgame--;
                                 }
                                 else
-                                {
+                                {announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu2Name;
+                                yield return new WaitForSeconds(1.5f);
                                     //done;
                                 }
                             }
@@ -4383,7 +4405,8 @@ endgame--;
                         }
                     }
                     else if (ran == 3)
-                    {
+                    {announcer.text = " ﺩﺍﻮﺨﯿﻣ ﻪﮑﺳ " + name_script.cpu3Name+" ﺯﺍ " + name_script.cpu2Name;
+                        yield return new WaitForSeconds(1.5f);
                         if (cpu3.card1 == 5 || cpu3.card2 == 5)
                         {
                             announcer.text = " ﻡﺭﺍﺩ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu3Name;
@@ -4466,7 +4489,8 @@ endgame--;
                                 endgame--;
                             }
                             else
-                            {
+                            {announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu2Name;
+                                yield return new WaitForSeconds(1.5f);
                                 //done;
                             }
 
@@ -4570,7 +4594,8 @@ endgame--;
                                     endgame--;
                                 }
                                 else
-                                {
+                                {announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu2Name;
+                                yield return new WaitForSeconds(1.5f);
                                     //done;
                                 }
                             }
@@ -4597,14 +4622,18 @@ endgame--;
                         yield return new WaitForSeconds(2);
 
                         Reaction.SetActive(true);
+                        robotWait = false;
                         yield return new WaitUntil(() => robotWait == true);
                         robotWait = false;
+                        Reaction.SetActive(false);
 
                         if (myReaction)
                         {
                             int rand = Random.Range(1, 4);
                             if (rand == 1)
                             {
+                                announcer.text = " ﺖﻓﺮﯾﺬﭙﻧ ﺍﺭ ﺎﻤﺷ ﻡﺍﺪﻗﺍ " + name_script.cpu2Name;
+                                 yield return new WaitForSeconds(1);
                                 if (Me.card1 == 5 || Me.card2 == 5)
                                 {
                                     announcer.text = " ﺩﺭﻮﺧ ﺖﺴﮑﺷ " + name_script.cpu2Name;
@@ -4679,9 +4708,11 @@ endgame--;
                                     endgame--;
                                 }
                                 else
-                                {
+                                {   announcer.color = Color.red;
                                     announcer.text = " ﯽﺘﺧﺎﺑ ﺍﺭ ﺶﻟﺎﭼ ";
                                     yield return new WaitForSeconds(2);
+                                    announcer.text = "";
+                                    announcer.color = Color.black;
                                     losingy();
                                     yield return new WaitUntil(() => losingClick == true);
                                     losingClick = false;
@@ -4701,7 +4732,8 @@ endgame--;
                                 }
                             }
                             else
-                            {
+                            {announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu2Name;
+                                yield return new WaitForSeconds(1.5f);
                                 //done
                             }
                         }
@@ -4739,7 +4771,8 @@ endgame--;
                     } while ((ran == 3) || (ran == 1 && !cpu1.Alive) || (ran == 2 && !cpu2.Alive) || (ran == WhoSolh));
 
                     if (ran == 1)
-                    {
+                    {announcer.text = " ﺩﺍﻮﺨﯿﻣ ﻪﮑﺳ " + name_script.cpu1Name+" ﺯﺍ " + name_script.cpu3Name;
+                        yield return new WaitForSeconds(1.5f);
                         if (cpu1.card1 == 5 || cpu1.card2 == 5)
                         {
                             announcer.text = " ﻡﺭﺍﺩ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu1Name;
@@ -4822,7 +4855,8 @@ endgame--;
                                 endgame--;
                             }
                             else
-                            {
+                            {announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu3Name;
+                                yield return new WaitForSeconds(1.5f);
                                 //done;
                             }
 
@@ -4926,7 +4960,9 @@ endgame--;
                                     endgame--;
                                 }
                                 else
-                                {
+                                {   
+                                    announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu3Name;
+                                yield return new WaitForSeconds(1.5f);
                                     //done;
                                 }
                             }
@@ -4948,7 +4984,8 @@ endgame--;
                         }
                     }
                     else if (ran == 2)
-                    {
+                    {announcer.text = " ﺩﺍﻮﺨﯿﻣ ﻪﮑﺳ " + name_script.cpu2Name+" ﺯﺍ " + name_script.cpu3Name;
+                        yield return new WaitForSeconds(1.5f);
                         if (cpu2.card1 == 5 || cpu2.card2 == 5)
                         {
                             announcer.text = " ﻡﺭﺍﺩ ﺭﺍﺪﻤﺘﺳﺎﯿﺳ " + name_script.cpu2Name;
@@ -5031,7 +5068,9 @@ endgame--;
                                 endgame--;
                             }
                             else
-                            {
+                            {   
+                                announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu3Name;
+                                yield return new WaitForSeconds(1.5f);
                                 //done;
                             }
 
@@ -5135,7 +5174,9 @@ endgame--;
                                     endgame--;
                                 }
                                 else
-                                {
+                                {   
+                                    announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu3Name;
+                                yield return new WaitForSeconds(1.5f);
                                     //done;
                                 }
                             }
@@ -5162,14 +5203,18 @@ endgame--;
                         yield return new WaitForSeconds(2);
 
                         Reaction.SetActive(true);
+                        robotWait = false;
                         yield return new WaitUntil(() => robotWait == true);
                         robotWait = false;
+                        Reaction.SetActive(false);
 
                         if (myReaction)
                         {
                             int rand = Random.Range(1, 4);
                             if (rand == 1)
                             {
+                                announcer.text = " ﺖﻓﺮﯾﺬﭙﻧ ﺍﺭ ﺎﻤﺷ ﻡﺍﺪﻗﺍ " + name_script.cpu2Name;
+                                yield return new WaitForSeconds(1);
                                 if (Me.card1 == 5 || Me.card2 == 5)
                                 {
                                     announcer.text = " ﺩﺭﻮﺧ ﺖﺴﮑﺷ " + name_script.cpu3Name;
@@ -5244,9 +5289,12 @@ endgame--;
                                     endgame--;
                                 }
                                 else
-                                {
+                                {   
+                                    announcer.color= Color.red;
                                     announcer.text = " ﯽﺘﺧﺎﺑ ﺍﺭ ﺶﻟﺎﭼ ";
                                     yield return new WaitForSeconds(2);
+                                    announcer.text = "";
+                                    announcer.color=Color.black;
                                     losingy();
                                     yield return new WaitUntil(() => losingClick == true);
                                     losingClick = false;
@@ -5266,7 +5314,9 @@ endgame--;
                                 }
                             }
                             else
-                            {
+                            {   
+                                announcer.text = " ﺩﺮﮐ ﻝﻮﺒﻗ " + name_script.cpu3Name;
+                                yield return new WaitForSeconds(1.5f);
                                 //done
                             }
                         }
@@ -5471,7 +5521,7 @@ endgame--;
                 permision = false;
 
             //testing
-            
+           
             
             //
 
@@ -11065,6 +11115,7 @@ print("select : " + select);
             {
                 politicCircle[1].SetActive(true);
             }
+
             if (WhoSolh == 3)
             {
                 politicCircle[2].SetActive(false);

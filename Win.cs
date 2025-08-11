@@ -18,7 +18,7 @@ public class Win : MonoBehaviour
 
     void Point()
     {
-        Time.timeScale = 0;
+        
         print("yesssssss!");
         if (game_script.Me.Alive)
         {  // win
@@ -67,6 +67,6 @@ public class Win : MonoBehaviour
         int playTimes = PlayerPrefs.GetInt("PlayTimes");
         playTimes++;
         PlayerPrefs.SetInt("PlayTimes",playTimes);
-        
+        Time.timeScale = 0;
     }
 }
