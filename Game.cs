@@ -692,7 +692,7 @@ public class Game : MonoBehaviour
         MeIconCheck();
 
         //testing
-        Me.Alive = false;
+        
         //
 
 
@@ -1185,19 +1185,31 @@ public class Game : MonoBehaviour
                 }
                 else if (whichAction == "attack")
                 {
-                    StartCoroutine(Attack());
+                    if((!cpu1.Alive && ! cpu2.Alive && WhoSolh == 3) || (!cpu1.Alive && ! cpu3.Alive && WhoSolh == 2) || (!cpu3.Alive && ! cpu2.Alive && WhoSolh == 1))
+                    {
+                    
+                    }else{
+                    StartCoroutine(Attack()); 
                     cClicked = false;
                     yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    cClicked = false;   
+                    }     
+                    
                 }
                 else if (whichAction == "uniqe4")
                     StartCoroutine(uniqe4y());
                 else if (whichAction == "uniqe5")
-                {
+                {  
+                    if((!cpu1.Alive && ! cpu2.Alive && WhoSolh == 3) || (!cpu1.Alive && ! cpu3.Alive && WhoSolh == 2) || (!cpu3.Alive && ! cpu2.Alive && WhoSolh == 1))
+                    {
+                    
+                    }else{
                     StartCoroutine(uniqe5y());
                     cClicked = false;
                     yield return new WaitUntil(() => cClicked == true);
-                    cClicked = false;
+                    cClicked = false;   
+                    }
+
                 }
                     
 
@@ -5755,17 +5767,30 @@ endgame--;
                         }
                         else if (whichAction == "attack")
                         {
+                            if((!cpu2.Alive && !cpu3.Alive && WhoSolh == 0)){
+
+                            }else{
                             StartCoroutine(RobAttack());
+                            cClicked = false;
                             yield return new WaitUntil(() => cClicked == true);
                             cClicked = false;
+                            }
+                            
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
-                        {
-                            StartCoroutine(Robuniqe5());
-                             yield return new WaitUntil(() => cClicked == true);
-                             cClicked = false;
+                        {   
+
+                        if((!cpu2.Alive && !cpu3.Alive && WhoSolh == 0)){
+
+                        }else{
+                        StartCoroutine(Robuniqe5());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false;
+                        }
+                            
                         }
                            
 
@@ -6012,18 +6037,32 @@ endgame--;
                             StartCoroutine(ertebatat());
                         }
                         else if (whichAction == "attack")
-                        {
+                        {   
+                            if((!cpu2.Alive && !cpu3.Alive && WhoSolh == 0))
+                            {
+
+                            }else{
                             StartCoroutine(RobAttack());
+                            cClicked = false;
                             yield return new WaitUntil(() => cClicked == true);
                             cClicked = false;
+                            }
+                            
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
-                        {
+                        {   
+                            if((!cpu2.Alive && !cpu3.Alive && WhoSolh == 0))
+                            {
+
+                            }else{
                             StartCoroutine(Robuniqe5());
+                            cClicked = false;
                             yield return new WaitUntil(() => cClicked == true);
                             cClicked = false;
+                            }
+                            
                         }
                             
 
@@ -6188,18 +6227,30 @@ endgame--;
                             StartCoroutine(ertebatat());
                         }
                         else if (whichAction == "attack")
-                        {
-                            StartCoroutine(RobAttack());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        {  
+                        if(!cpu2.Alive&&!cpu3.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(RobAttack());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
+                            
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
-                        {
-                            StartCoroutine(Robuniqe5());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        {   
+                            if(!cpu2.Alive&&!cpu3.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(Robuniqe5());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
+                            
                         }
                            
 
@@ -6660,18 +6711,29 @@ endgame--;
                             StartCoroutine(ertebatat());
                         }   
                         else if (whichAction == "attack")
-                        {
-                            StartCoroutine(RobAttack());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        {   
+                        if(!cpu1.Alive&&!cpu3.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(RobAttack());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
+                           
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
                         {
-                            StartCoroutine(Robuniqe5());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        if(!cpu1.Alive&&!cpu3.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(Robuniqe5());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
                         }
                            
 
@@ -6832,18 +6894,27 @@ endgame--;
                             StartCoroutine(ertebatat());
                         }
                         else if (whichAction == "attack")
-                        {
-                            StartCoroutine(RobAttack());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        {   if(!cpu1.Alive&&!cpu3.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(RobAttack());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
-                        {
-                            StartCoroutine(Robuniqe5());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        {   
+                            if(!cpu1.Alive&&!cpu3.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(Robuniqe5());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
                         }
                            
 
@@ -7091,17 +7162,29 @@ announcer.text = "";
                         }
                         else if (whichAction == "attack")
                         {
-                            StartCoroutine(RobAttack());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                            if(!cpu1.Alive&&!cpu3.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(RobAttack());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
                         {
-                            StartCoroutine(Robuniqe5());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+
+                        if(!cpu1.Alive&&!cpu3.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(Robuniqe5());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
+
                         }
                             
 
@@ -7485,17 +7568,28 @@ announcer.text = "";
                         }
                         else if (whichAction == "attack")
                         {
-                            StartCoroutine(RobAttack());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        if(!cpu1.Alive&&!cpu2.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(RobAttack());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
+
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
                         {
-                            StartCoroutine(Robuniqe5());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        if(!cpu1.Alive&&!cpu2.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(Robuniqe5());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
                         }
                             
 
@@ -7737,17 +7831,27 @@ announcer.text = "";
                         }
                         else if (whichAction == "attack")
                         {
-                            StartCoroutine(RobAttack());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        if(!cpu1.Alive&&!cpu2.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(RobAttack());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
                         {
-                            StartCoroutine(Robuniqe5());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        if(!cpu1.Alive&&!cpu2.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(Robuniqe5());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
                         }
                             
 
@@ -7991,17 +8095,27 @@ announcer.text = "";
                         }
                         else if (whichAction == "attack")
                         {
-                            StartCoroutine(RobAttack());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        if(!cpu1.Alive&&!cpu2.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(RobAttack());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
                         }
                         else if (whichAction == "uniqe4")
                             StartCoroutine(uniqe4y());
                         else if (whichAction == "uniqe5")
                         {
-                            StartCoroutine(Robuniqe5());
-                            yield return new WaitUntil(() => cClicked == true);
-                            cClicked = false;
+                        if(!cpu1.Alive&&!cpu2.Alive&&WhoSolh == 0){
+
+                        }else{
+                        StartCoroutine(Robuniqe5());
+                        cClicked = false;
+                        yield return new WaitUntil(() => cClicked == true);
+                        cClicked = false; 
+                        }
                         }
                             
 

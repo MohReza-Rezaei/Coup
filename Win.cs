@@ -20,8 +20,11 @@ public class Win : MonoBehaviour
     {
         
         print("yesssssss!");
+       
+
         if (game_script.Me.Alive)
         {  // win
+            
             Ribbon[0].SetActive(true);
             Ribbon[1].SetActive(true);
             title.text = "ﻥﺎﻣﺮﻬﻗ";
