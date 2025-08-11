@@ -485,6 +485,7 @@ public class Game : MonoBehaviour
                 }
             }
             printLost();
+            AllCheckAlive();
         }
         else if (num == 2)
         {
@@ -500,6 +501,7 @@ public class Game : MonoBehaviour
                 }
             }
             printLost();
+            AllCheckAlive();
         }
         losingClick = true;   
     }
@@ -533,6 +535,12 @@ public class Game : MonoBehaviour
 
         if (cpu3.card1 == -1 && cpu3.card2 == -1)
             cpu3.Alive = false;
+
+        if(!Me.Alive || (!cpu1.Alive && !cpu2.Alive && !cpu3.Alive)){
+        Done = true;
+        announcer.SetActive(false);
+        endgame = 0;
+        }
     }
 
     void next()
@@ -654,6 +662,10 @@ public class Game : MonoBehaviour
         {
             yield return new WaitUntil(() => Done == true);
             Done = false;
+
+            if(endgame ==0 || !Me.Alive)
+            break;
+
         //    yield return new WaitForSeconds(2f);
             if (myturn)
             {
@@ -1068,6 +1080,7 @@ public class Game : MonoBehaviour
                         }
                     }
                     printLost();
+                    AllCheckAlive();
                     yield return new WaitForSeconds(2);
 
                 }
@@ -1158,6 +1171,7 @@ public class Game : MonoBehaviour
                         }
                     }
                     printLost();
+                    AllCheckAlive();
                     yield return new WaitForSeconds(2);
                 }
 
@@ -1356,6 +1370,7 @@ public class Game : MonoBehaviour
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
                       endgame--;
@@ -1440,6 +1455,7 @@ public class Game : MonoBehaviour
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -1494,6 +1510,7 @@ public class Game : MonoBehaviour
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -1576,6 +1593,7 @@ public class Game : MonoBehaviour
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
                      endgame--;
                     }
@@ -1668,6 +1686,7 @@ public class Game : MonoBehaviour
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
                      endgame--;
@@ -1749,6 +1768,7 @@ public class Game : MonoBehaviour
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -1802,6 +1822,7 @@ public class Game : MonoBehaviour
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -1889,6 +1910,7 @@ public class Game : MonoBehaviour
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
                       endgame--;
                     }
@@ -1984,6 +2006,7 @@ public class Game : MonoBehaviour
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
 
                             endgame--;
@@ -2136,6 +2159,7 @@ public class Game : MonoBehaviour
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
                    endgame--;
@@ -2217,6 +2241,7 @@ public class Game : MonoBehaviour
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -2270,6 +2295,7 @@ public class Game : MonoBehaviour
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                             }
@@ -2358,6 +2384,7 @@ public class Game : MonoBehaviour
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 endgame--;
                     }
@@ -2449,6 +2476,7 @@ endgame--;
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
 endgame--;
@@ -2530,6 +2558,7 @@ endgame--;
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -2583,6 +2612,7 @@ endgame--;
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                             }
@@ -2671,6 +2701,7 @@ endgame--;
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 endgame--;
                     }
@@ -2762,6 +2793,7 @@ endgame--;
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
 
                             endgame--;
@@ -2914,6 +2946,7 @@ endgame--;
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
 endgame--;
@@ -2995,6 +3028,7 @@ endgame--;
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                             }
@@ -3048,6 +3082,7 @@ endgame--;
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                             }
@@ -3133,6 +3168,7 @@ cpu1.Alive = false;
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 endgame--;
                     }
@@ -3224,6 +3260,7 @@ endgame--;
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
 endgame--;
@@ -3305,6 +3342,7 @@ endgame--;
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                             }
@@ -3358,6 +3396,7 @@ endgame--;
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                             }
@@ -3445,6 +3484,7 @@ cpu2.Alive = false;
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 endgame--;
                     }
@@ -3536,6 +3576,7 @@ endgame--;
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
 
                             endgame--;
@@ -3689,6 +3730,7 @@ endgame--;
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -3782,6 +3824,7 @@ endgame--;
                                         }
                                     }
                                     printLost();
+                                    AllCheckAlive();
                                     yield return new WaitForSeconds(2);
 
                                     if (cpu2.coin >= 2)
@@ -3902,6 +3945,7 @@ endgame--;
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -3994,6 +4038,7 @@ endgame--;
                                         }
                                     }
                                     printLost();
+                                    AllCheckAlive();
                                     yield return new WaitForSeconds(2);
 
                                     if (cpu3.coin >= 2)
@@ -4123,6 +4168,7 @@ endgame--;
                                         }
                                     }
                                     printLost();
+                                    AllCheckAlive();
                                     yield return new WaitForSeconds(2);
                                     endgame--;
                                 }
@@ -4273,6 +4319,7 @@ endgame--;
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -4365,6 +4412,7 @@ endgame--;
                                         }
                                     }
                                     printLost();
+                                    AllCheckAlive();
                                     yield return new WaitForSeconds(2);
 
                                     if (cpu1.coin >= 2)
@@ -4485,6 +4533,7 @@ endgame--;
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -4577,6 +4626,7 @@ endgame--;
                                         }
                                     }
                                     printLost();
+                                    AllCheckAlive();
                                     yield return new WaitForSeconds(2);
 
                                     if (cpu3.coin >= 2)
@@ -4704,6 +4754,7 @@ endgame--;
                                         }
                                     }
                                     printLost();
+                                    AllCheckAlive();
                                     yield return new WaitForSeconds(2);
                                     endgame--;
                                 }
@@ -4851,6 +4902,7 @@ endgame--;
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -4943,6 +4995,7 @@ endgame--;
                                         }
                                     }
                                     printLost();
+                                    AllCheckAlive();
                                     yield return new WaitForSeconds(2);
 
                                     if (cpu1.coin >= 2)
@@ -5064,6 +5117,7 @@ endgame--;
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                                 endgame--;
                             }
@@ -5157,6 +5211,7 @@ endgame--;
                                         }
                                     }
                                     printLost();
+                                    AllCheckAlive();
                                     yield return new WaitForSeconds(2);
 
                                     if (cpu2.coin >= 2)
@@ -5285,6 +5340,7 @@ endgame--;
                                         }
                                     }
                                     printLost();
+                                    AllCheckAlive();
                                     yield return new WaitForSeconds(2);
                                     endgame--;
                                 }
@@ -5689,6 +5745,7 @@ endgame--;
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                         if (whichAction == "mali")
@@ -5804,6 +5861,7 @@ endgame--;
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                     }
@@ -5945,6 +6003,7 @@ endgame--;
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                         if (whichAction == "mali")
@@ -6060,6 +6119,7 @@ endgame--;
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                     }
@@ -6235,6 +6295,7 @@ endgame--;
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
                         endgame--;
                     }
@@ -6590,6 +6651,7 @@ endgame--;
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                         if (whichAction == "mali")
@@ -6705,6 +6767,7 @@ endgame--;
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                     }
@@ -6877,6 +6940,7 @@ endgame--;
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
                     endgame--;
                     }
@@ -7017,6 +7081,7 @@ announcer.text = "";
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                         if (whichAction == "mali")
@@ -7132,6 +7197,7 @@ announcer.text = "";
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                     }
@@ -7525,6 +7591,7 @@ announcer.text = "";
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
                      endgame--;
                     }
@@ -7660,6 +7727,7 @@ announcer.text = "";
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                         if (whichAction == "mali")
@@ -7775,6 +7843,7 @@ announcer.text = "";
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                     }
@@ -7912,6 +7981,7 @@ announcer.text = "";
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                         if (whichAction == "mali")
@@ -8027,6 +8097,7 @@ announcer.text = "";
                         }
 
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(3);
 
                     }
@@ -8284,6 +8355,7 @@ announcer.text = "";
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
                     }
@@ -8339,6 +8411,7 @@ announcer.text = "";
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
                     }
                     endgame--;
@@ -8413,6 +8486,7 @@ announcer.text = "";
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
                     }
@@ -8467,6 +8541,7 @@ announcer.text = "";
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
                     }
                     endgame--;
@@ -8706,6 +8781,7 @@ announcer.text = "";
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
                     }
@@ -8761,6 +8837,7 @@ announcer.text = "";
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
                     }
                     endgame--;
@@ -8835,6 +8912,7 @@ announcer.text = "";
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
                     }
@@ -8889,6 +8967,7 @@ announcer.text = "";
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
                     }
                     endgame--;
@@ -9126,6 +9205,7 @@ yield return new WaitForSeconds(1);
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
                     }
@@ -9181,6 +9261,7 @@ yield return new WaitForSeconds(1);
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
                     }
                     endgame--;
@@ -9255,6 +9336,7 @@ yield return new WaitForSeconds(1);
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
 
                     }
@@ -9309,6 +9391,7 @@ yield return new WaitForSeconds(1);
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                         yield return new WaitForSeconds(2);
                     }
                     endgame--;
@@ -9325,7 +9408,7 @@ yield return new WaitForSeconds(1);
 
     public void selectCoup(int who)
     {
-        cClicked = true;
+        missionWait = true;
         whoCoup = who;
     }
 
@@ -9357,8 +9440,8 @@ yield return new WaitForSeconds(1);
 
             coupCanvas.SetActive(true);
 
-            yield return new WaitUntil(() => cClicked == true);
-            cClicked = false;
+            yield return new WaitUntil(() => missionWait == true);
+            missionWait = false;
         }
 
         if (whoCoup == 1)
@@ -9447,10 +9530,11 @@ yield return new WaitForSeconds(1);
                     }
                 }
 
-                cpu2cards[0].SetActive(false);
+                cpu1cards[0].SetActive(false);
             }
 
             printLost();
+            AllCheckAlive();
             yield return new WaitForSeconds(3);
 
         }
@@ -9542,6 +9626,7 @@ yield return new WaitForSeconds(1);
             }
 
             printLost();
+            AllCheckAlive();
             yield return new WaitForSeconds(3);
         }
         else if (whoCoup == 3)
@@ -9632,6 +9717,7 @@ yield return new WaitForSeconds(1);
             }
 
             printLost();
+            AllCheckAlive();
             yield return new WaitForSeconds(3);
         }
         else if (whoCoup == 0)
@@ -10376,6 +10462,7 @@ print("select : " + select);
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                         }
@@ -10420,6 +10507,7 @@ print("select : " + select);
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                         }
@@ -10481,7 +10569,7 @@ print("select : " + select);
                             }
                         }
                         printLost();
-
+                        AllCheckAlive();
                     }
                     else
                     {
@@ -10524,6 +10612,7 @@ print("select : " + select);
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                     }
                     yield return new WaitForSeconds(2);
                     endgame--;
@@ -10626,6 +10715,7 @@ print("select : " + select);
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                         }
@@ -10670,6 +10760,7 @@ print("select : " + select);
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                         }
@@ -10731,7 +10822,7 @@ print("select : " + select);
                             }
                         }
                         printLost();
-
+                        AllCheckAlive();
                     }
                     else
                     {
@@ -10774,6 +10865,7 @@ print("select : " + select);
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                     }
                     yield return new WaitForSeconds(2);
                     endgame--;
@@ -10877,6 +10969,7 @@ print("select : " + select);
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                         }
@@ -10921,6 +11014,7 @@ print("select : " + select);
                                 }
                             }
                             printLost();
+                            AllCheckAlive();
                             yield return new WaitForSeconds(2);
                             endgame--;
                         }
@@ -10982,7 +11076,7 @@ print("select : " + select);
                             }
                         }
                         printLost();
-
+                        AllCheckAlive();
                     }
                     else
                     {
@@ -11025,6 +11119,7 @@ print("select : " + select);
                             }
                         }
                         printLost();
+                        AllCheckAlive();
                     }
                     yield return new WaitForSeconds(2);
                     endgame--;
@@ -11251,6 +11346,7 @@ print("select : " + select);
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                             }
                             else if (ran2 == 2)
@@ -11294,6 +11390,7 @@ print("select : " + select);
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                             }
 
@@ -11439,6 +11536,7 @@ print("select : " + select);
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                             }
                             else if (ran2 == 2)
@@ -11482,6 +11580,7 @@ print("select : " + select);
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                             }
 
@@ -11627,6 +11726,7 @@ print("select : " + select);
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                             }
                             else if (ran2 == 2)
@@ -11669,6 +11769,7 @@ print("select : " + select);
                                     }
                                 }
                                 printLost();
+                                AllCheckAlive();
                                 yield return new WaitForSeconds(2);
                             }
 
