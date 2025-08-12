@@ -29,6 +29,7 @@ public class Game : MonoBehaviour
     public GameObject pannel, coupOff, coupCanvas , siasatOff;
     public GameObject[] coupCircle = new GameObject[3];
     public GameObject[] losingCircle = new GameObject[2];
+    public GameObject[] ConstRolesIcon = new GameObject[5];
     public GameObject[] edea = new GameObject[3];
     public GameObject lostSection , End_section;
     string mali = "banker", ertebat = "director", attack = "cherik", uniqe4 = "solh", uniqe5 = "siasat";
@@ -135,6 +136,29 @@ public class Game : MonoBehaviour
             }
         }
 
+    }
+
+    void RoleMenuIconCheck()
+    {
+        // mali
+        if (mali == "banker")
+            ConstRolesIcon[0].GetComponent<Image>().sprite = Logo[0];
+
+        // ertebat
+        if (ertebat == "director")
+            ConstRolesIcon[1].GetComponent<Image>().sprite = Logo[1];
+
+        // attack
+        if (attack == "cherik")
+            ConstRolesIcon[2].GetComponent<Image>().sprite = Logo[2];
+
+        // uniqe4
+        if (uniqe4 == "solh")
+            ConstRolesIcon[3].GetComponent<Image>().sprite = Logo[3];
+
+        // uniqe5
+        if (uniqe5 == "siasat")
+            ConstRolesIcon[4].GetComponent<Image>().sprite = Logo[4];        
     }
 
     void Meoffcheck()
@@ -690,7 +714,7 @@ public class Game : MonoBehaviour
     {
         ShuffleArray(numbers, true);
         MeIconCheck();
-
+        RoleMenuIconCheck();
         //testing
         
         //
