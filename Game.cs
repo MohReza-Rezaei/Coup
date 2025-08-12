@@ -549,16 +549,30 @@ public class Game : MonoBehaviour
     void AllCheckAlive()
     {
         if (Me.card1 == -1 && Me.card2 == -1)
+        {
             Me.Alive = false;
+            cointxt[0].text = "0";
+        }
 
         if (cpu1.card1 == -1 && cpu1.card2 == -1)
+        {
             cpu1.Alive = false;
+            cointxt[1].text = "0";
+        }
 
         if (cpu2.card1 == -1 && cpu2.card2 == -1)
+        {
             cpu2.Alive = false;
+            cointxt[2].text = "0";
+        }
+
 
         if (cpu3.card1 == -1 && cpu3.card2 == -1)
+        {
             cpu3.Alive = false;
+            cointxt[3].text = "0";
+        }
+            
 
         if(!Me.Alive || (!cpu1.Alive && !cpu2.Alive && !cpu3.Alive)){
         Done = true;
