@@ -38,11 +38,24 @@ public class Win : MonoBehaviour
             win++;
             PlayerPrefs.SetInt("Win", win);
 
-            coinText.text = "+ 100";
-            int coin = PlayerPrefs.GetInt("Coin");
-            coin += 100;
-            PlayerPrefs.SetInt("Coin", coin);
-            // win coin code
+            if (PlayerPrefs.GetInt("CoinPotionInUse") != 1)
+            {
+                coinText.text = "+ 200";
+                int coin = PlayerPrefs.GetInt("Coin");
+                coin += 200;
+                PlayerPrefs.SetInt("Coin", coin);
+            }
+            else
+            {
+                // coin potion
+                
+                coinText.text = "+ 400";
+                int coin = PlayerPrefs.GetInt("Coin");
+                coin += 400;
+                PlayerPrefs.SetInt("Coin", coin);
+            }
+            
+        
 
             int TheHighestTrophy = PlayerPrefs.GetInt("TrophyMax");
             if (trophy > TheHighestTrophy)

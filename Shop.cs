@@ -7,15 +7,25 @@ public class Shop : MonoBehaviour
 {
     int coin;
     int diamond;
+    // pic
     public int[] pic = new int[7];
     public Button[] picbut;
     public Text[] pictxt;
     public Image[] profilePic = new Image[2];
     public Sprite[] profileList = new Sprite[7];
+
+    /// potion
+
+    public Button coin_potion_btn;
+    public Text coin_potion_text;
+    public Color coin_potion_color;
+    public Text coin_potion_status_text;
+    public GameObject coin_potion_off;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
         pic[0] = PlayerPrefs.GetInt("pic1");
         pic[1] = PlayerPrefs.GetInt("pic2");
         pic[2] = PlayerPrefs.GetInt("pic3");
@@ -34,7 +44,8 @@ public class Shop : MonoBehaviour
             {
                 picbut[i].GetComponent<Image>().color = Color.yellow;
                 pictxt[i].text = "ﺏﺎﺨﺘﻧﺍ";
-            }else if (pic[i] == 2)
+            }
+            else if (pic[i] == 2)
             {
                 picbut[i].GetComponent<Image>().color = Color.green;
                 pictxt[i].text = "ﺪﺷ ﺏﺎﺨﺘﻧﺍ";
@@ -73,7 +84,36 @@ public class Shop : MonoBehaviour
             profilePic[0].sprite = profileList[x];
             profilePic[1].sprite = profileList[x];
         }
-        
 
+
+    }
+
+    public void CoinPotion()
+    {
+        StartCoroutine(CoinPotiony());
+    }
+
+    IEnumerator CoinPotiony()
+    {
+        int coinpotion = PlayerPrefs.GetInt("CoinPotion");
+        coinpotion++;
+        coin_potion_status_text.text = coinpotion.ToString();
+        PlayerPrefs.SetInt("CoinPotion", coinpotion);
+        coin_potion_btn.GetComponent<Image>().color = Color.green;
+        coin_potion_text.text = " +1 ";
+        yield return new WaitForSeconds(2);
+        coin_potion_btn.GetComponent<Image>().color = coin_potion_color;
+        coin_potion_text.text = " ﺪﯾﺮﺧ ";
+    }
+
+    public void UseCoinPotion()
+    {
+        coin_potion_off.SetActive(true);
+        int coinPotion = PlayerPrefs.GetInt("CoinPotion");
+        coinPotion--;
+        PlayerPrefs.SetInt("CoinPotion", coinPotion);
+        coin_potion_status_text.text = coinPotion.ToString();
+        PlayerPrefs.SetInt("CoinPotionTime", System.DateTime.Now.Day);
+        PlayerPrefs.SetInt("CoinPotionInUse", 1);
     }
 }

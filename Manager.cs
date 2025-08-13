@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
-    public Text trophyTxt , score , nickName , winTxt , loseTxt , NumberPlayTxt , MostTrophyTxt , NumberCardTxt , leageTxt;
+    public Text trophyTxt , score , nickName , winTxt , loseTxt , NumberPlayTxt , MostTrophyTxt , NumberCardTxt , leageTxt , coinPotion;
     public Text[] Name = new Text[2];
     public TextMeshProUGUI cointxt, diamondtxt;
     public Slider MusicMenuSlide;
@@ -16,11 +16,13 @@ public class Manager : MonoBehaviour
     int diamond;
       public Image profilePic;
       public Sprite[] profileList = new Sprite[7];
+      public GameObject CoinPotionOff;
       // Start is called before the first frame update
       void Start()
       {
             Name[0].text = PlayerPrefs.GetString("NAME");
             Name[1].text = PlayerPrefs.GetString("NAME");
+            coinPotion.text = PlayerPrefs.GetInt("CoinPotion").ToString();
             coin = PlayerPrefs.GetInt("Coin");
             cointxt.text = coin.ToString();
             diamond = PlayerPrefs.GetInt("Diamond");
@@ -95,6 +97,29 @@ public class Manager : MonoBehaviour
                         break;
                   }
             }
+
+            // coin Potion Check
+            int coinpotion_have = PlayerPrefs.GetInt("CoinPotionInUse");
+            if (coinpotion_have == 1)
+            {
+                  int coinpotion_time = PlayerPrefs.GetInt("CoinPotionTime");
+                  int now = System.DateTime.Now.Day;
+
+                  if ((now == 1 || now == 2) && (coinpotion_time != 1 || coinpotion_time != 2))
+                        now += 30;
+
+                  if (now >= coinpotion_time + 2)
+                  {
+                        PlayerPrefs.SetInt("CoinPotionTime", 0);
+                        PlayerPrefs.SetInt("CoinPotionInUse", 0);
+                        CoinPotionOff.SetActive(false);
+                  }
+                  else
+                  {
+                        CoinPotionOff.SetActive(true);
+                  }
+            }
+
     }
 
     // Update is called once per frame
