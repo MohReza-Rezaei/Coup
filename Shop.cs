@@ -25,6 +25,7 @@ public class Shop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        diamond = PlayerPrefs.GetInt("Diamond");
 
         pic[0] = PlayerPrefs.GetInt("pic1");
         pic[1] = PlayerPrefs.GetInt("pic2");
@@ -90,7 +91,13 @@ public class Shop : MonoBehaviour
 
     public void CoinPotion()
     {
-        StartCoroutine(CoinPotiony());
+        if (diamond >= 7)
+        {
+            StartCoroutine(CoinPotiony());
+            diamond -= 7;
+            // diamond text neveshte she    
+        }
+        
     }
 
     IEnumerator CoinPotiony()
