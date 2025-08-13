@@ -10,7 +10,7 @@ public class Shop : MonoBehaviour
     public int[] pic = new int[7];
     public Button[] picbut;
     public Text[] pictxt;
-    public Image profilePic;
+    public Image[] profilePic = new Image[2];
     public Sprite[] profileList = new Sprite[7];
     // Start is called before the first frame update
     void Start()
@@ -70,7 +70,8 @@ public class Shop : MonoBehaviour
             picbut[x].GetComponent<Image>().color = Color.green;
             pictxt[x].text = "ﺪﺷ ﺏﺎﺨﺘﻧﺍ";
             PlayerPrefs.SetInt("pic" + (x + 1), pic[x]);
-            profilePic.sprite = profileList[x];
+            profilePic[0].sprite = profileList[x];
+            profilePic[1].sprite = profileList[x];
         }
         
 

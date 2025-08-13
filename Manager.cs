@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
-    public Text Name, trophyTxt , score , nickName , winTxt , loseTxt , NumberPlayTxt , MostTrophyTxt , NumberCardTxt , leageTxt;
-    public TextMeshProUGUI cointxt , diamondtxt ;
+    public Text trophyTxt , score , nickName , winTxt , loseTxt , NumberPlayTxt , MostTrophyTxt , NumberCardTxt , leageTxt;
+    public Text[] Name = new Text[2];
+    public TextMeshProUGUI cointxt, diamondtxt;
     public Slider MusicMenuSlide;
     public GameObject MusicMenu;
     int coin;
@@ -18,7 +19,8 @@ public class Manager : MonoBehaviour
       // Start is called before the first frame update
       void Start()
       {
-            Name.text = PlayerPrefs.GetString("NAME");
+            Name[0].text = PlayerPrefs.GetString("NAME");
+            Name[1].text = PlayerPrefs.GetString("NAME");
             coin = PlayerPrefs.GetInt("Coin");
             cointxt.text = coin.ToString();
             diamond = PlayerPrefs.GetInt("Diamond");
