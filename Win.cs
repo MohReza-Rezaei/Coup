@@ -65,7 +65,7 @@ public class Win : MonoBehaviour
 
             int lose = PlayerPrefs.GetInt("Lose");
             lose++;
-            PlayerPrefs.SetInt("lose", lose);
+            PlayerPrefs.SetInt("Lose", lose);
 
             coinText.text = "0";
         }

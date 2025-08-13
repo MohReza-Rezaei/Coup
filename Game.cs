@@ -749,7 +749,7 @@ public class Game : MonoBehaviour
         MeIconCheck();
         RoleMenuIconCheck();
         //testing
-        
+        Me.Alive = false;
         //
 
 
