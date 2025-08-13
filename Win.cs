@@ -39,11 +39,14 @@ public class Win : MonoBehaviour
             PlayerPrefs.SetInt("Win", win);
 
             coinText.text = "+ 100";
+            int coin = PlayerPrefs.GetInt("Coin");
+            coin += 100;
+            PlayerPrefs.SetInt("Coin", coin);
             // win coin code
 
-            int TheHighestTrophy = PlayerPrefs.GetInt("HighestTrophy");
+            int TheHighestTrophy = PlayerPrefs.GetInt("TrophyMax");
             if (trophy > TheHighestTrophy)
-                PlayerPrefs.SetInt("HighestTrophy", trophy);
+                PlayerPrefs.SetInt("TrophyMax", trophy);
 
         }
         else
@@ -67,9 +70,9 @@ public class Win : MonoBehaviour
             coinText.text = "0";
         }
 
-        int playTimes = PlayerPrefs.GetInt("PlayTimes");
+        int playTimes = PlayerPrefs.GetInt("Play");
         playTimes++;
-        PlayerPrefs.SetInt("PlayTimes",playTimes);
+        PlayerPrefs.SetInt("Play",playTimes);
         Time.timeScale = 0;
     }
 }
