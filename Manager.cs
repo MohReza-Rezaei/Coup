@@ -16,7 +16,7 @@ public class Manager : MonoBehaviour
     int diamond;
       public Image profilePic;
       public Sprite[] profileList = new Sprite[7];
-      public GameObject CoinPotionOff;
+      public GameObject CoinPotionOff , LVLPotionOff;
       // Start is called before the first frame update
       void Start()
       {
@@ -119,7 +119,27 @@ public class Manager : MonoBehaviour
                         CoinPotionOff.SetActive(true);
                   }
             }
+            // lvl potion check
+            int LVLPotion_have = PlayerPrefs.GetInt("LVLPotionInUse");
+            if (LVLPotion_have == 1)
+            {
+                  int LVLPotion_time = PlayerPrefs.GetInt("LVLPotionTime");
+                  int now = System.DateTime.Now.Day;
 
+                  if ((now == 1 || now == 2) && (LVLPotion_time != 1 || LVLPotion_time != 2))
+                        now += 30;
+
+                  if (now >= LVLPotion_time + 2)
+                  {
+                        PlayerPrefs.SetInt("LVLPotionTime", 0);
+                        PlayerPrefs.SetInt("LVLPotionInUse", 0);
+                        LVLPotionOff.SetActive(false);
+                  }
+                  else
+                  {
+                        LVLPotionOff.SetActive(true);
+                  }
+            }
     }
 
     // Update is called once per frame
