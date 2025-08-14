@@ -14,13 +14,27 @@ public class Shop : MonoBehaviour
     public Image[] profilePic = new Image[2];
     public Sprite[] profileList = new Sprite[7];
 
-    /// potion
+    ///coin potion
 
     public Button coin_potion_btn;
     public Text coin_potion_text;
     public Color coin_potion_color;
     public Text coin_potion_status_text;
     public GameObject coin_potion_off;
+
+    //lvl potion
+
+    public Button lvl_potion_btn;
+    public Text lvl_potion_text;
+    public Text lvl_potion_status_text;
+    public GameObject lvl_potion_off;
+
+    //operator potion
+
+    public Button Operator_potion_btn;
+    public Text Operator_potion_text;
+    public Text Operator_potion_status_text;
+    public GameObject Operator_potion_off;
 
     // Start is called before the first frame update
     void Start()
@@ -95,9 +109,10 @@ public class Shop : MonoBehaviour
         {
             StartCoroutine(CoinPotiony());
             diamond -= 7;
+            PlayerPrefs.SetInt("Diamond", diamond);
             // diamond text neveshte she    
         }
-        
+
     }
 
     IEnumerator CoinPotiony()
@@ -122,5 +137,80 @@ public class Shop : MonoBehaviour
         coin_potion_status_text.text = coinPotion.ToString();
         PlayerPrefs.SetInt("CoinPotionTime", System.DateTime.Now.Day);
         PlayerPrefs.SetInt("CoinPotionInUse", 1);
+    }
+
+
+    ///////////////////////////////////////////////////////
+    public void LVLPotion()
+    {
+          if (diamond >= 3)
+         {
+        StartCoroutine(LVLPotiony());
+           diamond -= 3;
+        PlayerPrefs.SetInt("Diamond", diamond);
+        // diamond text neveshte she    
+        }
+
+    }
+
+    IEnumerator LVLPotiony()
+    {
+        int lvlPotion = PlayerPrefs.GetInt("LVLPotion");
+        lvlPotion++;
+        lvl_potion_status_text.text = lvlPotion.ToString();
+        PlayerPrefs.SetInt("LVLPotion", lvlPotion);
+        lvl_potion_btn.GetComponent<Image>().color = Color.green;
+        lvl_potion_text.text = " +1 ";
+        yield return new WaitForSeconds(2);
+        lvl_potion_btn.GetComponent<Image>().color = coin_potion_color;
+        lvl_potion_text.text = " ﺪﯾﺮﺧ ";
+    }
+
+    public void UseLVLPotion()
+    {
+        lvl_potion_off.SetActive(true);
+        int lvlpotion = PlayerPrefs.GetInt("LVLPotion");
+        lvlpotion--;
+        PlayerPrefs.SetInt("LVLPotion", lvlpotion);
+        lvl_potion_status_text.text = lvlpotion.ToString();
+        PlayerPrefs.SetInt("LVLPotionTime", System.DateTime.Now.Day);
+        PlayerPrefs.SetInt("LVLPotionInUse", 1);
+    }
+    
+    ///////////////////////////////////////////////////////
+    public void OperatorPotion()
+    {
+        if (diamond >= 3)
+        {
+            StartCoroutine(OperatorPotiony());
+            diamond -= 3;
+             PlayerPrefs.SetInt("Diamond", diamond);
+            // diamond text neveshte she    
+        }
+
+    }
+
+    IEnumerator OperatorPotiony()
+    {
+        int operatorPotion = PlayerPrefs.GetInt("OperatorPotion");
+        operatorPotion++;
+        Operator_potion_status_text.text = operatorPotion.ToString();
+        PlayerPrefs.SetInt("OperatorPotion", operatorPotion);
+        Operator_potion_btn.GetComponent<Image>().color = Color.green;
+        Operator_potion_text.text = " +1 ";
+        yield return new WaitForSeconds(2);
+        Operator_potion_btn.GetComponent<Image>().color = coin_potion_color;
+        Operator_potion_text.text = " ﺪﯾﺮﺧ ";
+    }
+
+    public void UseOperatorPotion()
+    {
+        Operator_potion_off.SetActive(true);
+        int operatorPotion = PlayerPrefs.GetInt("OperatorPotion");
+        operatorPotion--;
+        PlayerPrefs.SetInt("OperatorPotion", operatorPotion);
+        Operator_potion_status_text.text = operatorPotion.ToString();
+        PlayerPrefs.SetInt("OperatorPotionTime", System.DateTime.Now.Day);
+        PlayerPrefs.SetInt("OperatorPotionInUse", 1);
     }
 }

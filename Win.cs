@@ -10,6 +10,7 @@ public class Win : MonoBehaviour
     public Game game_script;
     public Text title ,  trophyText , coinText;
     public GameObject[] Ribbon = new GameObject[2];
+    public Color coinPotionColor , LvlPotionColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,18 @@ public class Win : MonoBehaviour
             title.text = "ﻥﺎﻣﺮﻬﻗ";
             int trophy = PlayerPrefs.GetInt("Trophy");
             int add = Random.Range(15, 25);
-            trophy += add;
+            if (PlayerPrefs.GetInt("LVLPotionInUse") != 1)
+            {
+                trophy += add;
+            }
+            else
+            {
+                // lvl up potion
+                add *= 2;
+                trophy += add;
+                trophyText.color = LvlPotionColor;
+            }
+            
             trophyText.text = "+ " + add;
             PlayerPrefs.SetInt("Trophy", trophy);
 
@@ -48,7 +60,7 @@ public class Win : MonoBehaviour
             else
             {
                 // coin potion
-                
+                coinText.color = coinPotionColor;
                 coinText.text = "+ 400";
                 int coin = PlayerPrefs.GetInt("Coin");
                 coin += 400;
