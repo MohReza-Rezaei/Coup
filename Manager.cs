@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Manager : MonoBehaviour
 {
     public Text trophyTxt , score , nickName , winTxt , loseTxt , NumberPlayTxt , MostTrophyTxt , NumberCardTxt , leageTxt , coinPotion;
+    public Text lvlPotion, operatorPotion, infinityPotion;
     public Text[] Name = new Text[2];
     public TextMeshProUGUI cointxt, diamondtxt;
     public Slider MusicMenuSlide;
@@ -16,13 +17,16 @@ public class Manager : MonoBehaviour
     int diamond;
       public Image profilePic;
       public Sprite[] profileList = new Sprite[7];
-      public GameObject CoinPotionOff , LVLPotionOff;
+      public GameObject CoinPotionOff, LVLPotionOff, infinityPotionOff;
       // Start is called before the first frame update
       void Start()
       {
             Name[0].text = PlayerPrefs.GetString("NAME");
             Name[1].text = PlayerPrefs.GetString("NAME");
             coinPotion.text = PlayerPrefs.GetInt("CoinPotion").ToString();
+            lvlPotion.text = PlayerPrefs.GetInt("LVLPotion").ToString();
+            operatorPotion.text = PlayerPrefs.GetInt("OperatorPotion").ToString();
+            infinityPotion.text = PlayerPrefs.GetInt("InfinityPotion").ToString();
             coin = PlayerPrefs.GetInt("Coin");
             cointxt.text = coin.ToString();
             diamond = PlayerPrefs.GetInt("Diamond");
@@ -138,6 +142,27 @@ public class Manager : MonoBehaviour
                   else
                   {
                         LVLPotionOff.SetActive(true);
+                  }
+            }
+            // infinity potion check
+            int infinity_have = PlayerPrefs.GetInt("InfinityPotionInUse");
+            if (infinity_have == 1)
+            {
+                  int infinity_time = PlayerPrefs.GetInt("InfinityPotionTime");
+                  int now = System.DateTime.Now.Day;
+
+                  if ((now == 1 || now == 2) && (infinity_have != 1 || infinity_have != 2))
+                        now += 30;
+
+                  if (now >= infinity_have + 1)
+                  {
+                        PlayerPrefs.SetInt("InfinityPotionTime", 0);
+                        PlayerPrefs.SetInt("InfinityPotionInUse", 0);
+                        infinityPotionOff.SetActive(false);
+                  }
+                  else
+                  {
+                        infinityPotionOff.SetActive(true);
                   }
             }
     }

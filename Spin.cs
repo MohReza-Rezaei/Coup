@@ -24,6 +24,12 @@ public class Spin : MonoBehaviour
     void Start()
     {
         lastDate = PlayerPrefs.GetInt("DAY");
+        
+        if (lastDate == System.DateTime.Now.Day)
+        {
+        off.SetActive(true);
+        }
+
         rbody = GetComponent<Rigidbody2D>();
         rotatePower = Random.Range(2500, 5001);
         stopPower = Random.Range(200, 501);

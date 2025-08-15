@@ -204,7 +204,9 @@ void Start()
     lastDate = System.DateTime.Now.Day;
     PlayerPrefs.SetInt("LastDate" , lastDate);
 
-    print("Reward1");
+   int coin = PlayerPrefs.GetInt("Coin");
+   coin += 400;
+   PlayerPrefs.SetInt("Coin",coin);
 
     Day_1 = 2;
     PlayerPrefs.SetInt("Day1",2);
@@ -216,7 +218,9 @@ void Start()
     lastDate = System.DateTime.Now.Day;
     PlayerPrefs.SetInt("LastDate" , lastDate);
 
-    print("Reward2");
+   int Diamond = PlayerPrefs.GetInt("Diamond");
+   Diamond += 3;
+   PlayerPrefs.SetInt("Diamond",Diamond);
 
     Day_2 = 2;
     PlayerPrefs.SetInt("Day2",2);
@@ -228,7 +232,9 @@ void Start()
     lastDate = System.DateTime.Now.Day;
     PlayerPrefs.SetInt("LastDate" , lastDate);
 
-    print("Reward3");
+    int lvlpotion = PlayerPrefs.GetInt("LVLPotion");
+    lvlpotion++;
+    PlayerPrefs.SetInt("LVLPotion", lvlpotion);
 
     Day_3 = 2;
     PlayerPrefs.SetInt("Day3",2);
@@ -240,7 +246,9 @@ void Start()
     lastDate = System.DateTime.Now.Day;
     PlayerPrefs.SetInt("LastDate" , lastDate);
 
-    print("Reward4");
+   int coin = PlayerPrefs.GetInt("Coin");
+   coin += 1000;
+   PlayerPrefs.SetInt("Coin",coin);
 
     Day_4 = 2;
     PlayerPrefs.SetInt("Day4",2);
@@ -252,7 +260,9 @@ void Start()
     lastDate = System.DateTime.Now.Day;
     PlayerPrefs.SetInt("LastDate" , lastDate);
 
-    print("Reward5");
+   int Diamond = PlayerPrefs.GetInt("Diamond");
+   Diamond += 5;
+   PlayerPrefs.SetInt("Diamond",Diamond);
 
     Day_5 = 2;
     PlayerPrefs.SetInt("Day5",2);
@@ -264,7 +274,9 @@ void Start()
     lastDate = System.DateTime.Now.Day;
     PlayerPrefs.SetInt("LastDate" , lastDate);
 
-    print("Reward6");
+   int coin = PlayerPrefs.GetInt("Coin");
+   coin += 500;
+   PlayerPrefs.SetInt("Coin",coin);
 
     Day_6 = 2;
     PlayerPrefs.SetInt("Day6",2);
@@ -276,7 +288,9 @@ void Start()
     lastDate = System.DateTime.Now.Day;
     PlayerPrefs.SetInt("LastDate" , lastDate);
 
-    print("Reward7");
+   int Diamond = PlayerPrefs.GetInt("Diamond");
+   Diamond += 10;
+   PlayerPrefs.SetInt("Diamond",Diamond);
 
     Day_7 = 2;
     PlayerPrefs.SetInt("Day7",2);

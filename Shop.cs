@@ -36,6 +36,13 @@ public class Shop : MonoBehaviour
     public Text Operator_potion_status_text;
     public GameObject Operator_potion_off;
 
+    //infinity potion
+
+    public Button Infinity_potion_btn;
+    public Text Infinity_potion_text;
+    public Text Infinity_potion_status_text;
+    public GameObject Infinity_potion_off;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -212,5 +219,41 @@ public class Shop : MonoBehaviour
         Operator_potion_status_text.text = operatorPotion.ToString();
         PlayerPrefs.SetInt("OperatorPotionTime", System.DateTime.Now.Day);
         PlayerPrefs.SetInt("OperatorPotionInUse", 1);
+    }
+    ///////////////////////////////////////////////////////
+    public void InfinityPotion()
+    {
+        if (diamond >= 15)
+        {
+            StartCoroutine(InfinityPotiony());
+            diamond -= 15;
+            PlayerPrefs.SetInt("Diamond", diamond);
+            // diamond text neveshte she    
+        }
+
+    }
+
+    IEnumerator InfinityPotiony()
+    {
+        int InfinityPotion = PlayerPrefs.GetInt("InfinityPotion");
+        InfinityPotion++;
+        Infinity_potion_status_text.text = InfinityPotion.ToString();
+        PlayerPrefs.SetInt("InfinityPotion", InfinityPotion);
+        Infinity_potion_btn.GetComponent<Image>().color = Color.green;
+        Operator_potion_text.text = " +1 ";
+        yield return new WaitForSeconds(2);
+        Infinity_potion_btn.GetComponent<Image>().color = coin_potion_color;
+        Infinity_potion_text.text = " ﺪﯾﺮﺧ ";
+    }
+
+    public void UseInfinityPotion()
+    {
+        Infinity_potion_off.SetActive(true);
+        int InfinityPotion = PlayerPrefs.GetInt("InfinityPotion");
+        InfinityPotion--;
+        PlayerPrefs.SetInt("InfinityPotion", InfinityPotion);
+        Infinity_potion_status_text.text = InfinityPotion.ToString();
+        PlayerPrefs.SetInt("InfinityPotionTime", System.DateTime.Now.Day);
+        PlayerPrefs.SetInt("InfinityPotionInUse", 1);
     }
 }
