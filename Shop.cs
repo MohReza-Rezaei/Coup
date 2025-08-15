@@ -7,6 +7,8 @@ public class Shop : MonoBehaviour
 {
     int coin;
     int diamond;
+
+    public Text Cointxt, Diamondtxt;
     // pic
     public int[] pic = new int[7];
     public Button[] picbut;
@@ -117,7 +119,7 @@ public class Shop : MonoBehaviour
             StartCoroutine(CoinPotiony());
             diamond -= 7;
             PlayerPrefs.SetInt("Diamond", diamond);
-            // diamond text neveshte she    
+            Diamondtxt.text = diamond.ToString();    
         }
 
     }
@@ -155,7 +157,7 @@ public class Shop : MonoBehaviour
         StartCoroutine(LVLPotiony());
            diamond -= 3;
         PlayerPrefs.SetInt("Diamond", diamond);
-        // diamond text neveshte she    
+        Diamondtxt.text = diamond.ToString();     
         }
 
     }
@@ -187,12 +189,12 @@ public class Shop : MonoBehaviour
     ///////////////////////////////////////////////////////
     public void OperatorPotion()
     {
-        if (diamond >= 3)
+        if (diamond >= 5)
         {
             StartCoroutine(OperatorPotiony());
-            diamond -= 3;
+            diamond -= 5;
              PlayerPrefs.SetInt("Diamond", diamond);
-            // diamond text neveshte she    
+           Diamondtxt.text = diamond.ToString();   
         }
 
     }
@@ -228,7 +230,7 @@ public class Shop : MonoBehaviour
             StartCoroutine(InfinityPotiony());
             diamond -= 15;
             PlayerPrefs.SetInt("Diamond", diamond);
-            // diamond text neveshte she    
+            Diamondtxt.text = diamond.ToString(); 
         }
 
     }
