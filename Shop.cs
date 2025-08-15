@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class Shop : MonoBehaviour
     int coin;
     int diamond;
 
-    public Text Cointxt, Diamondtxt;
+    public TextMeshProUGUI Cointxt, Diamondtxt;
     // pic
     public int[] pic = new int[7];
     public Button[] picbut;
