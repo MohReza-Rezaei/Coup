@@ -19,7 +19,7 @@ public class Load : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.DeleteAll();
+        
         check = PlayerPrefs.GetInt("check");
         if (check == 0)
         {
