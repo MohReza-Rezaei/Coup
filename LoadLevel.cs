@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class LoadLevel : MonoBehaviour
+{
+    public string lvlname = "Menu";
+
+    public void GetlvlName(string name)
+    {
+        lvlname = name;
+    }
+
+    public void Doload()
+    {
+        if (lvlname == "Game")
+        {
+            SceneManager.LoadScene("Game");
+        }
+        else if (lvlname == "Menu")
+        {
+             SceneManager.LoadScene("Menu");
+        }
+    }
+
+
+
+}

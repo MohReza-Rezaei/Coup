@@ -31,7 +31,7 @@ public class Game : MonoBehaviour
     public GameObject[] losingCircle = new GameObject[2];
     public GameObject[] ConstRolesIcon = new GameObject[10];
     public GameObject[] edea = new GameObject[3];
-    public GameObject lostSection , End_section;
+    public GameObject lostSection , End_section , pauseSection;
     string mali = "banker", ertebat = "director", attack = "cherik", uniqe4 = "solh", uniqe5 = "siasat";
     int whoCoup;
     bool mychallange = false , myReaction = false , losetwice = false;
@@ -467,12 +467,13 @@ public class Game : MonoBehaviour
     {
         if (!stop)
         {
+            pauseSection.SetActive(true);
             Time.timeScale = 0;
             stop = true;
             print("stop");
         }
         else
-        {
+        {   pauseSection.SetActive(false);
             Time.timeScale = 1;
             stop = false;
             print("continue");
@@ -749,7 +750,7 @@ public class Game : MonoBehaviour
         MeIconCheck();
         RoleMenuIconCheck();
         //testing
-        
+       
         //
 
 

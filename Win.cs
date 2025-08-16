@@ -8,13 +8,17 @@ using UnityEngine.UI;
 public class Win : MonoBehaviour
 {
     public Game game_script;
-    public Text title ,  trophyText , coinText;
+    public Text title, trophyText, coinText;
     public GameObject[] Ribbon = new GameObject[2];
-    public Color coinPotionColor , LvlPotionColor;
+    public Color coinPotionColor, LvlPotionColor;
     // Start is called before the first frame update
     void Start()
     {
-        Point();  
+        Point();
+    }
+
+    public void Return(){
+        Time.timeScale = 1;
     }
 
     void Point()
