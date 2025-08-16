@@ -16,7 +16,23 @@ public class LoadLevel : MonoBehaviour
     {
         if (lvlname == "Game")
         {
-            SceneManager.LoadScene("Game");
+            int coin = PlayerPrefs.GetInt("Coin");
+            if (coin >= 100 || PlayerPrefs.GetInt("InfinityPotionInUse") == 1)
+            {
+                if (PlayerPrefs.GetInt("InfinityPotionInUse") == 1)
+                {
+                    SceneManager.LoadScene("Game");
+                }
+                else
+                {
+                    coin -= 100;
+                    PlayerPrefs.SetInt("Coin", coin);
+                    SceneManager.LoadScene("Game");
+                }
+             
+                
+            }
+            
         }
         else if (lvlname == "Menu")
         {

@@ -243,7 +243,7 @@ public class Shop : MonoBehaviour
         Infinity_potion_status_text.text = InfinityPotion.ToString();
         PlayerPrefs.SetInt("InfinityPotion", InfinityPotion);
         Infinity_potion_btn.GetComponent<Image>().color = Color.green;
-        Operator_potion_text.text = " +1 ";
+        Infinity_potion_text.text = " +1 ";
         yield return new WaitForSeconds(2);
         Infinity_potion_btn.GetComponent<Image>().color = coin_potion_color;
         Infinity_potion_text.text = " ﺪﯾﺮﺧ ";
