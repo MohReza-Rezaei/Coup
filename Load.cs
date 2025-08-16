@@ -7,6 +7,8 @@ using UnityEngine.UI;
  using System.Text.RegularExpressions;
 public class Load : MonoBehaviour
 {
+    public LoadLevel script_loadLevel;
+    public Animator animator;
     public Text text;
     public Slider slider;
     float num;
@@ -17,7 +19,7 @@ public class Load : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.DeleteAll();
+        
         check = PlayerPrefs.GetInt("check");
         if (check == 0)
         {
@@ -65,7 +67,11 @@ public class Load : MonoBehaviour
             if (permision)
             {
                 signIn();
-                permision = false;
+            }
+            else
+            {
+            script_loadLevel.GetlvlName("Menu");
+            animator.SetTrigger("Doload");
             }
 
         }
@@ -92,6 +98,8 @@ public class Load : MonoBehaviour
             PlayerPrefs.SetString("NAME", input.text);
             PlayerPrefs.SetInt("check", 1);
             user.gameObject.SetActive(false);
+            script_loadLevel.GetlvlName("Menu");
+            animator.SetTrigger("Doload");
         }
         else
         {

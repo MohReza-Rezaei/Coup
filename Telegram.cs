@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Telegram : MonoBehaviour
 {
-    bool firstEnter = false;
+   // bool firstEnter = false;
     public GameObject coinIcon;
     public TextMeshProUGUI coinText;
     int check;
