@@ -15,11 +15,11 @@ public class Spin : MonoBehaviour
     public int lastDate;
     public float rotatePower;
     public float stopPower;
-
     public int permision;
-
     private Rigidbody2D rbody;
     int inRotate;
+    public TextMeshProUGUI cointxt;
+    public TextMeshProUGUI diamondtxt;
     // Start is called before the first frame update
     void Start()
     {
@@ -136,10 +136,18 @@ public class Spin : MonoBehaviour
         if (which == 1)
         {
             winIcon.sprite = coinIcon;
+            int money = PlayerPrefs.GetInt("Coin");
+            money += score;
+            cointxt.text = money.ToString();
+            PlayerPrefs.SetInt("Coin", money);
         }
         else
         {
             winIcon.sprite = diamondIcon;
+            int money = PlayerPrefs.GetInt("Diamond");
+            money += score;
+            diamondtxt.text = money.ToString();
+            PlayerPrefs.SetInt("Diamond", money);
         }
     }
 

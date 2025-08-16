@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Daily : MonoBehaviour
@@ -43,7 +44,8 @@ public class Daily : MonoBehaviour
    public GameObject Active_7;
    public GameObject Check_7;
 
-void Start()
+   public TextMeshProUGUI cointxt, diamondtxt;
+   void Start()
     {
     
         Day_1 =  PlayerPrefs.GetInt("Day1");
@@ -206,6 +208,7 @@ void Start()
 
    int coin = PlayerPrefs.GetInt("Coin");
    coin += 400;
+   cointxt.text = coin.ToString();
    PlayerPrefs.SetInt("Coin",coin);
 
     Day_1 = 2;
@@ -220,6 +223,7 @@ void Start()
 
    int Diamond = PlayerPrefs.GetInt("Diamond");
    Diamond += 3;
+   diamondtxt.text = Diamond.ToString();
    PlayerPrefs.SetInt("Diamond",Diamond);
 
     Day_2 = 2;
@@ -248,6 +252,7 @@ void Start()
 
    int coin = PlayerPrefs.GetInt("Coin");
    coin += 1000;
+   cointxt.text = coin.ToString();
    PlayerPrefs.SetInt("Coin",coin);
 
     Day_4 = 2;
@@ -262,6 +267,7 @@ void Start()
 
    int Diamond = PlayerPrefs.GetInt("Diamond");
    Diamond += 5;
+   diamondtxt.text = Diamond.ToString();
    PlayerPrefs.SetInt("Diamond",Diamond);
 
     Day_5 = 2;
@@ -276,6 +282,7 @@ void Start()
 
    int coin = PlayerPrefs.GetInt("Coin");
    coin += 500;
+   cointxt.text = coin.ToString();
    PlayerPrefs.SetInt("Coin",coin);
 
     Day_6 = 2;
@@ -290,6 +297,7 @@ void Start()
 
    int Diamond = PlayerPrefs.GetInt("Diamond");
    Diamond += 10;
+   diamondtxt.text = Diamond.ToString();
    PlayerPrefs.SetInt("Diamond",Diamond);
 
     Day_7 = 2;
