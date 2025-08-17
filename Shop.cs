@@ -9,6 +9,7 @@ public class Shop : MonoBehaviour
     int coin;
     int diamond;
 
+    public GameObject buyMusic , selectMusic;
     public TextMeshProUGUI Cointxt, Diamondtxt;
     // pic
     public int[] pic = new int[7];
@@ -102,6 +103,7 @@ public class Shop : MonoBehaviour
                 }
 
             }
+            selectMusic.GetComponent<AudioSource>().Play();
             pic[x] = 2;
             picbut[x].GetComponent<Image>().color = Color.green;
             pictxt[x].text = "ﺪﺷ ﺏﺎﺨﺘﻧﺍ";
@@ -117,6 +119,7 @@ public class Shop : MonoBehaviour
     {
         if (diamond >= 7)
         {
+            buyMusic.GetComponent<AudioSource>().Play();
             StartCoroutine(CoinPotiony());
             diamond -= 7;
             PlayerPrefs.SetInt("Diamond", diamond);
@@ -155,6 +158,7 @@ public class Shop : MonoBehaviour
     {
           if (diamond >= 3)
          {
+            buyMusic.GetComponent<AudioSource>().Play();
         StartCoroutine(LVLPotiony());
            diamond -= 3;
         PlayerPrefs.SetInt("Diamond", diamond);
@@ -192,6 +196,7 @@ public class Shop : MonoBehaviour
     {
         if (diamond >= 5)
         {
+            buyMusic.GetComponent<AudioSource>().Play();
             StartCoroutine(OperatorPotiony());
             diamond -= 5;
              PlayerPrefs.SetInt("Diamond", diamond);
@@ -228,6 +233,7 @@ public class Shop : MonoBehaviour
     {
         if (diamond >= 15)
         {
+            buyMusic.GetComponent<AudioSource>().Play();
             StartCoroutine(InfinityPotiony());
             diamond -= 15;
             PlayerPrefs.SetInt("Diamond", diamond);

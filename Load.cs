@@ -44,26 +44,26 @@ public class Load : MonoBehaviour
             {
                 text.text = "20 / 100";
             }
-            else if (count == 105)
+            else if (count == 65)
             {
                 text.text = "40 / 100";
             }
-            else if (count == 165)
+            else if (count == 115)
             {
                 text.text = "60 / 100";
             }
-            else if (count == 220)
+            else if (count == 165)
             {
                 text.text = "80 / 100";
             }
-            else if (count == 290)
+            else if (count == 165)
             {
                 text.text = "100 / 100";
             }
 
         }
         else
-        {
+        {text.text = "100 / 100";
             if (permision)
             {
                 signIn();

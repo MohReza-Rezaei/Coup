@@ -11,6 +11,7 @@ public class Win : MonoBehaviour
     public Text title, trophyText, coinText;
     public GameObject[] Ribbon = new GameObject[2];
     public Color coinPotionColor, LvlPotionColor;
+    public GameObject winMusic, loseMusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class Win : MonoBehaviour
 
         if (game_script.Me.Alive)
         {  // win
-            
+            winMusic.GetComponent<AudioSource>().Play();
             Ribbon[0].SetActive(true);
             Ribbon[1].SetActive(true);
             title.text = "ﻥﺎﻣﺮﻬﻗ";
@@ -80,6 +81,7 @@ public class Win : MonoBehaviour
         }
         else
         {  // lose
+            loseMusic.GetComponent<AudioSource>().Play();
             Ribbon[0].SetActive(false);
             Ribbon[1].SetActive(false);
             title.text = "ﺖﺴﮑﺷ";

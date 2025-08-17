@@ -20,9 +20,11 @@ public class Spin : MonoBehaviour
     int inRotate;
     public TextMeshProUGUI cointxt;
     public TextMeshProUGUI diamondtxt;
+    public GameObject spinMusic;
     // Start is called before the first frame update
     void Start()
     {
+        
         lastDate = PlayerPrefs.GetInt("DAY");
         
         if (lastDate == System.DateTime.Now.Day)
@@ -93,38 +95,56 @@ public class Spin : MonoBehaviour
             permision = 0;
             off.SetActive(true);
             matn.SetActive(true);
+            spinMusic.GetComponent<AudioSource>().Play();
         }
 
     }
 
-    public void GetReward(){
+    public void GetReward()
+    {
         float rot = transform.eulerAngles.z;
 
-        if(rot > 0 && rot <= 45){
-     GetComponent<RectTransform>().eulerAngles = new Vector3(0,0,45);       
-     win(25,1);
-        }else if(rot > 45 && rot <= 90){
-    GetComponent<RectTransform>().eulerAngles = new Vector3(0,0,90);  
-     win(500,1);
-        }else if(rot > 90 && rot <= 135){
-     GetComponent<RectTransform>().eulerAngles = new Vector3(0,0,135);         
-     win(25,1);
-        }else if(rot > 135 && rot <= 180){
-     GetComponent<RectTransform>().eulerAngles = new Vector3(0,0,180);         
-     win(2,2);
-        }else if(rot >180 && rot <= 225){
-     GetComponent<RectTransform>().eulerAngles = new Vector3(0,0,225);         
-     win(50,1);
-        }else if(rot > 225 && rot <= 270){
-     GetComponent<RectTransform>().eulerAngles = new Vector3(0,0,270);         
-     win(10,2);
-        }else if(rot > 270 && rot <= 315){
-     GetComponent<RectTransform>().eulerAngles = new Vector3(0,0,315);         
-     win(100,1);
-        }else if(rot > 315 && rot <= 360){
-     GetComponent<RectTransform>().eulerAngles = new Vector3(0,0,0);         
-     win(1,2);
+        if (rot > 0 && rot <= 45)
+        {
+            GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, 45);
+            win(25, 1);
         }
+        else if (rot > 45 && rot <= 90)
+        {
+            GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, 90);
+            win(500, 1);
+        }
+        else if (rot > 90 && rot <= 135)
+        {
+            GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, 135);
+            win(25, 1);
+        }
+        else if (rot > 135 && rot <= 180)
+        {
+            GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, 180);
+            win(2, 2);
+        }
+        else if (rot > 180 && rot <= 225)
+        {
+            GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, 225);
+            win(50, 1);
+        }
+        else if (rot > 225 && rot <= 270)
+        {
+            GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, 270);
+            win(10, 2);
+        }
+        else if (rot > 270 && rot <= 315)
+        {
+            GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, 315);
+            win(100, 1);
+        }
+        else if (rot > 315 && rot <= 360)
+        {
+            GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, 0);
+            win(1, 2);
+        }
+        spinMusic.GetComponent<AudioSource>().Pause();
     }
 
     public void win(int score, int which)
