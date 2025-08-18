@@ -40,6 +40,8 @@ public class Game : MonoBehaviour
 
     bool stop = false , robotWait = false , meWait = false , missionWait = false;
 
+    public GameObject ChallangeMusic;
+
     // info for passing waitUntil
     // cClicked = is for doing continueing Action and ActionRob functions -> end of ertbatat , attack , uniqe5 and . . 
     // losingClick = for you to lose one cart then continue -- losingy function -> end of burn function
@@ -196,22 +198,17 @@ public class Game : MonoBehaviour
         //attack
         if (attack == "cherik")
         {
-        if (Me.coin < 4)
-        {
-        attackOff.SetActive(true);
-        }
-        else
-        {
-         attackOff.SetActive(false);
-        }   
+
+        attackOff.SetActive(false); 
 
         if ((!cpu1.Alive && !cpu2.Alive && WhoSolh == 3) || (!cpu2.Alive && !cpu3.Alive && WhoSolh == 1) || (!cpu1.Alive && !cpu3.Alive && WhoSolh == 2))
         {
             attackOff.SetActive(true);
         }
-        else
+        
+        if (Me.coin < 4)
         {
-            attackOff.SetActive(false);
+        attackOff.SetActive(true);
         }
             
         }
@@ -727,13 +724,14 @@ public class Game : MonoBehaviour
         //    yield return new WaitForSeconds(2f);
             if (myturn)
             {
-
+                announcer.text = "";
                 Meoffcheck();
                 pannel.SetActive(true);
 
             }
             else
-            {
+            {   announcer.text = "";
+                pannel.SetActive(false);
                 StartCoroutine(ActionRob());
             }
             yield return new WaitForSeconds(1);
@@ -959,7 +957,7 @@ public class Game : MonoBehaviour
         }
         else
         {
-
+            ChallangeMusic.GetComponent<AudioSource>().Play();
             Player temp = new Player();
             announcer.color = Color.gray;
             if (result[0])
@@ -5677,11 +5675,14 @@ endgame--;
             }
             else
             {
-
+                ChallangeMusic.GetComponent<AudioSource>().Play();
                 if (result[1])
                 {
+                    announcer.color = Color.gray;
                     announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu1Name + " " + name_script.cpu2Name;
                     yield return new WaitForSeconds(2);
+                    announcer.text = "";
+                    announcer.color = Color.black;
                     int target = 0;
                     if (whichAction == "mali")
                     {
@@ -5951,9 +5952,11 @@ endgame--;
                     endgame--;
                 }
                 else if (result[2])
-                {
+                {announcer.color = Color.gray;
                     announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu1Name + " " + name_script.cpu3Name;
                     yield return new WaitForSeconds(2);
+                    announcer.text = "";
+                    announcer.color = Color.black;
 
                     int target = 0;
                     if (whichAction == "mali")
@@ -6223,9 +6226,11 @@ endgame--;
                     endgame--;
                 }
                 else if (mychallange)
-                {
+                {announcer.color = Color.gray;
                     announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu1Name + " ﺎﻤﺷ ";
                     yield return new WaitForSeconds(2);
+                    announcer.text = "";
+                    announcer.color = Color.black;
 
 
 
@@ -6623,11 +6628,14 @@ endgame--;
                             
             }
             else
-            {
+            {ChallangeMusic.GetComponent<AudioSource>().Play();
                 if (result[2])
                 {
+                    announcer.color = Color.gray;
                      announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu2Name + " " + name_script.cpu3Name;
                     yield return new WaitForSeconds(2);
+                    announcer.text = "";
+                    announcer.color = Color.black;
                     int target = 0;
                     if (whichAction == "mali")
                     {
@@ -6893,8 +6901,11 @@ endgame--;
                     }
                 endgame--;
                 }else if (mychallange)
-                {announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu2Name + " ﺎﻤﺷ ";
+                {    announcer.color = Color.gray;
+                     announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu2Name + " ﺎﻤﺷ ";
                     yield return new WaitForSeconds(2);
+                    announcer.text = "";
+                    announcer.color = Color.black;
                      
                     int target = 0;
                     if (whichAction == "mali")
@@ -7075,9 +7086,11 @@ endgame--;
                     }
                 }
                 else if (result[0])
-                {
+                {announcer.color = Color.gray;
                     announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu2Name + " " + name_script.cpu1Name;
                     yield return new WaitForSeconds(2);
+                    announcer.text = "";
+                    announcer.color = Color.black;
               
                     int target = 0;
                     if (whichAction == "mali")
@@ -7562,10 +7575,13 @@ announcer.text = "";
                            
             }
             else
-            {   
+            {   ChallangeMusic.GetComponent<AudioSource>().Play();
                 if (mychallange)
-                {announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " ﺎﻤﺷ ";
+                {   announcer.color = Color.gray;
+                    announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " ﺎﻤﺷ ";
                     yield return new WaitForSeconds(2);
+                    announcer.text = "";
+                    announcer.color = Color.black;
 
                     
 
@@ -7748,8 +7764,11 @@ announcer.text = "";
                      endgame--;
                     }
                 }else if (result[0])
-                { announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " " + name_script.cpu1Name;
+                {announcer.color = Color.gray;
+                    announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " " + name_script.cpu1Name;
                     yield return new WaitForSeconds(2);
+                    announcer.text = "";
+                    announcer.color = Color.black;
                      
                     int target = 0;
                     if (whichAction == "mali")
@@ -8012,8 +8031,11 @@ announcer.text = "";
                  endgame--;
                 }
                 else if (result[1])
-                { announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " " + name_script.cpu2Name;
+                {    announcer.color = Color.gray;
+                     announcer.text = "ﺪﯿﺸﮐ ﺶﻟﺎﭼ ﻪﺑ ﺍﺭ " + name_script.cpu3Name + " " + name_script.cpu2Name;
                     yield return new WaitForSeconds(2);
+                    announcer.text = "";
+                    announcer.color = Color.black;
 
                  
                     int target = 0;
@@ -8299,7 +8321,7 @@ announcer.text = "";
             Names[0].color = Color.black;
             Names[2].color = Color.white;
             Names[1].color = Color.white;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1.5f);
 
            
             int ran = Random.Range(1,8);
@@ -8733,7 +8755,7 @@ announcer.text = "";
           Names[0].color = Color.white;
           Names[2].color = Color.white;
           Names[1].color = Color.black;
-          yield return new WaitForSeconds(3);
+          yield return new WaitForSeconds(1.5f);
             // 1 = means cpu1 will select earn money
 
             // 2 and 3 are BLOF
@@ -9163,7 +9185,7 @@ yield return new WaitForSeconds(1);
               Names[0].color = Color.white;
               Names[1].color = Color.white;
               Names[2].color = Color.black;
-              yield return new WaitForSeconds(3);
+              yield return new WaitForSeconds(1.5f);
             // 1 = means cpu1 will select earn money
 
             // 2 and 3 are BLOF
