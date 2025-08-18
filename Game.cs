@@ -40,7 +40,7 @@ public class Game : MonoBehaviour
 
     bool stop = false , robotWait = false , meWait = false , missionWait = false;
 
-    public GameObject ChallangeMusic;
+    public GameObject ChallangeMusic , burnCardMusic;
 
     // info for passing waitUntil
     // cClicked = is for doing continueing Action and ActionRob functions -> end of ertbatat , attack , uniqe5 and . . 
@@ -185,6 +185,9 @@ public class Game : MonoBehaviour
 
     void Meoffcheck()
     {
+        Names[0].color = Color.white;
+        Names[1].color = Color.white;
+        Names[2].color = Color.white;
         //coup
         if (Me.coin < 7)
         {
@@ -342,6 +345,7 @@ public class Game : MonoBehaviour
 
     void printLost()
     {
+        burnCardMusic.GetComponent<AudioSource>().Play();
         int funanc = 0, comnu = 0, atk = 0, uq4 = 0, uq5 = 0;
         for (int i = 0; i < lost.Length; i++)
         {
@@ -723,7 +727,7 @@ public class Game : MonoBehaviour
 
         //    yield return new WaitForSeconds(2f);
             if (myturn)
-            {
+            {   
                 announcer.text = "";
                 Meoffcheck();
                 pannel.SetActive(true);
