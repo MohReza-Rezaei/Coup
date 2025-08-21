@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
- using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 public class Load : MonoBehaviour
 {
     public LoadLevel script_loadLevel;
@@ -19,7 +19,7 @@ public class Load : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
         check = PlayerPrefs.GetInt("check");
         if (check == 0)
         {

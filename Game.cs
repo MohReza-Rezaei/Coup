@@ -3921,6 +3921,8 @@ endgame--;
                             }
                             else
                             {
+                                announcer.text = "ﺩﺮﮐ ﺖﺧﺍﺩﺮﭘ ﻪﮑﺳ :" + name_script.cpu2Name;
+                                yield return new WaitForSeconds(2);
                                 if (cpu2.coin >= 2)
                                 {
                                     cpu2.coin -= 2;
@@ -4112,7 +4114,7 @@ endgame--;
                                     printLost();
                                     AllCheckAlive();
                                     yield return new WaitForSeconds(2);
-
+                                    
                                     if (cpu3.coin >= 2)
                                     {
                                         cpu3.coin -= 2;
@@ -4135,6 +4137,8 @@ endgame--;
                             }
                             else
                             {
+                                announcer.text = "ﺩﺮﮐ ﺖﺧﺍﺩﺮﭘ ﻪﮑﺳ :" + name_script.cpu3Name;
+                                yield return new WaitForSeconds(2);
                                 if (cpu3.coin >= 2)
                                 {
                                     cpu3.coin -= 2;
@@ -4508,7 +4512,8 @@ endgame--;
                                 }
                             }
                             else
-                            {
+                            {announcer.text = "ﺩﺮﮐ ﺖﺧﺍﺩﺮﭘ ﻪﮑﺳ :" + name_script.cpu1Name;
+                                yield return new WaitForSeconds(2);
                                 if (cpu1.coin >= 2)
                                 {
                                     cpu1.coin -= 2;
@@ -4723,6 +4728,8 @@ endgame--;
                             }
                             else
                             {
+                                announcer.text = "ﺩﺮﮐ ﺖﺧﺍﺩﺮﭘ ﻪﮑﺳ :" + name_script.cpu3Name;
+                                yield return new WaitForSeconds(2);
                                 if (cpu3.coin >= 2)
                                 {
                                     cpu3.coin -= 2;
@@ -5093,6 +5100,8 @@ endgame--;
                             }
                             else
                             {
+                                announcer.text = "ﺩﺮﮐ ﺖﺧﺍﺩﺮﭘ ﻪﮑﺳ :" + name_script.cpu1Name;
+                                yield return new WaitForSeconds(2);
                                 if (cpu1.coin >= 2)
                                 {
                                     cpu1.coin -= 2;
@@ -5309,6 +5318,8 @@ endgame--;
                             }
                             else
                             {
+                                announcer.text = "ﺩﺮﮐ ﺖﺧﺍﺩﺮﭘ ﻪﮑﺳ :" + name_script.cpu2Name;
+                                yield return new WaitForSeconds(2);
                                 if (cpu2.coin >= 2)
                                 {
                                     cpu2.coin -= 2;
@@ -10259,7 +10270,7 @@ yield return new WaitForSeconds(1);
                     {
                         select2 = Random.Range(1, 5);
                     } while (select2 == select1);
-print("select : " + select1 + " , " + select2);
+                    print("select : " + select1 + " , " + select2);
                     if (select1 == 1)
                     {
                         if (select2 == 2)
@@ -10434,7 +10445,7 @@ print("select : " + select1 + " , " + select2);
                 else if (joon == 1)
                 {
                     int select = Random.Range(1, 4);
-print("select : " + select);
+                    print("select : " + select);
                     if (select == 1)
                     {
                         //nothinh
@@ -10504,8 +10515,12 @@ print("select : " + select);
                     print("now : " + cpu1.card1 + " , " + cpu1.card2);
                 else if (temp == cpu2)
                     print("now : " + cpu2.card1 + " , " + cpu2.card2);
-                else if(temp == cpu3)
+                else if (temp == cpu3)
                     print("now : " + cpu3.card1 + " , " + cpu3.card2);
+
+                
+                announcer.text = "ﺩﺮﮐ ﺽﻮﻋ ﺍﺭ ﺩﻮﺧ ﯼﺎﻫ ﺕﺭﺎﮐ";
+                yield return new WaitForSeconds(2);
             }
             
         }
