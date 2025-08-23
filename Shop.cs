@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,7 @@ public class Shop : MonoBehaviour
     public Sprite[] profileList = new Sprite[7];
 
     ///coin potion
-
+    
     public Button coin_potion_btn;
     public Text coin_potion_text;
     public Color coin_potion_color;
@@ -27,21 +28,21 @@ public class Shop : MonoBehaviour
     public GameObject coin_potion_off;
 
     //lvl potion
-
+   
     public Button lvl_potion_btn;
     public Text lvl_potion_text;
     public Text lvl_potion_status_text;
     public GameObject lvl_potion_off;
 
     //operator potion
-
+   
     public Button Operator_potion_btn;
     public Text Operator_potion_text;
     public Text Operator_potion_status_text;
     public GameObject Operator_potion_off;
 
     //infinity potion
-
+   
     public Button Infinity_potion_btn;
     public Text Infinity_potion_text;
     public Text Infinity_potion_status_text;
@@ -139,6 +140,7 @@ public class Shop : MonoBehaviour
         yield return new WaitForSeconds(2);
         coin_potion_btn.GetComponent<Image>().color = coin_potion_color;
         coin_potion_text.text = " ﺪﯾﺮﺧ ";
+        coin_potion_off.SetActive(false);
     }
 
     public void UseCoinPotion()
@@ -178,6 +180,7 @@ public class Shop : MonoBehaviour
         yield return new WaitForSeconds(2);
         lvl_potion_btn.GetComponent<Image>().color = coin_potion_color;
         lvl_potion_text.text = " ﺪﯾﺮﺧ ";
+        lvl_potion_off.SetActive(false);
     }
 
     public void UseLVLPotion()
@@ -216,6 +219,7 @@ public class Shop : MonoBehaviour
         yield return new WaitForSeconds(2);
         Operator_potion_btn.GetComponent<Image>().color = coin_potion_color;
         Operator_potion_text.text = " ﺪﯾﺮﺧ ";
+        Operator_potion_off.SetActive(false);
     }
 
     public void UseOperatorPotion()
@@ -253,6 +257,7 @@ public class Shop : MonoBehaviour
         yield return new WaitForSeconds(2);
         Infinity_potion_btn.GetComponent<Image>().color = coin_potion_color;
         Infinity_potion_text.text = " ﺪﯾﺮﺧ ";
+        Infinity_potion_off.SetActive(false);
     }
 
     public void UseInfinityPotion()

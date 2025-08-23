@@ -15,7 +15,7 @@ public class Manager : MonoBehaviour
     int coin;
     int trophy;
     int diamond;
-      public Image profilePic;
+      public Image[] profilePic =new Image[2];
       public Sprite[] profileList = new Sprite[7];
       public GameObject CoinPotionOff, LVLPotionOff, infinityPotionOff;
       // Start is called before the first frame update
@@ -97,12 +97,14 @@ public class Manager : MonoBehaviour
                   int num = PlayerPrefs.GetInt("pic" + (i + 1));
                   if (num == 2)
                   {
-                        profilePic.sprite = profileList[i];
+                        profilePic[0].sprite = profileList[i];
+                        profilePic[1].sprite = profileList[i];
                         break;
                   }
             }
 
             // coin Potion Check
+            int howMany_coinPotion = PlayerPrefs.GetInt("CoinPotion");
             int coinpotion_have = PlayerPrefs.GetInt("CoinPotionInUse");
             if (coinpotion_have == 1)
             {
@@ -123,7 +125,16 @@ public class Manager : MonoBehaviour
                         CoinPotionOff.SetActive(true);
                   }
             }
+            else
+            {
+                  if (howMany_coinPotion > 0)
+                        CoinPotionOff.SetActive(false);
+                  else
+                        CoinPotionOff.SetActive(true);
+            }
+
             // lvl potion check
+            int howMany_LVLPotion = PlayerPrefs.GetInt("LVLPotion");
             int LVLPotion_have = PlayerPrefs.GetInt("LVLPotionInUse");
             if (LVLPotion_have == 1)
             {
@@ -144,7 +155,15 @@ public class Manager : MonoBehaviour
                         LVLPotionOff.SetActive(true);
                   }
             }
+            else
+            {
+                  if (howMany_LVLPotion > 0)
+                        LVLPotionOff.SetActive(false);
+                  else
+                        LVLPotionOff.SetActive(true);
+            }
             // infinity potion check
+            int howMany_InfinityPotion = PlayerPrefs.GetInt("InfinityPotion");
             int infinity_have = PlayerPrefs.GetInt("InfinityPotionInUse");
             if (infinity_have == 1)
             {
@@ -164,6 +183,13 @@ public class Manager : MonoBehaviour
                   {
                         infinityPotionOff.SetActive(true);
                   }
+            }
+            else
+            {
+                  if (howMany_InfinityPotion > 0)
+                        infinityPotionOff.SetActive(false);
+                  else
+                        infinityPotionOff.SetActive(true);
             }
     }
 

@@ -19,7 +19,7 @@ public class Load : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
         check = PlayerPrefs.GetInt("check");
         if (check == 0)
         {
@@ -37,7 +37,7 @@ public class Load : MonoBehaviour
 
         if (slider.value != 1)
         {
-            slider.value += 0.25f * Time.deltaTime;
+            slider.value += 0.2f * Time.deltaTime;
             count++;
             num = slider.value * 100;
             if (count == 35)
