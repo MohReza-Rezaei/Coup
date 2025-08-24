@@ -87,6 +87,7 @@ public class Load : MonoBehaviour
         PlayerPrefs.SetInt("Card", 5);
         PlayerPrefs.SetInt("Coin", 400);
         PlayerPrefs.SetInt("Diamond", 8);
+        PlayerPrefs.SetInt("ClickMusic", 1);
         user.gameObject.SetActive(true);
     }
 

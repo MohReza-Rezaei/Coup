@@ -11,7 +11,7 @@ public class Manager : MonoBehaviour
     public Text[] Name = new Text[2];
     public TextMeshProUGUI cointxt, diamondtxt;
     public Slider MusicMenuSlide;
-    public GameObject MusicMenu;
+    public GameObject MusicMenu ,MusicClick , MusicClick2;
     int coin;
     int trophy;
     int diamond;
@@ -101,6 +101,13 @@ public class Manager : MonoBehaviour
                         profilePic[1].sprite = profileList[i];
                         break;
                   }
+            }
+
+            int check_click_muisc = PlayerPrefs.GetInt("ClickMusic");
+            if (check_click_muisc == 0)
+            {
+                  MusicClick.SetActive(false);
+                  MusicClick2.SetActive(false); 
             }
 
             // coin Potion Check
@@ -199,13 +206,10 @@ public class Manager : MonoBehaviour
         MusicMenu.GetComponent<AudioSource>().volume = MusicMenuSlide.value;
     }
 
-    void Enter()
-    {
-        if (coin >= 100)
-        {
-            coin -= 100;
-
-            // load game scene
-        }
+    public void OffMusic(){
+      PlayerPrefs.SetInt("ClickMusic",0);
+    }
+    public void OnMusic(){
+      PlayerPrefs.SetInt("ClickMusic",1);
     }
 }

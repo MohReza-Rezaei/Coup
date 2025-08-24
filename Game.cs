@@ -40,6 +40,7 @@ public class Game : MonoBehaviour
     bool stop = false , robotWait = false , meWait = false , missionWait = false;
 
     public GameObject ChallangeMusic , burnCardMusic;
+    public GameObject[] ClickMusic = new GameObject[3];
 
     // info for passing waitUntil
     // cClicked = is for doing continueing Action and ActionRob functions -> end of ertbatat , attack , uniqe5 and . . 
@@ -748,12 +749,17 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+        int check_click_muisc = PlayerPrefs.GetInt("ClickMusic");
+        if (check_click_muisc == 0)
+        {
+            ClickMusic[0].SetActive(false);
+            ClickMusic[1].SetActive(false);
+        }
+
         ShuffleArray(numbers, true);
         MeIconCheck();
         RoleMenuIconCheck();
-        //testing
-       
-        //
+        
 
 
         StartCoroutine(Robot());
